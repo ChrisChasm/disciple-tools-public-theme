@@ -1,6 +1,6 @@
 <?php
 /**
- * Post Type Reports
+ * Post Type Dev Documentation
  */
 
 if ( !defined( 'ABSPATH' )) {
@@ -8,13 +8,13 @@ if ( !defined( 'ABSPATH' )) {
 } // Exit if accessed directly.
 
 /**
- * DTPS_Reports_Post_Type Post Type Class
- * All functionality pertaining to project update post types in DTPS_Reports_Post_Type.
+ * DTPS_Dev_Documentation_Post_Type Post Type Class
+ * All functionality pertaining to project update post types in DTPS_Dev_Documentation_Post_Type.
  *
  * @package  Disciple_Tools
  * @since    0.1.0
  */
-class DTPS_Reports_Post_Type
+class DTPS_Dev_Documentation_Post_Type
 {
     /**
      * The post type token.
@@ -62,7 +62,7 @@ class DTPS_Reports_Post_Type
     public $taxonomies;
 
     /**
-     * DTPS_Reports_Post_Type The single instance of DTPS_Reports_Post_Type.
+     * DTPS_Dev_Documentation_Post_Type The single instance of DTPS_Dev_Documentation_Post_Type.
      * @var     object
      * @access  private
      * @since   0.1
@@ -70,11 +70,11 @@ class DTPS_Reports_Post_Type
     private static $_instance = null;
 
     /**
-     * Main DTPS_Reports_Post_Type Instance
+     * Main DTPS_Dev_Documentation_Post_Type Instance
      *
-     * Ensures only one instance of DTPS_Reports_Post_Type is loaded or can be loaded.
+     * Ensures only one instance of DTPS_Dev_Documentation_Post_Type is loaded or can be loaded.
      *
-     * @return DTPS_Reports_Post_Type instance
+     * @return DTPS_Dev_Documentation_Post_Type instance
      * @since 0.1
      * @static
      */
@@ -94,29 +94,29 @@ class DTPS_Reports_Post_Type
      * @param array $args
      * @param array $taxonomies
      */
-    public function __construct( $post_type = 'reports', $singular = 'Report', $plural = 'Reports', $args = [], $taxonomies = []) {
+    public function __construct( $post_type = 'dev_documentation', $singular = 'Dev Docs', $plural = 'Dev Docs', $args = array(), $taxonomies = array()) {
         $this->post_type = $post_type;
         $this->singular = $singular;
         $this->plural = $plural;
         $this->args = $args;
         $this->taxonomies = $taxonomies;
 
-        add_action( 'init', [ $this, 'register_post_type' ] );
-        add_action( 'init', [ $this, 'create_tag_taxonomies' ], 0 );
+        add_action( 'init', array( $this, 'register_post_type' ) );
+        add_action( 'init', array( $this, 'create_tag_taxonomies' ), 0 );
 
         if (is_admin()) {
             global $pagenow;
 
-            add_action( 'admin_menu', [ $this, 'meta_box_setup' ], 20 );
-            add_action( 'save_post', [ $this, 'meta_box_save' ] );
-            add_filter( 'enter_title_here', [ $this, 'enter_title_here' ] );
-            add_filter( 'post_updated_messages', [ $this, 'updated_messages' ] );
+            add_action( 'admin_menu', array( $this, 'meta_box_setup' ), 20 );
+            add_action( 'save_post', array( $this, 'meta_box_save' ) );
+            add_filter( 'enter_title_here', array( $this, 'enter_title_here' ) );
+            add_filter( 'post_updated_messages', array( $this, 'updated_messages' ) );
 
             if ($pagenow == 'edit.php' && isset( $_GET['post_type'] )) {
                 $pt = sanitize_text_field( wp_unslash( $_GET['post_type'] ) );
                 if ($pt === $this->post_type) {
-                    add_filter( 'manage_edit-' . $this->post_type . '_columns', [ $this, 'register_custom_column_headings' ], 10, 1 );
-                    add_action( 'manage_posts_custom_column', [ $this, 'register_custom_columns' ], 10, 2 );
+                    add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
+                    add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
                 }
             }
         }
@@ -133,16 +133,16 @@ class DTPS_Reports_Post_Type
             // let's now add all the options for this post type
             array(
                 'labels' => array(
-                    'name' => 'Reports', /* This is the Title of the Group */
-                    'singular_name' => 'Report', /* This is the individual type */
-                    'all_items' => 'All Reports', /* the all items menu item */
+                    'name' => 'Dev Docs', /* This is the Title of the Group */
+                    'singular_name' => 'Dev Docs', /* This is the individual type */
+                    'all_items' => 'All Dev Docs', /* the all items menu item */
                     'add_new' => 'Add New', /* The add new menu item */
-                    'add_new_item' => 'Add New Report', /* Add New Display Title */
+                    'add_new_item' => 'Add New Dev Doc', /* Add New Display Title */
                     'edit' => 'Edit', /* Edit Dialog */
-                    'edit_item' => 'Edit Zúme Report', /* Edit Display Title */
-                    'new_item' => 'New Zúme Report', /* New Display Title */
-                    'view_item' => 'View Zúme Report', /* View Display Title */
-                    'search_items' => 'Search Zúme Reports', /* Search Custom Type Title */
+                    'edit_item' => 'Edit Dev Documentation', /* Edit Display Title */
+                    'new_item' => 'New Dev Documentation', /* New Display Title */
+                    'view_item' => 'View Dev Documentation', /* View Display Title */
+                    'search_items' => 'Search Dev Documentation', /* Search Custom Type Title */
                     'not_found' => 'Nothing found in the Database.', /* This displays if there are no entries yet */
                     'not_found_in_trash' => 'Nothing found in Trash', /* This displays if there is nothing in the trash */
                     'parent_item_colon' => ''
@@ -156,10 +156,10 @@ class DTPS_Reports_Post_Type
                 'menu_position' => 10, /* this is what order you want it to appear in on the left hand side menu */
                 'menu_icon' => 'dashicons-book', /* the icon for the custom post type menu. uses built-in dashicons (CSS class name) */
                 'rewrite' => array(
-                    'slug' => 'reports',
+                    'slug' => 'dev_documentation',
                     'with_front' => true
                 ), /* you can specify its url slug */
-                'has_archive' => 'reports', /* you can rename the slug here */
+                'has_archive' => 'dev_documentation', /* you can rename the slug here */
                 'capability_type' => 'post',
                 'hierarchical' => true,
                 /* the next one is important, it tells what's enabled in the post editor */
@@ -172,13 +172,13 @@ class DTPS_Reports_Post_Type
     public function create_tag_taxonomies() {
         // Add new taxonomy, NOT hierarchical (like tags)
 
-        register_taxonomy('report_categories', 'reports', array(
+        register_taxonomy('report_categories', 'dev_documentation', array(
             'hierarchical' => true,
-            'labels' => [
-                'name' => _x( 'Report Categories', 'taxonomy general name' ),
+            'labels' => array(
+                'name' => _x( 'Dev Documentation Categories', 'taxonomy general name' ),
                 'singular_name' => _x( 'Category', 'taxonomy singular name' ),
                 'menu_name' => __( 'Categories' ),
-            ],
+            ),
             'show_ui' => true,
             'update_count_callback' => '_update_post_term_count',
             'query_var' => true,
@@ -225,9 +225,9 @@ class DTPS_Reports_Post_Type
      */
     public function register_custom_column_headings( $defaults) {
 
-        $new_columns = []; //array( 'image' => __( 'Image', 'dtps' ));
+        $new_columns = array(); //array( 'image' => __( 'Image', 'dtps' ));
 
-        $last_item = [];
+        $last_item = array();
 
         if (count( $defaults ) > 2) {
             $last_item = array_slice( $defaults, -1 );
@@ -258,7 +258,7 @@ class DTPS_Reports_Post_Type
     public function updated_messages( $messages) {
         global $post;
 
-        $messages[$this->post_type] = [
+        $messages[$this->post_type] = array(
             0 => '', // Unused. Messages start at index 1.
             1 => sprintf(
                 '%3$s updated. %1$sView %4$s%2$s',
@@ -267,8 +267,8 @@ class DTPS_Reports_Post_Type
                 $this->singular,
                 strtolower( $this->singular )
             ),
-            2 => 'Zúme Report updated.',
-            3 => 'Zúme Report deleted.',
+            2 => 'Dev Documentation updated.',
+            3 => 'Dev Documentation deleted.',
             4 => sprintf( '%s updated.', $this->singular ),
             /* translators: %s: date and time of the revision */
             5 => isset( $_GET['revision'] ) ? sprintf( '%1$s restored to revision from %2$s', $this->singular, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
@@ -286,7 +286,7 @@ class DTPS_Reports_Post_Type
                 '</a>'
             ),
             10 => sprintf( '%1$s draft updated. %2$sPreview %3$s%4$s', $this->singular, strtolower( $this->singular ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) . '">', '</a>' ),
-        ];
+        );
 
         return $messages;
     } // End updated_messages()
@@ -299,7 +299,7 @@ class DTPS_Reports_Post_Type
      * @since  0.1.0
      */
     public function meta_box_setup() {
-//        add_meta_box($this->post_type . '_scribes', 'Report', array($this, 'load_report_meta_box'), $this->post_type, 'normal', 'high');
+//        add_meta_box($this->post_type . '_scribes', 'Dev Documentation', array($this, 'load_report_meta_box'), $this->post_type, 'normal', 'high');
     } // End meta_box_setup()
 
     /**
@@ -486,19 +486,17 @@ class DTPS_Reports_Post_Type
      * @since  0.1.0
      */
     public function get_custom_fields_settings() {
-        $fields = [];
+        $fields = array();
 
-        $fields['1'] = [
-            'name' => 'Welcome to Zúme (1)',
-            'description' => '',
-            'type' => 'link',
-            'default' => '247062938',
-            'section' => 'scribe',
-        ];
+//        $fields['1'] = [
+//            'name' => 'Welcome to Dev Documentation',
+//            'description' => '',
+//            'type' => 'link',
+//            'default' => '247062938',
+//            'section' => 'scribe',
+//        ];
 
-
-
-        return apply_filters( 'dtps_report_fields_settings', $fields );
+        return apply_filters( 'dtps_dev_documentation_fields_settings', $fields );
     } // End get_custom_fields_settings()
 
     /**
@@ -523,4 +521,4 @@ class DTPS_Reports_Post_Type
     } // End flush_rewrite_rules()
 
 } // End Class
-DTPS_Reports_Post_Type::instance();
+DTPS_Dev_Documentation_Post_Type::instance();

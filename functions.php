@@ -1,5 +1,5 @@
 <?php
-require_once ( get_template_directory().'/functions/global-functions.php' );
+require_once( get_template_directory().'/functions/global-functions.php' );
 
 // Theme support options
 require_once( get_template_directory().'/functions/default-theme-configuration/theme-support.php' );
@@ -33,8 +33,9 @@ require_once( get_template_directory().'/functions/admin/admin-page.php' );
 require_once( get_template_directory().'/functions/urls.php' );
 
 
-require_once( get_template_directory().'/functions/post-type-reports.php' );
-require_once( get_template_directory().'/functions/post-type-articles.php' );
+require_once( get_template_directory().'/functions/post-type-news.php' );
+require_once( get_template_directory().'/functions/post-type-user-documentation.php' );
+require_once( get_template_directory().'/functions/post-type-dev-documentation.php' );
 
 // Integrations
 require_once( get_template_directory().'/functions/report-send-integration.php' );
@@ -55,7 +56,7 @@ require_once( get_template_directory().'/functions/multi-role/multi-role.php' );
 function dtps_get_user_meta( $user_id = null ) {
 
     if ( ! is_user_logged_in() ) {
-        return [];
+        return array();
     }
     if ( is_null( $user_id ) ) {
         $user_id = get_current_user_id();

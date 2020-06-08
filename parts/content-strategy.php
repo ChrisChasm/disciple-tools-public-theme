@@ -129,7 +129,7 @@
 
         <a class="button primary-button-hollow large" href="/statistics">View Statistics</a>
         <a class="button primary-button-hollow large" href="/maps">View Maps</a>
-        <a class="button primary-button-hollow large" href="/reports">View Reports</a>
+        <a class="button primary-button-hollow large" href="/news">View News</a>
 
         <?php get_template_part( 'parts/content', 'joinus' ); ?>
 

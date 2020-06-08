@@ -1,6 +1,6 @@
 <?php
 /**
- * Post Type Articles
+ * Post Type User Documentation
  */
 
 if ( !defined( 'ABSPATH' )) {
@@ -8,13 +8,13 @@ if ( !defined( 'ABSPATH' )) {
 } // Exit if accessed directly.
 
 /**
- * DTPS_Articles_Post_Type Post Type Class
- * All functionality pertaining to project update post types in DTPS_Articles_Post_Type.
+ * DTPS_User_Documentation_Post_Type Post Type Class
+ * All functionality pertaining to project update post types in DTPS_User_Documentation_Post_Type.
  *
  * @package  Disciple_Tools
  * @since    0.1.0
  */
-class DTPS_Articles_Post_Type
+class DTPS_User_Documentation_Post_Type
 {
     /**
      * The post type token.
@@ -62,7 +62,7 @@ class DTPS_Articles_Post_Type
     public $taxonomies;
 
     /**
-     * DTPS_Articles_Post_Type The single instance of DTPS_Articles_Post_Type.
+     * DTPS_User_Documentation_Post_Type The single instance of DTPS_User_Documentation_Post_Type.
      * @var     object
      * @access  private
      * @since   0.1
@@ -70,11 +70,11 @@ class DTPS_Articles_Post_Type
     private static $_instance = null;
 
     /**
-     * Main DTPS_Articles_Post_Type Instance
+     * Main DTPS_User_Documentation_Post_Type Instance
      *
-     * Ensures only one instance of DTPS_Articles_Post_Type is loaded or can be loaded.
+     * Ensures only one instance of DTPS_User_Documentation_Post_Type is loaded or can be loaded.
      *
-     * @return DTPS_Articles_Post_Type instance
+     * @return DTPS_User_Documentation_Post_Type instance
      * @since 0.1
      * @static
      */
@@ -94,29 +94,29 @@ class DTPS_Articles_Post_Type
      * @param array $args
      * @param array $taxonomies
      */
-    public function __construct( $post_type = 'articles', $singular = 'Article', $plural = 'Articles', $args = [], $taxonomies = []) {
+    public function __construct( $post_type = 'user_documentation', $singular = 'User Docs', $plural = 'User Docs', $args = array(), $taxonomies = array()) {
         $this->post_type = $post_type;
         $this->singular = $singular;
         $this->plural = $plural;
         $this->args = $args;
         $this->taxonomies = $taxonomies;
 
-        add_action( 'init', [ $this, 'register_post_type' ] );
-        add_action( 'init', [ $this, 'create_tag_taxonomies' ], 0 );
+        add_action( 'init', array( $this, 'register_post_type' ) );
+        add_action( 'init', array( $this, 'create_tag_taxonomies' ), 0 );
 
         if (is_admin()) {
             global $pagenow;
 
-            add_action( 'admin_menu', [ $this, 'meta_box_setup' ], 20 );
-            add_action( 'save_post', [ $this, 'meta_box_save' ] );
-            add_filter( 'enter_title_here', [ $this, 'enter_title_here' ] );
-            add_filter( 'post_updated_messages', [ $this, 'updated_messages' ] );
+            add_action( 'admin_menu', array( $this, 'meta_box_setup' ), 20 );
+            add_action( 'save_post', array( $this, 'meta_box_save' ) );
+            add_filter( 'enter_title_here', array( $this, 'enter_title_here' ) );
+            add_filter( 'post_updated_messages', array( $this, 'updated_messages' ) );
 
             if ($pagenow == 'edit.php' && isset( $_GET['post_type'] )) {
                 $pt = sanitize_text_field( wp_unslash( $_GET['post_type'] ) );
                 if ($pt === $this->post_type) {
-                    add_filter( 'manage_edit-' . $this->post_type . '_columns', [ $this, 'register_custom_column_headings' ], 10, 1 );
-                    add_action( 'manage_posts_custom_column', [ $this, 'register_custom_columns' ], 10, 2 );
+                    add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
+                    add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
                 }
             }
         }
@@ -133,21 +133,21 @@ class DTPS_Articles_Post_Type
             // let's now add all the options for this post type
             array(
                 'labels' => array(
-                    'name' => 'Articles', /* This is the Title of the Group */
-                    'singular_name' => 'Article', /* This is the individual type */
-                    'all_items' => 'All Articles', /* the all items menu item */
+                    'name' => 'User Docs', /* This is the Title of the Group */
+                    'singular_name' => 'User Docs', /* This is the individual type */
+                    'all_items' => 'All User Docs', /* the all items menu item */
                     'add_new' => 'Add New', /* The add new menu item */
-                    'add_new_item' => 'Add New Article', /* Add New Display Title */
+                    'add_new_item' => 'Add New User Doc', /* Add New Display Title */
                     'edit' => 'Edit', /* Edit Dialog */
-                    'edit_item' => 'Edit Zúme Article', /* Edit Display Title */
-                    'new_item' => 'New Zúme Article', /* New Display Title */
-                    'view_item' => 'View Zúme Article', /* View Display Title */
-                    'search_items' => 'Search Zúme Articles', /* Search Custom Type Title */
+                    'edit_item' => 'Edit User Documentation', /* Edit Display Title */
+                    'new_item' => 'New User Documentation', /* New Display Title */
+                    'view_item' => 'View User Documentation', /* View Display Title */
+                    'search_items' => 'Search User Documentation', /* Search Custom Type Title */
                     'not_found' => 'Nothing found in the Database.', /* This displays if there are no entries yet */
                     'not_found_in_trash' => 'Nothing found in Trash', /* This displays if there is nothing in the trash */
                     'parent_item_colon' => ''
                 ), /* end of arrays */
-                'description' => 'Movement article', /* Custom Type Description */
+                'description' => 'Movement report', /* Custom Type Description */
                 'public' => true,
                 'publicly_queryable' => true,
                 'exclude_from_search' => false,
@@ -156,10 +156,10 @@ class DTPS_Articles_Post_Type
                 'menu_position' => 10, /* this is what order you want it to appear in on the left hand side menu */
                 'menu_icon' => 'dashicons-book', /* the icon for the custom post type menu. uses built-in dashicons (CSS class name) */
                 'rewrite' => array(
-                    'slug' => 'articles',
+                    'slug' => 'news',
                     'with_front' => true
                 ), /* you can specify its url slug */
-                'has_archive' => 'articles', /* you can rename the slug here */
+                'has_archive' => 'news', /* you can rename the slug here */
                 'capability_type' => 'post',
                 'hierarchical' => true,
                 /* the next one is important, it tells what's enabled in the post editor */
@@ -169,23 +169,24 @@ class DTPS_Articles_Post_Type
         ); /* end of register post type */
     } // End register_post_type()
 
-    //create two taxonomies, genres and tags for the post type "tag"
     public function create_tag_taxonomies() {
+        // Add new taxonomy, NOT hierarchical (like tags)
 
-        register_taxonomy('article_topics', 'articles', array(
+        register_taxonomy('report_categories', 'news', array(
             'hierarchical' => true,
-            'labels' => [
-                'name' => _x( 'Article Topics', 'taxonomy general name' ),
-                'singular_name' => _x( 'Topic', 'taxonomy singular name' ),
-                'menu_name' => __( 'Topics' ),
-            ],
+            'labels' => array(
+                'name' => _x( 'User Documentation Categories', 'taxonomy general name' ),
+                'singular_name' => _x( 'Category', 'taxonomy singular name' ),
+                'menu_name' => __( 'Categories' ),
+            ),
             'show_ui' => true,
             'update_count_callback' => '_update_post_term_count',
             'query_var' => true,
-            'rewrite' => array( 'slug' => 'article-topics' ),
+            'rewrite' => array( 'slug' => 'report-categories' ),
             'show_in_rest' => true,
         ));
     }
+
 
     /**
      * Add custom columns for the "manage" screen of this post type.
@@ -224,9 +225,9 @@ class DTPS_Articles_Post_Type
      */
     public function register_custom_column_headings( $defaults) {
 
-        $new_columns = []; //array( 'image' => __( 'Image', 'dtps' ));
+        $new_columns = array(); //array( 'image' => __( 'Image', 'dtps' ));
 
-        $last_item = [];
+        $last_item = array();
 
         if (count( $defaults ) > 2) {
             $last_item = array_slice( $defaults, -1 );
@@ -257,7 +258,7 @@ class DTPS_Articles_Post_Type
     public function updated_messages( $messages) {
         global $post;
 
-        $messages[$this->post_type] = [
+        $messages[$this->post_type] = array(
             0 => '', // Unused. Messages start at index 1.
             1 => sprintf(
                 '%3$s updated. %1$sView %4$s%2$s',
@@ -266,8 +267,8 @@ class DTPS_Articles_Post_Type
                 $this->singular,
                 strtolower( $this->singular )
             ),
-            2 => 'Zúme Article updated.',
-            3 => 'Zúme Article deleted.',
+            2 => 'User Documentation updated.',
+            3 => 'User Documentation deleted.',
             4 => sprintf( '%s updated.', $this->singular ),
             /* translators: %s: date and time of the revision */
             5 => isset( $_GET['revision'] ) ? sprintf( '%1$s restored to revision from %2$s', $this->singular, wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
@@ -285,7 +286,7 @@ class DTPS_Articles_Post_Type
                 '</a>'
             ),
             10 => sprintf( '%1$s draft updated. %2$sPreview %3$s%4$s', $this->singular, strtolower( $this->singular ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) . '">', '</a>' ),
-        ];
+        );
 
         return $messages;
     } // End updated_messages()
@@ -298,7 +299,7 @@ class DTPS_Articles_Post_Type
      * @since  0.1.0
      */
     public function meta_box_setup() {
-//        add_meta_box($this->post_type . '_scribes', 'Article', array($this, 'load_article_meta_box'), $this->post_type, 'normal', 'high');
+        add_meta_box( $this->post_type . '_scribes', 'User Documentation', array( $this, 'load_report_meta_box' ), $this->post_type, 'normal', 'high' );
     } // End meta_box_setup()
 
     /**
@@ -307,7 +308,7 @@ class DTPS_Articles_Post_Type
      * @access public
      * @since  0.1.0
      */
-    public function load_article_meta_box() {
+    public function load_report_meta_box() {
         $this->meta_box_content( 'description' ); // prints
     }
 
@@ -321,7 +322,7 @@ class DTPS_Articles_Post_Type
         $fields = get_post_custom( $post_id );
         $field_data = $this->get_custom_fields_settings();
 
-        echo '<input type="hidden" name="' . esc_attr( $this->post_type ) . '_noonce" id="' . esc_attr( $this->post_type ) . '_noonce" value="' . esc_attr( wp_create_nonce( 'article_noonce_action' ) ) . '" />';
+        echo '<input type="hidden" name="' . esc_attr( $this->post_type ) . '_noonce" id="' . esc_attr( $this->post_type ) . '_noonce" value="' . esc_attr( wp_create_nonce( 'report_noonce_action' ) ) . '" />';
 
         if (0 < count( $field_data )) {
             echo '<table class="form-table">' . "\n";
@@ -412,7 +413,7 @@ class DTPS_Articles_Post_Type
         }
 
         $key = $this->post_type . '_noonce';
-        if (isset( $_POST[$key] ) && !wp_verify_nonce( sanitize_key( $_POST[$key] ), 'article_noonce_action' )) {
+        if (isset( $_POST[$key] ) && !wp_verify_nonce( sanitize_key( $_POST[$key] ), 'report_noonce_action' )) {
             return $post_id;
         }
 
@@ -485,19 +486,17 @@ class DTPS_Articles_Post_Type
      * @since  0.1.0
      */
     public function get_custom_fields_settings() {
-        $fields = [];
+        $fields = array();
 
-        $fields['1'] = [
-            'name' => 'Welcome to Zúme (1)',
+        $fields['1'] = array(
+            'name' => 'Welcome to User Documentation',
             'description' => '',
             'type' => 'link',
             'default' => '247062938',
-            'section' => 'scribe',
-        ];
+            'section' => 'description',
+        );
 
-
-
-        return apply_filters( 'dtps_article_fields_settings', $fields );
+        return apply_filters( 'dtps_user_documentation_fields_settings', $fields );
     } // End get_custom_fields_settings()
 
     /**
@@ -522,4 +521,4 @@ class DTPS_Articles_Post_Type
     } // End flush_rewrite_rules()
 
 } // End Class
-DTPS_Articles_Post_Type::instance();
+DTPS_User_Documentation_Post_Type::instance();

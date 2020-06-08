@@ -16,7 +16,7 @@ $post = get_post();
                 <h3><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
             </header> <!-- end article header -->
 
-            <section class="entry-content reports-content" itemprop="text">
+            <section class="entry-content news-content" itemprop="text">
                 <?php the_content(); ?>
             </section> <!-- end article section -->
 

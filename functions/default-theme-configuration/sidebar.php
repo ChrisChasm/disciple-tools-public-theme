@@ -32,8 +32,8 @@ function dtps_register_sidebars() {
     ));
     register_sidebar(array(
         'id' => 'report',
-        'name' => __( 'Report', 'dtps' ),
-        'description' => __( 'Sidebar for reports', 'dtps' ),
+        'name' => __( 'News', 'dtps' ),
+        'description' => __( 'Sidebar for news', 'dtps' ),
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget' => '</div>',
         'before_title' => '<h4 class="widgettitle">',

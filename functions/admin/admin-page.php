@@ -59,7 +59,7 @@ class Vision_Page {
     public function __construct() {
 
         if ( is_admin() ) {
-            add_action( "admin_menu", [ $this, "register_menu" ] );
+            add_action( "admin_menu", array( $this, "register_menu" ) );
         }
     } // End __construct()
 
@@ -69,8 +69,8 @@ class Vision_Page {
      * @since 0.1
      */
     public function register_menu() {
-        add_menu_page( 'Extensions (DT)', 'Extensions (DT)', $this->permissions, 'dt_extensions', [ $this, 'extensions_menu' ], 'dashicons-admin-generic', 59 );
-        add_submenu_page( 'dt_extensions', $this->title, $this->title, $this->permissions, $this->token, [ $this, 'content' ] );
+        add_menu_page( 'Extensions (DT)', 'Extensions (DT)', $this->permissions, 'dt_extensions', array( $this, 'extensions_menu' ), 'dashicons-admin-generic', 59 );
+        add_submenu_page( 'dt_extensions', $this->title, $this->title, $this->permissions, $this->token, array( $this, 'content' ) );
     }
 
     /**
@@ -527,11 +527,11 @@ class DTPS_Keys_Tab
 }
 
 function dtps_default_google_api_keys() {
-    $default_keys = [
+    $default_keys = array(
         'AIzaSyBkI5W07GdlhQCqzf3F8VW2E_3mhdzR3s4',
         'AIzaSyAaaZusK9pa9eLuO0nlllGnbQPyXHfTGxQ',
         'AIzaSyBQOO1vujzL6BgkpOzYwZB89bJpGAlbBF8',
-    ];
+    );
 
     return $default_keys;
 }

@@ -13,8 +13,8 @@ jQuery(document).ready(function(){
     jQuery('.menu-item-111').addClass('active')
   }
 
-  // Top menu fix for all reports entries making Statistics active class.
-  if ( window.location.pathname.split('/')[1] === 'reports' || window.location.pathname.split('/')[1] === "report-categories" ) {
+  // Top menu fix for all news entries making Statistics active class.
+  if ( window.location.pathname.split('/')[1] === 'news' || window.location.pathname.split('/')[1] === "report-categories" ) {
     jQuery('.menu-item-31').addClass('active')
     jQuery('.menu-item-105').addClass('active')
   }

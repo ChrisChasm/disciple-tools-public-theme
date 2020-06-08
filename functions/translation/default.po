@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: wp theme bones\n"
-"Report-Msgid-Bugs-To: \n"
+"News-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-03-02 22:11+0100\n"
 "PO-Revision-Date: \n"
 "Language-Team: fulgor <frag.fulgor@gmail.com>\n"

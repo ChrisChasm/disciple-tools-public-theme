@@ -16,10 +16,10 @@
     <div class="grid-x padding-left-1">
         <?php
         /** Category List */
-        $categories = get_categories( [
+        $categories = get_categories( array(
             'taxonomy' => 'article_topics',
             'hide_empty' => false,
-        ]);
+        ));
 
         foreach ( $categories as $category ) {
             if ( $category->count > 0 ) {

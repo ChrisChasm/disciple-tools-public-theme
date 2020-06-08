@@ -5,7 +5,7 @@ register_nav_menus(
         'main-nav' => __( 'The Main Menu', 'dtps' ),   // Main nav in header
         'offcanvas-nav' => __( 'The Off-Canvas Menu', 'dtps' ),
         'footer-links' => __( 'Footer Links', 'dtps' ),
-        'reports' => __( 'Reports', 'dtps' ),
+        'news' => __( 'News', 'dtps' ),
         'top-articles' => __( 'Top Articles', 'dtps' )
     )
 );
@@ -55,19 +55,19 @@ class DTPS_Off_Canvas_Menu_Walker extends Walker_Nav_Menu {
     }
 }
 
-function dtps_reports_nav() {
+function dtps_news_nav() {
     wp_nav_menu(array(
         'container' => false,                           // Remove nav container
         'menu_class' => 'vertical menu accordion-menu sidebar-menu',       // Adding custom nav class
         'items_wrap' => '<ul id="%1$s" class="%2$s" data-accordion-menu data-submenu-toggle="true">%3$s</ul>',
-        'theme_location' => 'reports',                 // Where it's located in the theme
+        'theme_location' => 'news',                 // Where it's located in the theme
         'depth' => 5,                                   // Limit the depth of the nav
         'fallback_cb' => false,                         // Fallback function (see below)
-        'walker' => new DTPS_Reports_Menu_Walker()
+        'walker' => new DTPS_News_Menu_Walker()
     ));
 }
 
-class DTPS_Reports_Menu_Walker extends Walker_Nav_Menu {
+class DTPS_News_Menu_Walker extends Walker_Nav_Menu {
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
         $indent = str_repeat( "\t", $depth );
         $output .= "\n$indent<ul class=\"vertical menu\">\n";

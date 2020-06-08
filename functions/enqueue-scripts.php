@@ -79,7 +79,7 @@ function site_scripts() {
                 'theme_uri' => get_stylesheet_directory_uri(),
                 'nonce' => wp_create_nonce( 'wp_rest' ),
                 'current_user_id' => get_current_user_id(),
-                'user_profile_fields' => [
+                'user_profile_fields' => array(
                     'id' => $dtps_user->data->ID,
                     'name' => $dtps_user_meta['dtps_full_name'] ?? '',
                     'email' => $dtps_user->data->user_email,
@@ -88,7 +88,7 @@ function site_scripts() {
                     'affiliation_key' => $dtps_user_meta['dtps_affiliation_key'] ?? '',
                     'facebook_sso_email' => $dtps_user_meta['facebook_sso_email'] ?? false,
                     'google_sso_email' => $dtps_user_meta['google_sso_email'] ?? false,
-                ],
+                ),
                 'logged_in' => is_user_logged_in(),
             )
         );

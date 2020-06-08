@@ -10,17 +10,17 @@
 
     <?php get_template_part( "parts/content", "join" ); ?>
     <hr>
-    <?php get_template_part( 'parts/content', 'reports-subscribe' ); ?>
+    <?php get_template_part( 'parts/content', 'news-subscribe' ); ?>
     <hr>
 
     <?php get_template_part( 'parts/widget', 'sidebar-progress' ); ?>
 
     <hr>
 
-    <!-- Key Reports-->
+    <!-- Key News-->
     <div class="padding-horizontal-1">
-        <h3>Special Reports</h3>
-        <?php dtps_reports_nav() ?>
+        <h3>Special News</h3>
+        <?php dtps_news_nav() ?>
     </div>
 
 </div>

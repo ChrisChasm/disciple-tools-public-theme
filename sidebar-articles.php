@@ -16,14 +16,14 @@
     <div class="grid-x padding-left-1">
         <?php
         /** Category List */
-        $categories = get_categories( [
+        $categories = get_categories( array(
             'taxonomy' => 'article_topics',
             'hide_empty' => false,
-        ]);
+        ));
 
         foreach ( $categories as $category ) {
             if ( $category->count > 0 ) {
-                echo '<div class="cell"><a href="'. esc_url(site_url() ).'/article-topics/'.$category->slug.'/">' . esc_html( $category->name ) . '<span class="float-right">('.esc_html( $category->count ).')</span></a></div>';
+                echo '<div class="cell"><a href="'. esc_url( site_url() ).'/article-topics/'.$category->slug.'/">' . esc_html( $category->name ) . '<span class="float-right">('.esc_html( $category->count ).')</span></a></div>';
             } else {
                 echo '<div class="cell">' . esc_html( $category->name ) . '<span class="float-right">(0)</span></div>';
             }

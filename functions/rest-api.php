@@ -147,8 +147,8 @@ class DTPS_REST_API {
         if ( empty( $params['location_grid_meta'] ) ) {
             delete_user_meta( $user_info->ID, 'location_grid_meta' );
         } else {
-            if ( ! class_exists( 'Location_Grid_Geocoder') ) {
-                require_once ( get_stylesheet_directory() . '/dt-mapping/geocode-api/location-grid-geocoder.php' );
+            if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
+                require_once( get_stylesheet_directory() . '/dt-mapping/geocode-api/location-grid-geocoder.php' );
             }
             $geocoder = new Location_Grid_Geocoder();
 
@@ -170,7 +170,7 @@ class DTPS_REST_API {
         $dtps_user = wp_get_current_user();
         $dtps_user_meta = dtps_get_user_meta( $dtps_user->ID );
 
-        return [
+        return array(
             'id' => $dtps_user->data->ID,
             'name' => $dtps_user_meta['dtps_full_name'] ?? '',
             'email' => $dtps_user->data->user_email,
@@ -179,7 +179,7 @@ class DTPS_REST_API {
             'affiliation_key' => $dtps_user_meta['dtps_affiliation_key'] ?? '',
             'facebook_sso_email' => $dtps_user_meta['facebook_sso_email'] ?? false,
             'google_sso_email' => $dtps_user_meta['google_sso_email'] ?? false,
-        ];
+        );
     }
 
     /**
@@ -199,30 +199,30 @@ class DTPS_REST_API {
             'email' => sanitize_text_field( wp_unslash( $params['email'] ) ),
             'preference' => sanitize_text_field( wp_unslash( $params['preference'] ) ),
         );
-        $notes = [
+        $notes = array(
             'preference' => 'Requested contact method is: ' .$args['preference'],
-        ];
+        );
 
         // build fields for transfer
-        $fields = [
+        $fields = array(
             "title" => $args['name'],
-            "sources" => [
-                "values" => [
-                    [ "value" => "dtps_vision" ],  //add new, or make sure it exists
-                ],
-            ],
-            "contact_phone" => [
-                [ "value" => $args['phone'] ],
-            ],
-            "contact_email" => [
-                [ "value" => $args['email'] ],
-            ],
+            "sources" => array(
+                "values" => array(
+                    array( "value" => "dtps_vision" ),  //add new, or make sure it exists
+                ),
+            ),
+            "contact_phone" => array(
+                array( "value" => $args['phone'] ),
+            ),
+            "contact_email" => array(
+                array( "value" => $args['email'] ),
+            ),
             "notes" => $notes,
-        ];
+        );
 
         // Additional fields that may or may not be present
-        if ( ! class_exists( 'Location_Grid_Geocoder') ) {
-            require_once ( get_stylesheet_directory() . '/dt-mapping/geocode-api/location-grid-geocoder.php' );
+        if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
+            require_once( get_stylesheet_directory() . '/dt-mapping/geocode-api/location-grid-geocoder.php' );
         }
         $geocoder = new Location_Grid_Geocoder();
 
@@ -233,18 +233,18 @@ class DTPS_REST_API {
         } else if ( ! empty( $params['location_grid_meta'] ) ) {
             $args['location_grid_meta'] = $params['location_grid_meta'];
         } else {
-            $args['location_grid_meta'] = [];
+            $args['location_grid_meta'] = array();
         }
         Location_Grid_Meta::validate_location_grid_meta( $args['location_grid_meta'] );
 
         if ( $args['location_grid_meta'] ) {
-            $fields['location_grid_meta'] = [
-                "values" => [ $args['location_grid_meta'] ]
-            ];
+            $fields['location_grid_meta'] = array(
+                "values" => array( $args['location_grid_meta'] )
+            );
             // load address field
-            $fields['contact_address'] = [
-                [ "value" => $args['location_grid_meta']['label'] ],
-            ];
+            $fields['contact_address'] = array(
+                array( "value" => $args['location_grid_meta']['label'] ),
+            );
         }
 
         $site = Site_Link_System::get_site_connection_vars( 189 ); // @todo remove hardcoded
@@ -252,24 +252,24 @@ class DTPS_REST_API {
             return new WP_Error( __METHOD__, 'Missing site to site data' );
         }
 
-        $args = [
+        $args = array(
             'method' => 'POST',
             'body' => $fields,
-            'headers' => [
+            'headers' => array(
                 'Authorization' => 'Bearer ' . $site['transfer_token'],
-            ],
-        ];
+            ),
+        );
 
 
         $result = wp_remote_post( 'https://' . trailingslashit( $site['url'] ) . 'wp-json/dt-posts/v2/contacts', $args );
         if ( is_wp_error( $result ) ) {
-            dt_write_log($result);
+            dt_write_log( $result );
             $data = array(
                 'payload'   => json_encode( array(
-                        "channel"       =>  '#errors',
-                        "text"          =>  'Failed Community Request: ' . maybe_serialize( $result ) . ' --- ' . maybe_serialize( $fields ),
-                        "username"	    =>  'error-bot',
-                        "icon_emoji"    =>  'ghost'
+                        "channel"       => '#errors',
+                        "text"          => 'Failed Community Request: ' . maybe_serialize( $result ) . ' --- ' . maybe_serialize( $fields ),
+                        "username"      => 'error-bot',
+                        "icon_emoji"    => 'ghost'
                     )
                 )
             );
@@ -292,10 +292,10 @@ class DTPS_REST_API {
         if ( ! isset( $body['ID'] ) ) {
             $data = array(
                 'payload'   => json_encode( array(
-                        "channel"       =>  '#errors',
-                        "text"          =>  'Failed Community Request: ' . maybe_serialize( $result ) . ' --- ' . maybe_serialize( $fields ),
-                        "username"	    =>  'error-bot',
-                        "icon_emoji"    =>  'ghost'
+                        "channel"       => '#errors',
+                        "text"          => 'Failed Community Request: ' . maybe_serialize( $result ) . ' --- ' . maybe_serialize( $fields ),
+                        "username"      => 'error-bot',
+                        "icon_emoji"    => 'ghost'
                     )
                 )
             );

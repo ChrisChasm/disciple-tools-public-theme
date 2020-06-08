@@ -1,5 +1,5 @@
 <div class="padding-horizontal-1">
-<h3>Get reports via email</h3>
+<h3>Get news via email</h3>
 
 <!-- Begin Mailchimp Signup Form -->
 <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">

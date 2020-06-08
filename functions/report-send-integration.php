@@ -1,9 +1,9 @@
 <?php
 /**
- * Report Send Integration
+ * News Send Integration
  */
 
-class Report_Send_Integration {
+class News_Send_Integration {
 
     /** Singleton @var null  */
     private static $_instance = null;
@@ -21,14 +21,14 @@ class Report_Send_Integration {
      * @since   0.1.0
      */
     public function __construct() {
-        add_action( 'rest_api_init', [ $this, 'add_api_routes' ] );
-        add_filter( 'site_link_type', [ $this, 'dt_network_report_receiving_link' ], 10, 1 );
-        add_filter( 'site_link_type_capabilities', [ $this, 'dt_network_report_receiving_caps' ], 10, 1 );
+        add_action( 'rest_api_init', array( $this, 'add_api_routes' ) );
+        add_filter( 'site_link_type', array( $this, 'dt_network_report_receiving_link' ), 10, 1 );
+        add_filter( 'site_link_type_capabilities', array( $this, 'dt_network_report_receiving_caps' ), 10, 1 );
     } // End __construct()
 
     // Adds the type of network connection to the site link system
     public function dt_network_report_receiving_link( $type ) {
-        $type['network_dashboard_report'] = __( 'Movement Report' );
+        $type['network_dashboard_report'] = __( 'Movement News' );
         return $type;
     }
 
@@ -47,10 +47,10 @@ class Report_Send_Integration {
         register_rest_route(
             $namespace_v1,
             '/send_report',
-            [
+            array(
                 'methods'  => 'POST',
-                'callback' => [ $this, 'send_report' ],
-            ]
+                'callback' => array( $this, 'send_report' ),
+            )
         );
     }
 
@@ -64,17 +64,17 @@ class Report_Send_Integration {
         $params = $request->get_params();
         $transfer_vars = Site_Link_System::get_site_connection_vars( 89 );
 
-        $packet = [
+        $packet = array(
             'method' => 'POST',
-            'body' => [
+            'body' => array(
                 'transfer_token' => $transfer_vars['transfer_token'],
                 'report_data' => $params,
-            ]
-        ];
+            )
+        );
 
         $result = wp_remote_post( 'https://global.dtps-vision/wp-json/dt-public/v1/network/report', $packet );
 
         return wp_remote_retrieve_body( $result );
     }
 }
-Report_Send_Integration::instance();
+News_Send_Integration::instance();
