@@ -13,10 +13,6 @@
     <?php get_template_part( 'parts/content', 'news-subscribe' ); ?>
     <hr>
 
-    <?php get_template_part( 'parts/widget', 'sidebar-progress' ); ?>
-
-    <hr>
-
     <!-- Key News-->
     <div class="padding-horizontal-1">
         <h3>Special News</h3>

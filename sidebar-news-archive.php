@@ -44,7 +44,7 @@
                 ));
                 foreach ( $categories as $category ) {
 
-                    echo '<option value="'.site_url().'/report-categories/'. $category->slug.'">' . $category->name . '</option>';
+                    echo '<option value="'.site_url().'/news-categories/'. $category->slug.'">' . $category->name . '</option>';
                 }
                 ?>
             </select>
@@ -62,20 +62,11 @@
 
     <hr>
 
-    <!-- Statistics -->
-    <div class="padding-horizontal-1">
-        <?php get_template_part( 'parts/widget', 'sidebar-progress' ); ?>
-    </div>
-
-    <hr>
-
     <div class="padding-horizontal-1 center">
         <a href="/news/feed">RSS Feed</a>
     </div>
     <div class="padding-horizontal-1 center">
         <a href="/news/?format=compact">Compact Format</a>
     </div>
-
-
 
 </div>

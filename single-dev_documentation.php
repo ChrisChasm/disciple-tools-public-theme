@@ -12,10 +12,10 @@ get_header(); ?>
         <nav id="post-nav">
             <div class="breadcrumb hide-for-small-only">
                 <a href="<?php echo esc_url( home_url() ); ?>" rel="nofollow">Home</a>&nbsp;&nbsp;&#187;&nbsp;&nbsp;
-                <a href="<?php echo esc_url( home_url() ); ?>/news">News</a>&nbsp;&nbsp;&#187;&nbsp;&nbsp;
+                <a href="<?php echo esc_url( home_url() ); ?>/dev-docs">Dev Documentation</a>&nbsp;&nbsp;&#187;&nbsp;&nbsp;
                 <?php echo esc_html( the_title() ) ?>
             </div>
-            <div class="breadcrumb-mobile show-for-small-only"><a href="<?php echo esc_url( home_url() ); ?>/news">News</a></div>
+            <div class="breadcrumb-mobile show-for-small-only"><a href="<?php echo esc_url( home_url() ); ?>/dev-docs">Developer Documentation</a></div>
         </nav>
 
         <!-- Main -->
@@ -27,7 +27,7 @@ get_header(); ?>
 
                     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-                            <?php get_template_part( 'parts/loop', 'news' ); ?>
+                        <?php get_template_part( 'parts/loop', 'news' ); ?>
 
                     <?php endwhile; else : ?>
 
@@ -37,7 +37,7 @@ get_header(); ?>
 
                     <hr>
 
-                    <a class="button primary-button-hollow" href="/news">Return to News</a>
+
 
                 </div>
 
