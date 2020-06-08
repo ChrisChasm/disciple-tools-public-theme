@@ -10,7 +10,7 @@
     <div class="cell center">
         <h2>Holiness, Obedience, and Love</h2>
         <h3>We need to be disciples worth multiplying.</h3>
-        <img src="<?php echo esc_url( zume_images_uri( 'zume_images' ) ) ?>V1.1/V1.1-C/Ruler.svg" alt="Jesus Measurement" />
+        <img src="<?php echo esc_url( dtps_images_uri( 'dtps_images' ) ) ?>V1.1/V1.1-C/Ruler.svg" alt="Jesus Measurement" />
         <div class="grid-x content-large">
             <div class="cell medium-3"></div>
             <div class="cell medium-6">
@@ -43,7 +43,7 @@
     <div class="cell center">
         <h2>Extraordinary Prayer</h2>
         <h3>Extraordinary prayer has preceded every <a href="/articles/what-is-a-disciple-making-movement" class="underline">disciple making movement</a> in history.</h3>
-        <img src="<?php echo esc_url( zume_images_uri( 'zume_images' ) ) ?>V1.2/V1.2-A/worshiping.svg" alt="Extraordinary Prayer" />
+        <img src="<?php echo esc_url( dtps_images_uri( 'dtps_images' ) ) ?>V1.2/V1.2-A/worshiping.svg" alt="Extraordinary Prayer" />
 
         <div class="grid-x padding-bottom-1 content-large">
             <div class="cell medium-3"></div>
@@ -73,7 +73,7 @@
 
         <div class="padding-vertical-2">
             <h3 style="color: black;">1 Training</h3>
-            <img src="<?php echo esc_url( zume_images_uri( 'vision' ) ) ?>training-division-illustration.svg" style="max-width:800px;" alt="Training Saturation" /><br>
+            <img src="<?php echo esc_url( dtps_images_uri( 'vision' ) ) ?>training-division-illustration.svg" style="max-width:800px;" alt="Training Saturation" /><br>
             <h3 style="color: black;">Every 5,000 People (North America)<br>
                 Every 50,000 People (Globally)</h3>
         </div>
@@ -84,14 +84,14 @@
                 <p>Our community aspires to catalyze 1 disciple making movement training for every population of 5,000 in the United States and 50,000 globally.</p>
                 <p>Disciple multiplication ideas are scriptural, but often missed. A simple training in multiplication principles can unlock even established believers from unfruitful lives.</p>
                 <p>We suspect, especially in places where the church has been, we will need a training movement before we see a
-                    <a href="https://zume.vision/articles/what-is-a-disciple-making-movement/">disciple making movement</a>.</p>
+                    <a href="https://dtps.vision/articles/what-is-a-disciple-making-movement/">disciple making movement</a>.</p>
                 <p>Live trainings are often best and preferred, yet the people who need trained vastly outnumber the live trainings available. For this reason,
-                    <a href="https://zume.training">Zume.Training</a> is an online, in-life, self-directed training for groups wanting beginning disciple making movement training.</p>
+                    <a href="https://dtps.training">DTPS.Training</a> is an online, in-life, self-directed training for groups wanting beginning disciple making movement training.</p>
             </div>
             <div class="cell medium-3"></div>
         </div>
 
-        <a class="button primary-button-hollow large" href="https://zume.training">View Training</a>
+        <a class="button primary-button-hollow large" href="https://dtps.training">View Training</a>
     </div>
 
 </div>
@@ -112,7 +112,7 @@
 
         <div class="padding-vertical-2">
             <h3 style="color: black;">2 Simple Churches</h3>
-            <img src="<?php echo esc_url( zume_images_uri( 'vision' ) ) ?>two-churches-illustration.svg" style="max-width:800px;" alt="Church Saturation" /><br>
+            <img src="<?php echo esc_url( dtps_images_uri( 'vision' ) ) ?>two-churches-illustration.svg" style="max-width:800px;" alt="Church Saturation" /><br>
             <h3 style="color: black;">Every 5,000 People (North America)<br>
                 Every 50,000 People (Globally)</h3>
         </div>

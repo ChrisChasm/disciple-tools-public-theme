@@ -4,7 +4,7 @@ $breakpoint = "medium"; ?>
 
 <div class="title-bar" data-responsive-toggle="top-bar-menu" data-hide-for="<?php echo $breakpoint ?>">
   <button class="menu-icon" type="button" data-toggle></button>
-  <div class="title-bar-title"><?php _e( 'Menu', 'zume' ); ?></div>
+  <div class="title-bar-title"><?php _e( 'Menu', 'dtps' ); ?></div>
 </div>
 
 <div class="top-bar" id="top-bar-menu">
@@ -14,6 +14,6 @@ $breakpoint = "medium"; ?>
         </ul>
     </div>
     <div class="top-bar-right">
-        <?php zume_top_nav(); ?>
+        <?php dtps_top_nav(); ?>
     </div>
 </div>

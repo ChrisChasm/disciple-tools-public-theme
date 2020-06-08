@@ -1,19 +1,19 @@
-window.zumeAPICore = zumeCore
-window.zumeAPI = {
+window.dtpsAPICore = dtpsCore
+window.dtpsAPI = {
 
   send_report: ( data ) => makeRequest('POST', 'send_report', { data: data } ),
 
   community_request: ( data ) => makeRequest('POST', 'community_request', data ),
 
 }
-function makeRequest (type, url, data, base = 'zume/v4/') {
+function makeRequest (type, url, data, base = 'dtps/v4/') {
   const options = {
     type: type,
     contentType: 'application/json; charset=utf-8',
     dataType: 'json',
-    url: url.startsWith('http') ? url : `${zumeCore.root}${base}${url}`,
+    url: url.startsWith('http') ? url : `${dtpsCore.root}${base}${url}`,
     beforeSend: xhr => {
-      xhr.setRequestHeader('X-WP-Nonce', zumeCore.nonce);
+      xhr.setRequestHeader('X-WP-Nonce', dtpsCore.nonce);
     }
   }
 

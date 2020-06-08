@@ -1,6 +1,6 @@
 _ = _ || window.lodash
-let zume = zumeCounters
-let stats = zumeCounters.statistics
+let dtps = dtpsCounters
+let stats = dtpsCounters.statistics
 
 console.log(stats)
 

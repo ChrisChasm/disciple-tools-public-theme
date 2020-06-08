@@ -10,13 +10,20 @@
 
                 <footer class="footer" role="contentinfo">
 
-                    <div class="grid-x grid-margin-x grid-padding-x">
 
-                        <div class="cell center-text text-gray">
-                            &copy; <?php echo date( 'Y' ); ?> <?php bloginfo( 'name' ); ?>
-                        </div>
+                    <?php get_template_part( 'parts/nav', 'footer-menus' ); ?>
 
-                    </div> <!-- end #inner-footer -->
+                    <?php get_template_part( 'parts/nav', 'footer-contact-bar' ); ?>
+
+                    <div class="ast-small-footer footer-sml-layout-1">
+                        <div class="ast-footer-overlay">
+                            <div class="ast-container">
+                                <div class="ast-small-footer-wrap" style="color:white;" >
+                                    &copy; <?php echo date( 'Y' ); ?> Gospel Ambition, Inc
+                                </div><!-- .ast-row .ast-small-footer-wrap -->
+                            </div><!-- .ast-container -->
+                        </div><!-- .ast-footer-overlay -->
+                    </div><!-- .ast-small-footer-->
 
                     <div class="reveal" id="search-box" data-reveal>
                         <h1>Search</h1>

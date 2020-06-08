@@ -28,7 +28,7 @@
 
             <?php endwhile; ?>
 
-                <?php zume_page_navi(); ?>
+                <?php dtps_page_navi(); ?>
 
             <?php else : ?>
 

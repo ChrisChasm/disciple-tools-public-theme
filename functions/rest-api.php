@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Zume_REST_API
+ * DTPS_REST_API
  *
- * @class Zume_REST_API
+ * @class DTPS_REST_API
  * @version 0.1
  * @since 0.1
  * @package Disciple_Tools
@@ -12,10 +12,10 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
 
-class Zume_REST_API {
+class DTPS_REST_API {
 
     /**
-     * Zume_REST_API The single instance of Zume_REST_API.
+     * DTPS_REST_API The single instance of DTPS_REST_API.
      * @var     object
      * @access  private
      * @since   0.1
@@ -23,13 +23,13 @@ class Zume_REST_API {
     private static $_instance = null;
 
     /**
-     * Main Zume_REST_API instance
+     * Main DTPS_REST_API instance
      *
-     * Ensures only one instance of Zume_REST_API is loaded or can be loaded.
+     * Ensures only one instance of DTPS_REST_API is loaded or can be loaded.
      *
      * @since 0.1
      * @static
-     * @return Zume_REST_API instance
+     * @return DTPS_REST_API instance
      */
     public static function instance() {
         if ( is_null( self::$_instance ) ) {
@@ -50,7 +50,7 @@ class Zume_REST_API {
 
     public function add_api_routes() {
         $version = '4';
-        $namespace = 'zume/v' . $version;
+        $namespace = 'dtps/v' . $version;
 
         register_rest_route( $namespace, '/community_request', array(
             array(
@@ -109,17 +109,17 @@ class Zume_REST_API {
         // update name
         $name = sanitize_text_field( wp_unslash( $params['name'] ) );
         if ( empty( $name ) ) {
-            delete_user_meta( $user_info->ID, 'zume_full_name' );
+            delete_user_meta( $user_info->ID, 'dtps_full_name' );
         } else {
-            update_user_meta( $user_info->ID, 'zume_full_name', $name );
+            update_user_meta( $user_info->ID, 'dtps_full_name', $name );
         }
 
         // update phone
         $phone = sanitize_text_field( wp_unslash( $params['phone'] ) );
         if ( empty( $phone ) ) {
-            delete_user_meta( $user_info->ID, 'zume_phone_number' );
+            delete_user_meta( $user_info->ID, 'dtps_phone_number' );
         } else {
-            update_user_meta( $user_info->ID, 'zume_phone_number', $phone );
+            update_user_meta( $user_info->ID, 'dtps_phone_number', $phone );
         }
 
         // update email
@@ -138,9 +138,9 @@ class Zume_REST_API {
         // update affiliation key
         $affiliation_key = sanitize_text_field( wp_unslash( trim( $params['affiliation_key'] ) ) );
         if ( empty( $affiliation_key ) ) {
-            delete_user_meta( $user_info->ID, 'zume_affiliation_key' );
+            delete_user_meta( $user_info->ID, 'dtps_affiliation_key' );
         } else {
-            update_user_meta( $user_info->ID, 'zume_affiliation_key', $affiliation_key );
+            update_user_meta( $user_info->ID, 'dtps_affiliation_key', $affiliation_key );
         }
 
         // update location_grid_meta
@@ -167,18 +167,18 @@ class Zume_REST_API {
             update_user_meta( $user_info->ID, 'location_grid_meta', $location_grid_meta );
         }
 
-        $zume_user = wp_get_current_user();
-        $zume_user_meta = zume_get_user_meta( $zume_user->ID );
+        $dtps_user = wp_get_current_user();
+        $dtps_user_meta = dtps_get_user_meta( $dtps_user->ID );
 
         return [
-            'id' => $zume_user->data->ID,
-            'name' => $zume_user_meta['zume_full_name'] ?? '',
-            'email' => $zume_user->data->user_email,
-            'phone' => $zume_user_meta['zume_phone_number'] ?? '',
-            'location_grid_meta' => maybe_unserialize( $zume_user_meta['location_grid_meta'] ) ?? '',
-            'affiliation_key' => $zume_user_meta['zume_affiliation_key'] ?? '',
-            'facebook_sso_email' => $zume_user_meta['facebook_sso_email'] ?? false,
-            'google_sso_email' => $zume_user_meta['google_sso_email'] ?? false,
+            'id' => $dtps_user->data->ID,
+            'name' => $dtps_user_meta['dtps_full_name'] ?? '',
+            'email' => $dtps_user->data->user_email,
+            'phone' => $dtps_user_meta['dtps_phone_number'] ?? '',
+            'location_grid_meta' => maybe_unserialize( $dtps_user_meta['location_grid_meta'] ) ?? '',
+            'affiliation_key' => $dtps_user_meta['dtps_affiliation_key'] ?? '',
+            'facebook_sso_email' => $dtps_user_meta['facebook_sso_email'] ?? false,
+            'google_sso_email' => $dtps_user_meta['google_sso_email'] ?? false,
         ];
     }
 
@@ -208,7 +208,7 @@ class Zume_REST_API {
             "title" => $args['name'],
             "sources" => [
                 "values" => [
-                    [ "value" => "zume_vision" ],  //add new, or make sure it exists
+                    [ "value" => "dtps_vision" ],  //add new, or make sure it exists
                 ],
             ],
             "contact_phone" => [
@@ -318,4 +318,4 @@ class Zume_REST_API {
 
     }
 }
-Zume_REST_API::instance();
+DTPS_REST_API::instance();

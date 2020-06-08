@@ -17,7 +17,7 @@
  * @since  0.1.0
  * @access public
  */
-class Zume_Multi_Role {
+class DTPS_Multi_Role {
 
     /**
      * The role/slug.
@@ -140,7 +140,7 @@ class Zume_Multi_Role {
 
         // Set the role name.
         if ( isset( $wp_roles->role_names[ $role ] ) ) {
-            $this->name = zume_multi_role_translate_role( $role );
+            $this->name = dtps_multi_role_translate_role( $role );
         }
 
         // Check whether the role is editable.
@@ -152,7 +152,7 @@ class Zume_Multi_Role {
         foreach ( (array) $_role->capabilities as $cap => $grant ) {
 
             // Validate any boolean grant/denied in case they are stored as strings.
-            $grant = zume_multi_role_validate_boolean( $grant );
+            $grant = dtps_multi_role_validate_boolean( $grant );
 
             // Add to all caps array.
             $this->caps[ $cap ] = $grant;
@@ -169,12 +169,12 @@ class Zume_Multi_Role {
         }
 
         // Remove user levels from granted/denied caps.
-        $this->granted_caps = zume_multi_role_remove_old_levels( $this->granted_caps );
-        $this->denied_caps  = zume_multi_role_remove_old_levels( $this->denied_caps );
+        $this->granted_caps = dtps_multi_role_remove_old_levels( $this->granted_caps );
+        $this->denied_caps  = dtps_multi_role_remove_old_levels( $this->denied_caps );
 
         // Remove hidden caps from granted/denied caps.
-        $this->granted_caps = zume_multi_role_remove_hidden_caps( $this->granted_caps );
-        $this->denied_caps  = zume_multi_role_remove_hidden_caps( $this->denied_caps );
+        $this->granted_caps = dtps_multi_role_remove_hidden_caps( $this->granted_caps );
+        $this->denied_caps  = dtps_multi_role_remove_hidden_caps( $this->denied_caps );
 
         // Set the cap count.
         $this->granted_cap_count = count( $this->granted_caps );

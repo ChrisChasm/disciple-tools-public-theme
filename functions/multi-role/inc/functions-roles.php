@@ -11,15 +11,15 @@
  */
 
 /**
- * Returns the instance of the `Zume_Multi_Role_Factory`.
+ * Returns the instance of the `DTPS_Multi_Role_Factory`.
  *
  * @since  0.1.0
  * @access public
  * @param  string
  * @return object|bool
  */
-function zume_multi_role_role_factory() {
-    return Zume_Multi_Role_Factory::get_instance();
+function dtps_multi_role_role_factory() {
+    return DTPS_Multi_Role_Factory::get_instance();
 }
 
 /* ====== Multiple Role Functions ====== */
@@ -31,19 +31,19 @@ function zume_multi_role_role_factory() {
  * @access public
  * @return int
  */
-function zume_multi_role_get_role_count() {
+function dtps_multi_role_get_role_count() {
     return count( $GLOBALS['wp_roles']->role_names );
 }
 
 /**
- * Returns an array of `Zume_Multi_Role` objects.
+ * Returns an array of `DTPS_Multi_Role` objects.
  *
  * @since  0.1.0
  * @access public
  * @return array
  */
-function zume_multi_role_get_roles() {
-    return zume_multi_role_role_factory()->roles;
+function dtps_multi_role_get_roles() {
+    return dtps_multi_role_role_factory()->roles;
 }
 
 /**
@@ -53,10 +53,10 @@ function zume_multi_role_get_roles() {
  * @access public
  * @return array
  */
-function zume_multi_role_get_role_names() {
+function dtps_multi_role_get_role_names() {
     $roles = [];
 
-    foreach ( zume_multi_role_role_factory()->roles as $role ) {
+    foreach ( dtps_multi_role_role_factory()->roles as $role ) {
         $roles[ $role->slug ] = $role->name;
     }
 
@@ -70,8 +70,8 @@ function zume_multi_role_get_role_names() {
  * @access public
  * @return array
  */
-function zume_multi_role_get_role_slugs() {
-    return array_keys( zume_multi_role_role_factory()->roles );
+function dtps_multi_role_get_role_slugs() {
+    return array_keys( dtps_multi_role_role_factory()->roles );
 }
 
 /**
@@ -81,11 +81,11 @@ function zume_multi_role_get_role_slugs() {
  * @access public
  * @return array
  */
-function zume_multi_role_get_active_role_names() {
+function dtps_multi_role_get_active_role_names() {
     $has_users = [];
 
-    foreach ( zume_multi_role_get_active_role_slugs() as $role ) {
-        $has_users[ $role ] = zume_multi_role_get_role_name( $role );
+    foreach ( dtps_multi_role_get_active_role_slugs() as $role ) {
+        $has_users[ $role ] = dtps_multi_role_get_role_name( $role );
     }
 
     return $has_users;
@@ -98,11 +98,11 @@ function zume_multi_role_get_active_role_names() {
  * @access public
  * @return array
  */
-function zume_multi_role_get_active_role_slugs() {
+function dtps_multi_role_get_active_role_slugs() {
 
     $has_users = [];
 
-    foreach ( zume_multi_role_get_role_user_count() as $role => $count ) {
+    foreach ( dtps_multi_role_get_role_user_count() as $role => $count ) {
 
         if ( 0 < $count ) {
             $has_users[] = $role;
@@ -119,8 +119,8 @@ function zume_multi_role_get_active_role_slugs() {
  * @access public
  * @return array
  */
-function zume_multi_role_get_inactive_role_names() {
-    return array_diff( zume_multi_role_get_role_names(), zume_multi_role_get_active_role_names() );
+function dtps_multi_role_get_inactive_role_names() {
+    return array_diff( dtps_multi_role_get_role_names(), dtps_multi_role_get_active_role_names() );
 }
 
 /**
@@ -130,8 +130,8 @@ function zume_multi_role_get_inactive_role_names() {
  * @access public
  * @return array
  */
-function zume_multi_role_get_inactive_role_slugs() {
-    return array_diff( zume_multi_role_get_role_slugs(), zume_multi_role_get_active_role_slugs() );
+function dtps_multi_role_get_inactive_role_slugs() {
+    return array_diff( dtps_multi_role_get_role_slugs(), dtps_multi_role_get_active_role_slugs() );
 }
 
 /**
@@ -141,10 +141,10 @@ function zume_multi_role_get_inactive_role_slugs() {
  * @access public
  * @return array
  */
-function zume_multi_role_get_editable_role_names() {
+function dtps_multi_role_get_editable_role_names() {
     $editable = [];
 
-    foreach ( zume_multi_role_role_factory()->editable as $role ) {
+    foreach ( dtps_multi_role_role_factory()->editable as $role ) {
         $editable[ $role->slug ] = $role->name;
     }
 
@@ -158,8 +158,8 @@ function zume_multi_role_get_editable_role_names() {
  * @access public
  * @return array
  */
-function zume_multi_role_get_editable_role_slugs() {
-    return array_keys( zume_multi_role_role_factory()->editable );
+function dtps_multi_role_get_editable_role_slugs() {
+    return array_keys( dtps_multi_role_role_factory()->editable );
 }
 
 /**
@@ -169,10 +169,10 @@ function zume_multi_role_get_editable_role_slugs() {
  * @access public
  * @return array
  */
-function zume_multi_role_get_uneditable_role_names() {
+function dtps_multi_role_get_uneditable_role_names() {
     $uneditable = [];
 
-    foreach ( zume_multi_role_role_factory()->uneditable as $role ) {
+    foreach ( dtps_multi_role_role_factory()->uneditable as $role ) {
         $uneditable[ $role->slug ] = $role->name;
     }
 
@@ -186,8 +186,8 @@ function zume_multi_role_get_uneditable_role_names() {
  * @access public
  * @return array
  */
-function zume_multi_role_get_uneditable_role_slugs() {
-    return array_keys( zume_multi_role_role_factory()->uneditable );
+function dtps_multi_role_get_uneditable_role_slugs() {
+    return array_keys( dtps_multi_role_role_factory()->uneditable );
 }
 
 /**
@@ -197,10 +197,10 @@ function zume_multi_role_get_uneditable_role_slugs() {
  * @access public
  * @return array
  */
-function zume_multi_role_get_wordpress_role_names() {
+function dtps_multi_role_get_wordpress_role_names() {
     $names = [];
 
-    foreach ( zume_multi_role_role_factory()->wordpress as $role ) {
+    foreach ( dtps_multi_role_role_factory()->wordpress as $role ) {
         $names[ $role->slug ] = $role->name;
     }
 
@@ -214,8 +214,8 @@ function zume_multi_role_get_wordpress_role_names() {
  * @access public
  * @return array
  */
-function zume_multi_role_get_wordpress_role_slugs() {
-    return array_keys( zume_multi_role_role_factory()->wordpress );
+function dtps_multi_role_get_wordpress_role_slugs() {
+    return array_keys( dtps_multi_role_role_factory()->wordpress );
 }
 
 /* ====== Single Role Functions ====== */
@@ -228,21 +228,21 @@ function zume_multi_role_get_wordpress_role_slugs() {
  * @param  string
  * @return bool
  */
-function zume_multi_role_role_exists( $role ) {
+function dtps_multi_role_role_exists( $role ) {
     return $GLOBALS['wp_roles']->is_role( $role );
 }
 
 /**
  * Gets a Members role object.
  *
- * @see    Zume_Multi_Role
+ * @see    DTPS_Multi_Role
  * @since  0.1.0
  * @access public
  * @param  string
  * @return object
  */
-function zume_multi_role_get_role( $role ) {
-    return zume_multi_role_role_factory()->get_role( $role );
+function dtps_multi_role_get_role( $role ) {
+    return dtps_multi_role_role_factory()->get_role( $role );
 }
 
 /**
@@ -253,10 +253,10 @@ function zume_multi_role_get_role( $role ) {
  * @access public
  * @return int
  */
-function zume_multi_role_sanitize_role( $role ) {
+function dtps_multi_role_sanitize_role( $role ) {
     $_role = strtolower( $role );
     $_role = preg_replace( '/[^a-z0-9_\-\s]/', '', $_role );
-    return apply_filters( 'zume_multi_role_sanitize_role', str_replace( ' ', '_', $_role ), $role );
+    return apply_filters( 'dtps_multi_role_sanitize_role', str_replace( ' ', '_', $_role ), $role );
 }
 
 /**
@@ -272,10 +272,10 @@ function zume_multi_role_sanitize_role( $role ) {
  * @param  string  $role
  * @return string
  */
-function zume_multi_role_translate_role( $role ) {
+function dtps_multi_role_translate_role( $role ) {
     global $wp_roles;
 
-    return apply_filters( 'zume_multi_role_translate_role', translate_user_role( $wp_roles->role_names[ $role ] ), $role );
+    return apply_filters( 'dtps_multi_role_translate_role', translate_user_role( $wp_roles->role_names[ $role ] ), $role );
 }
 
 /**
@@ -285,8 +285,8 @@ function zume_multi_role_translate_role( $role ) {
  * @access public
  * @return bool
  */
-function zume_multi_role_role_has_users( $role ) {
-    return in_array( $role, zume_multi_role_get_active_role_slugs() );
+function dtps_multi_role_role_has_users( $role ) {
+    return in_array( $role, dtps_multi_role_get_active_role_slugs() );
 }
 
 /**
@@ -296,8 +296,8 @@ function zume_multi_role_role_has_users( $role ) {
  * @access public
  * @return bool
  */
-function zume_multi_role_role_has_caps( $role ) {
-    return zume_multi_role_role_factory()->get_role( $role )->has_caps;
+function dtps_multi_role_role_has_caps( $role ) {
+    return dtps_multi_role_role_factory()->get_role( $role )->has_caps;
 }
 
 /**
@@ -309,7 +309,7 @@ function zume_multi_role_role_has_caps( $role ) {
  * @param  string     $role
  * @return int|array
  */
-function zume_multi_role_get_role_user_count( $role = '' ) {
+function dtps_multi_role_get_role_user_count( $role = '' ) {
 
     // If the count is not already set for all roles, let's get it.
     if ( empty( disciple_tools()->multi->role_user_count ) ) {
@@ -340,8 +340,8 @@ function zume_multi_role_get_role_user_count( $role = '' ) {
  * @param  string
  * @return int
  */
-function zume_multi_role_get_role_granted_cap_count( $role ) {
-    return zume_multi_role_role_factory()->get_role( $role )->granted_cap_count;
+function dtps_multi_role_get_role_granted_cap_count( $role ) {
+    return dtps_multi_role_role_factory()->get_role( $role )->granted_cap_count;
 }
 
 /**
@@ -352,8 +352,8 @@ function zume_multi_role_get_role_granted_cap_count( $role ) {
  * @param  string
  * @return int
  */
-function zume_multi_role_get_role_denied_cap_count( $role ) {
-    return zume_multi_role_role_factory()->get_role( $role )->denied_cap_count;
+function dtps_multi_role_get_role_denied_cap_count( $role ) {
+    return dtps_multi_role_role_factory()->get_role( $role )->denied_cap_count;
 }
 
 /**
@@ -364,8 +364,8 @@ function zume_multi_role_get_role_denied_cap_count( $role ) {
  * @param  string  $role
  * @return string
  */
-function zume_multi_role_get_role_name( $role ) {
-    return zume_multi_role_role_factory()->get_role( $role )->name;
+function dtps_multi_role_get_role_name( $role ) {
+    return dtps_multi_role_role_factory()->get_role( $role )->name;
 }
 
 /**
@@ -376,8 +376,8 @@ function zume_multi_role_get_role_name( $role ) {
  * @param  string  $role
  * @return bool
  */
-function zume_multi_role_is_role_editable( $role ) {
-    return zume_multi_role_role_factory()->get_role( $role )->is_editable;
+function dtps_multi_role_is_role_editable( $role ) {
+    return dtps_multi_role_role_factory()->get_role( $role )->is_editable;
 }
 
 /**
@@ -388,7 +388,7 @@ function zume_multi_role_is_role_editable( $role ) {
  * @param  string  $role
  * @return bool
  */
-function zume_multi_role_is_wordpress_role( $role ) {
+function dtps_multi_role_is_wordpress_role( $role ) {
     return in_array( $role, [ 'administrator', 'editor', 'author', 'contributor', 'subscriber' ] );
 }
 
@@ -401,7 +401,7 @@ function zume_multi_role_is_wordpress_role( $role ) {
  * @access public
  * @return string
  */
-function zume_multi_role_get_new_role_url() {
+function dtps_multi_role_get_new_role_url() {
     return add_query_arg( 'page', 'role-new', admin_url( 'users.php' ) );
 }
 
@@ -413,8 +413,8 @@ function zume_multi_role_get_new_role_url() {
  * @param  string  $role
  * @return string
  */
-function zume_multi_role_get_clone_role_url( $role ) {
-    return add_query_arg( 'clone', $role, zume_multi_role_get_new_role_url() );
+function dtps_multi_role_get_clone_role_url( $role ) {
+    return add_query_arg( 'clone', $role, dtps_multi_role_get_new_role_url() );
 }
 
 /**
@@ -424,7 +424,7 @@ function zume_multi_role_get_clone_role_url( $role ) {
  * @access public
  * @return string
  */
-function zume_multi_role_get_edit_roles_url() {
+function dtps_multi_role_get_edit_roles_url() {
     return add_query_arg( 'page', 'roles', admin_url( 'users.php' ) );
 }
 
@@ -436,8 +436,8 @@ function zume_multi_role_get_edit_roles_url() {
  * @param  string  $view
  * @return string
  */
-function zume_multi_role_get_role_view_url( $view ) {
-    return add_query_arg( 'role_view', $view, zume_multi_role_get_edit_roles_url() );
+function dtps_multi_role_get_role_view_url( $view ) {
+    return add_query_arg( 'role_view', $view, dtps_multi_role_get_edit_roles_url() );
 }
 
 /**
@@ -448,11 +448,11 @@ function zume_multi_role_get_role_view_url( $view ) {
  * @param  string  $role
  * @return string
  */
-function zume_multi_role_get_edit_role_url( $role ) {
+function dtps_multi_role_get_edit_role_url( $role ) {
     return add_query_arg( [
         'action' => 'edit',
         'role' => $role
-    ], zume_multi_role_get_edit_roles_url() );
+    ], dtps_multi_role_get_edit_roles_url() );
 }
 
 /**
@@ -463,13 +463,13 @@ function zume_multi_role_get_edit_role_url( $role ) {
  * @param  string  $role
  * @return string
  */
-function zume_multi_role_get_delete_role_url( $role ) {
+function dtps_multi_role_get_delete_role_url( $role ) {
     $url = add_query_arg( [
         'action' => 'delete',
         'role' => $role
-    ], zume_multi_role_get_edit_roles_url() );
+    ], dtps_multi_role_get_edit_roles_url() );
 
-    return wp_nonce_url( $url, 'delete_role', 'zume_multi_role_delete_role_nonce' );
+    return wp_nonce_url( $url, 'delete_role', 'dtps_multi_role_delete_role_nonce' );
 }
 
 /**
@@ -480,6 +480,6 @@ function zume_multi_role_get_delete_role_url( $role ) {
  * @param  string  $role
  * @return string
  */
-function zume_multi_role_get_role_users_url( $role ) {
+function dtps_multi_role_get_role_users_url( $role ) {
     return admin_url( add_query_arg( 'role', $role, 'users.php' ) );
 }

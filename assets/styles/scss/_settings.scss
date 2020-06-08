@@ -65,7 +65,7 @@
 
 // 1. Global
 // ---------
-$global-images-url: '/wp-content/themes/zume-vision/assets/images/';
+$global-images-url: '/wp-content/themes/disciple-tools-public-site/assets/images/';
 
 $global-font-size: 100%;
 $global-width: rem-calc(1200);
@@ -78,6 +78,7 @@ $foundation-palette: (
         warning: #ffae00,
         alert: #cc4b37,
         gray: #cacaca,
+        green: #8BC34A,
 );
 $primary: #323A68;
 $secondary: #00aeff;
@@ -92,6 +93,8 @@ $jumbo-text: 2.5rem;
 $x-jumbo-text: 3rem;
 $stupid-big-text: 3.5rem;
 
+$green: #8BC34A;
+$green-color: #8BC34A;
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
@@ -107,7 +110,7 @@ $global-padding: 1rem;
 $global-position: 1rem;
 $global-weight-normal: normal;
 $global-weight-bold: bold;
-$global-radius: 0;
+$global-radius: 3px;
 $global-menu-padding: 0.7rem 1rem;
 $global-menu-nested-margin: 1rem;
 $global-text-direction: ltr;

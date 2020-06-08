@@ -20,7 +20,7 @@
     <!-- Key Reports-->
     <div class="padding-horizontal-1">
         <h3>Special Reports</h3>
-        <?php zume_reports_nav() ?>
+        <?php dtps_reports_nav() ?>
     </div>
 
 </div>

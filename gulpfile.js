@@ -12,7 +12,7 @@ var gulp  = require('gulp'),
 // Modify these variables to match your project needs
 
 // Set local URL if using Browser-Sync
-const LOCAL_URL = 'https://zume-vision/';
+const LOCAL_URL = 'https://dtps-vision/';
 
 // Set path to Foundation files
 const FOUNDATION = 'node_modules/foundation-sites';
@@ -145,7 +145,7 @@ gulp.task('images', function() {
  gulp.task( 'translate', function () {
      return gulp.src( SOURCE.php )
          .pipe(plugin.wpPot( {
-             domain: 'zume',
+             domain: 'dtps',
              package: 'Example project'
          } ))
         .pipe(gulp.dest('file.pot'));

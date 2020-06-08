@@ -2,7 +2,7 @@
 /**
  * The off-canvas menu uses the Off-Canvas Component
  *
- * For more info: http://zume.com/docs/responsive-navigation/
+ * For more info: http://dtps.com/docs/responsive-navigation/
  */
 ?>
 
@@ -13,6 +13,6 @@
         </ul>
     </div>
     <div class="top-bar-right">
-        <?php zume_top_nav(); ?>
+        <?php dtps_top_nav(); ?>
     </div>
 </div>

@@ -1,10 +1,10 @@
 _ = _ || window.lodash
 const { __, _x, _n, _nx } = wp.i18n;
-if ( zumeAPICore === 'undefined') {
-  let zumeAPICore = window.zumeAPICore
+if ( dtpsAPICore === 'undefined') {
+  let dtpsAPICore = window.dtpsAPICore
 }
-if ( zumeAPI === 'undefined' ) {
-  let zumeAPI = window.zumeAPI
+if ( dtpsAPI === 'undefined' ) {
+  let dtpsAPI = window.dtpsAPI
 }
 
 jQuery(document).ready(function(){
@@ -52,29 +52,29 @@ jQuery(document).ready(function(){
                       <table class="unstriped">
                           <tr style="vertical-align: top;">
                               <td style="width:150px;">
-                                  <label for="zume_full_name">Name</label>
+                                  <label for="dtps_full_name">Name</label>
                               </td>
                               <td>
                                   <input type="text"
-                                         placeholder="${__('First and last name', 'zume')}"
-                                         aria-describedby="${__('First and last name', 'zume')}"
+                                         placeholder="${__('First and last name', 'dtps')}"
+                                         aria-describedby="${__('First and last name', 'dtps')}"
                                          class="profile-input"
-                                         id="zume_full_name"
-                                         name="zume_full_name"
+                                         id="dtps_full_name"
+                                         name="dtps_full_name"
                                          value=""
                                          required />
                               </td>
                           </tr>
                           <tr>
                               <td style="vertical-align: top;">
-                                  <label for="zume_phone_number">${__('Phone Number', 'zume')}</label>
+                                  <label for="dtps_phone_number">${__('Phone Number', 'dtps')}</label>
                               </td>
                               <td>
                                   <input type="tel"
                                          placeholder="111-111-1111"
                                          class="profile-input"
-                                         id="zume_phone_number"
-                                         name="zume_phone_number"
+                                         id="dtps_phone_number"
+                                         name="dtps_phone_number"
                                          value=""
                                          required
                                   />
@@ -82,24 +82,24 @@ jQuery(document).ready(function(){
                           </tr>
                           <tr>
                               <td style="vertical-align: top;">
-                                  <label>${__('How should we contact you?', 'zume')}</label>
+                                  <label>${__('How should we contact you?', 'dtps')}</label>
                               </td>
                               <td>
                                   <fieldset>
-                                      <input id="zume_contact_preference3" name="zume_contact_preference" class="zume_contact_preference" type="radio" value="phone" checked data-abide-ignore>
-                                      <label for="zume_contact_preference3">${__('Phone', 'zume')}</label>
-                                      <input id="zume_contact_preference2" name="zume_contact_preference" class="zume_contact_preference" type="radio" value="text" data-abide-ignore>
-                                      <label for="zume_contact_preference2">${__('SMS/Text', 'zume')}</label>
-                                      <input id="zume_contact_preference4" name="zume_contact_preference" class="zume_contact_preference" type="radio" value="whatsapp" data-abide-ignore>
-                                      <label for="zume_contact_preference4">${__('WhatsApp', 'zume')}</label>
-                                      <input id="zume_contact_preference1" name="zume_contact_preference" class="zume_contact_preference" type="radio" value="email" data-abide-ignore>
-                                      <label for="zume_contact_preference1">${__('Email', 'zume')}</label>
+                                      <input id="dtps_contact_preference3" name="dtps_contact_preference" class="dtps_contact_preference" type="radio" value="phone" checked data-abide-ignore>
+                                      <label for="dtps_contact_preference3">${__('Phone', 'dtps')}</label>
+                                      <input id="dtps_contact_preference2" name="dtps_contact_preference" class="dtps_contact_preference" type="radio" value="text" data-abide-ignore>
+                                      <label for="dtps_contact_preference2">${__('SMS/Text', 'dtps')}</label>
+                                      <input id="dtps_contact_preference4" name="dtps_contact_preference" class="dtps_contact_preference" type="radio" value="whatsapp" data-abide-ignore>
+                                      <label for="dtps_contact_preference4">${__('WhatsApp', 'dtps')}</label>
+                                      <input id="dtps_contact_preference1" name="dtps_contact_preference" class="dtps_contact_preference" type="radio" value="email" data-abide-ignore>
+                                      <label for="dtps_contact_preference1">${__('Email', 'dtps')}</label>
                                   </fieldset>
                               </td>
                           </tr>
                           <tr>
                               <td style="vertical-align: top;">
-                                  <label for="user_email">${__('Email', 'zume')}</label>
+                                  <label for="user_email">${__('Email', 'dtps')}</label>
                               </td>
                               <td>
                                   <input type="email"
@@ -119,7 +119,7 @@ jQuery(document).ready(function(){
                                          required
                                   />
                                   <span class="form-error">
-                                     ${__('Email is required.', 'zume')}
+                                     ${__('Email is required.', 'dtps')}
                                   </span>
                               </td>
                           </tr>
@@ -127,13 +127,13 @@ jQuery(document).ready(function(){
                           <tr>
                               <td style="vertical-align: top;">
                                   <label for="validate_address">
-                                      ${__('City', 'zume')}
+                                      ${__('City', 'dtps')}
                                   </label>
                               </td>
                               <td>
                                 <div class="input-group">
                                     <input type="text"
-                                           placeholder="${__('What is your city or state or postal code?', 'zume')}"
+                                           placeholder="${__('What is your city or state or postal code?', 'dtps')}"
                                            class="profile-input input-group-field"
                                            id="validate_address"
                                            name="validate_address"
@@ -142,12 +142,12 @@ jQuery(document).ready(function(){
                                            required
                                     />
                                     <div class="input-group-button">
-                                        <button class="button hollow" id="spinner_button" style="display:none;"><img src="${zumeCore.theme_uri}/assets/images/spinner.svg" alt="spinner" style="width: 18px;" /></button>
+                                        <button class="button hollow" id="spinner_button" style="display:none;"><img src="${dtpsCore.theme_uri}/assets/images/spinner.svg" alt="spinner" style="width: 18px;" /></button>
                                     </div>
                                 </div>
 
                                 <div id="possible-results">
-                                    <input type="radio" style="display:none;" name="zume_user_address" id="zume_user_address" value="current" checked/>
+                                    <input type="radio" style="display:none;" name="dtps_user_address" id="dtps_user_address" value="current" checked/>
                                 </div>
                             </td>
                           </tr>
@@ -157,15 +157,15 @@ jQuery(document).ready(function(){
                           </tr>
                           <tr>
                             <td></td>
-                            <td><p>${__('On submitting this request, we will do our best to connect you with a community near you.', 'zume')}</p></td>
+                            <td><p>${__('On submitting this request, we will do our best to connect you with a community near you.', 'dtps')}</p></td>
                           </tr>
                           <tr>
                             <td></td>
                             <td>
                                 <div data-abide-error  class="alert alert-box" style="display:none;" id="alert">
-                                    <strong>${__('Oh snap!', 'zume')}</strong>
+                                    <strong>${__('Oh snap!', 'dtps')}</strong>
                                 </div>
-                                <button class="button membership-request-form" type="button" onclick="load_form_validator()" id="submit" disabled>${__('Submit', 'zume')}</button> <span id="request_spinner"></span>
+                                <button class="button membership-request-form" type="button" onclick="load_form_validator()" id="submit" disabled>${__('Submit', 'dtps')}</button> <span id="request_spinner"></span>
                             </td>
                           </tr>
                       </table>
@@ -231,7 +231,7 @@ function validate_user_address_v4(user_address){
 
   let root = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
   let settings = '.json?types=country,region,postcode,district,place,locality,neighborhood,address&limit=6&access_token='
-  let key = zumeJoin.map_key
+  let key = dtpsJoin.map_key
 
   let url = root + encodeURI( user_address ) + settings + key
 
@@ -242,7 +242,7 @@ function validate_user_address_v4(user_address){
     let multiple_results = jQuery('#multiple-results')
 
     if( data.features.length < 1 ) {
-      multiple_results.empty().append(`${__( 'No location matches found. Try a less specific address.', 'zume' )}`)
+      multiple_results.empty().append(`${__( 'No location matches found. Try a less specific address.', 'dtps' )}`)
     }
 
     // Set globals
@@ -256,7 +256,7 @@ function validate_user_address_v4(user_address){
       if( index === 0 ) {
         checked = 'checked'
       }
-      multiple_results.append( `<input type="radio" name="zume_user_address" id="zume_user_address${_.escape( index )}" value="${_.escape( value.id )}" ${_.escape( checked )} /><label for="zume_user_address${_.escape( index )}">${_.escape( value.place_name )}</label><br>`)
+      multiple_results.append( `<input type="radio" name="dtps_user_address" id="dtps_user_address${_.escape( index )}" value="${_.escape( value.id )}" ${_.escape( checked )} /><label for="dtps_user_address${_.escape( index )}">${_.escape( value.place_name )}</label><br>`)
     })
 
     // add responsive click event to populate text area, if selection is clicked. Expected user feedback.
@@ -284,12 +284,12 @@ function send_community_request() {
     return;
   }
 
-  spinner.html( `<img src="${zumeCore.theme_uri}/assets/images/spinner.svg" style="width: 40px; vertical-align:top; margin-left: 5px;" alt="spinner" />` )
+  spinner.html( `<img src="${dtpsCore.theme_uri}/assets/images/spinner.svg" style="width: 40px; vertical-align:top; margin-left: 5px;" alt="spinner" />` )
 
-  let name = jQuery('#zume_full_name').val()
-  let phone = jQuery('#zume_phone_number').val()
+  let name = jQuery('#dtps_full_name').val()
+  let phone = jQuery('#dtps_phone_number').val()
   let email = jQuery('#user_email').val()
-  let preference = jQuery('input.zume_contact_preference:checked').val()
+  let preference = jQuery('input.dtps_contact_preference:checked').val()
 
   /**************/
   // Get address
@@ -326,7 +326,7 @@ function send_community_request() {
     "location_grid_meta": location_grid_meta,
   }
 
-  zumeAPI.community_request( data ).done( function(data) {
+  dtpsAPI.community_request( data ).done( function(data) {
     console.log('postsend')
     console.log(data)
     jQuery('#connection-request-form').html('Excellent! Our volunteer network is being alerted. Please, be watching for a call or email in the next few days.')
@@ -334,6 +334,6 @@ function send_community_request() {
     .fail(function(e){
       console.log('coach_request error')
       console.log(e)
-      spinner.empty().html( `${__('Oops. Something went wrong. Try again!', 'zume')}`)
+      spinner.empty().html( `${__('Oops. Something went wrong. Try again!', 'dtps')}`)
     })
 }

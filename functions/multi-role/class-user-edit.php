@@ -16,7 +16,7 @@
  * @since  0.1.0
  * @access public
  */
-final class Zume_Admin_User_Edit {
+final class DTPS_Admin_User_Edit {
 
     /**
      * Holds the instances of this class.
@@ -75,11 +75,11 @@ final class Zume_Admin_User_Edit {
 
         $user_roles = (array) $user->roles;
 
-        $editable_roles = zume_multi_role_get_editable_role_names();
+        $editable_roles = dtps_multi_role_get_editable_role_names();
 
         asort( $editable_roles );
 
-        wp_nonce_field( 'new_user_roles', 'zume_multi_role_new_user_roles_nonce' ); ?>
+        wp_nonce_field( 'new_user_roles', 'dtps_multi_role_new_user_roles_nonce' ); ?>
 
         <h3><?php esc_html_e( 'Roles', 'members' ); ?></h3>
 
@@ -93,7 +93,7 @@ final class Zume_Admin_User_Edit {
                     <?php foreach ( $editable_roles as $role => $name ) : ?>
                         <li>
                             <label>
-                                <input type="checkbox" name="zume_multi_role_user_roles[]" value="<?php echo esc_attr( $role ); ?>" <?php checked( in_array( $role, $user_roles ) ); ?> />
+                                <input type="checkbox" name="dtps_multi_role_user_roles[]" value="<?php echo esc_attr( $role ); ?>" <?php checked( in_array( $role, $user_roles ) ); ?> />
                                 <?php echo esc_html( $name ); ?>
                             </label>
                         </li>
@@ -123,7 +123,7 @@ final class Zume_Admin_User_Edit {
         }
 
         // Is this a role change?
-        if ( ! isset( $_POST['zume_multi_role_new_user_roles_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['zume_multi_role_new_user_roles_nonce'] ) ), 'new_user_roles' ) ) {
+        if ( ! isset( $_POST['dtps_multi_role_new_user_roles_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['dtps_multi_role_new_user_roles_nonce'] ) ), 'new_user_roles' ) ) {
             return;
         }
 
@@ -131,19 +131,19 @@ final class Zume_Admin_User_Edit {
         $user = new WP_User( $user_id );
 
         // If we have an array of roles.
-        if ( ! empty( $_POST['zume_multi_role_user_roles'] ) ) {
+        if ( ! empty( $_POST['dtps_multi_role_user_roles'] ) ) {
 
             // Get the current user roles.
             $old_roles = (array) $user->roles;
 
             // Sanitize the posted roles.
-            $new_roles = array_map( 'zume_multi_role_sanitize_role', array_map( 'sanitize_text_field', wp_unslash( $_POST['zume_multi_role_user_roles'] ) ) );
+            $new_roles = array_map( 'dtps_multi_role_sanitize_role', array_map( 'sanitize_text_field', wp_unslash( $_POST['dtps_multi_role_user_roles'] ) ) );
 
             // Loop through the posted roles.
             foreach ( $new_roles as $new_role ) {
 
                 // If the user doesn't already have the role, add it.
-                if ( zume_multi_role_is_role_editable( $new_role ) && ! in_array( $new_role, (array) $user->roles ) ) {
+                if ( dtps_multi_role_is_role_editable( $new_role ) && ! in_array( $new_role, (array) $user->roles ) ) {
                     $user->add_role( $new_role );
                 }
             }
@@ -152,7 +152,7 @@ final class Zume_Admin_User_Edit {
             foreach ( $old_roles as $old_role ) {
 
                 // If the role is editable and not in the new roles array, remove it.
-                if ( zume_multi_role_is_role_editable( $old_role ) && ! in_array( $old_role, $new_roles ) ) {
+                if ( dtps_multi_role_is_role_editable( $old_role ) && ! in_array( $old_role, $new_roles ) ) {
                     $user->remove_role( $old_role );
                 }
             }
@@ -164,7 +164,7 @@ final class Zume_Admin_User_Edit {
             foreach ( (array) $user->roles as $old_role ) {
 
                 // Remove the role if it is editable.
-                if ( zume_multi_role_is_role_editable( $old_role ) ) {
+                if ( dtps_multi_role_is_role_editable( $old_role ) ) {
                     $user->remove_role( $old_role );
                 }
             }
@@ -201,4 +201,4 @@ final class Zume_Admin_User_Edit {
     }
 }
 
-Zume_Admin_User_Edit::get_instance();
+DTPS_Admin_User_Edit::get_instance();

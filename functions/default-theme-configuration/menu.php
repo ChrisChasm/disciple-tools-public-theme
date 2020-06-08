@@ -2,16 +2,16 @@
 // Register menus
 register_nav_menus(
     array(
-        'main-nav' => __( 'The Main Menu', 'zume' ),   // Main nav in header
-        'offcanvas-nav' => __( 'The Off-Canvas Menu', 'zume' ),
-        'footer-links' => __( 'Footer Links', 'zume' ),
-        'reports' => __( 'Reports', 'zume' ),
-        'top-articles' => __( 'Top Articles', 'zume' )
+        'main-nav' => __( 'The Main Menu', 'dtps' ),   // Main nav in header
+        'offcanvas-nav' => __( 'The Off-Canvas Menu', 'dtps' ),
+        'footer-links' => __( 'Footer Links', 'dtps' ),
+        'reports' => __( 'Reports', 'dtps' ),
+        'top-articles' => __( 'Top Articles', 'dtps' )
     )
 );
 
 // The Top Menu
-function zume_top_nav() {
+function dtps_top_nav() {
 
     wp_nav_menu(array(
         'container' => false,                           // Remove nav container
@@ -20,12 +20,12 @@ function zume_top_nav() {
         'theme_location' => 'main-nav',                 // Where it's located in the theme
         'depth' => 5,                                   // Limit the depth of the nav
         'fallback_cb' => false,                         // Fallback function (see below)
-        'walker' => new Zume_Topbar_Menu_Walker()
+        'walker' => new DTPS_Topbar_Menu_Walker()
     ));
 }
 
 // Big thanks to Brett Mason (https://github.com/brettsmason) for the awesome walker
-class Zume_Topbar_Menu_Walker extends Walker_Nav_Menu {
+class DTPS_Topbar_Menu_Walker extends Walker_Nav_Menu {
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
         $indent = str_repeat( "\t", $depth );
         $output .= "\n$indent<ul class=\"menu\">\n";
@@ -33,7 +33,7 @@ class Zume_Topbar_Menu_Walker extends Walker_Nav_Menu {
 }
 
 // The Off Canvas Menu
-function zume_off_canvas_nav() {
+function dtps_off_canvas_nav() {
 
     echo '<button class="button expanded primary-button" style="font-weight: bold; cursor:pointer;" data-open="search-box"><i class="fi-magnifying-glass"></i> Search</button>';
 
@@ -44,18 +44,18 @@ function zume_off_canvas_nav() {
         'theme_location' => 'main-nav',                 // Where it's located in the theme
         'depth' => 5,                                   // Limit the depth of the nav
         'fallback_cb' => false,                         // Fallback function (see below)
-        'walker' => new Zume_Off_Canvas_Menu_Walker()
+        'walker' => new DTPS_Off_Canvas_Menu_Walker()
     ));
 }
 
-class Zume_Off_Canvas_Menu_Walker extends Walker_Nav_Menu {
+class DTPS_Off_Canvas_Menu_Walker extends Walker_Nav_Menu {
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
         $indent = str_repeat( "\t", $depth );
         $output .= "\n$indent<ul class=\"vertical is-active menu\">\n";
     }
 }
 
-function zume_reports_nav() {
+function dtps_reports_nav() {
     wp_nav_menu(array(
         'container' => false,                           // Remove nav container
         'menu_class' => 'vertical menu accordion-menu sidebar-menu',       // Adding custom nav class
@@ -63,18 +63,18 @@ function zume_reports_nav() {
         'theme_location' => 'reports',                 // Where it's located in the theme
         'depth' => 5,                                   // Limit the depth of the nav
         'fallback_cb' => false,                         // Fallback function (see below)
-        'walker' => new Zume_Reports_Menu_Walker()
+        'walker' => new DTPS_Reports_Menu_Walker()
     ));
 }
 
-class Zume_Reports_Menu_Walker extends Walker_Nav_Menu {
+class DTPS_Reports_Menu_Walker extends Walker_Nav_Menu {
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
         $indent = str_repeat( "\t", $depth );
         $output .= "\n$indent<ul class=\"vertical menu\">\n";
     }
 }
 
-function zume_top_articles_nav() {
+function dtps_top_articles_nav() {
     wp_nav_menu(array(
         'container' => false,                           // Remove nav container
         'menu_class' => 'vertical menu sidebar-menu underline',       // Adding custom nav class
@@ -82,11 +82,11 @@ function zume_top_articles_nav() {
         'theme_location' => 'top-articles',                 // Where it's located in the theme
         'depth' => 5,                                   // Limit the depth of the nav
         'fallback_cb' => false,                         // Fallback function (see below)
-        'walker' => new Zume_Top_Articles_Menu_Walker()
+        'walker' => new DTPS_Top_Articles_Menu_Walker()
     ));
 }
 
-class Zume_Top_Articles_Menu_Walker extends Walker_Nav_Menu {
+class DTPS_Top_Articles_Menu_Walker extends Walker_Nav_Menu {
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
         $indent = str_repeat( "\t", $depth );
         $output .= "\n$indent<ul class=\"vertical menu\">\n";
@@ -95,16 +95,16 @@ class Zume_Top_Articles_Menu_Walker extends Walker_Nav_Menu {
 
 
 // Add Foundation active class to menu
-function zume_required_active_nav_class( $classes, $item ) {
+function dtps_required_active_nav_class( $classes, $item ) {
     if ( $item->current == 1 || $item->current_item_ancestor == true ) {
         $classes[] = 'active';
     }
     return $classes;
 }
-add_filter( 'nav_menu_css_class', 'zume_required_active_nav_class', 10, 2 );
+add_filter( 'nav_menu_css_class', 'dtps_required_active_nav_class', 10, 2 );
 
 // Numeric Page Navi (built into the theme by default)
-function zume_page_navi() {
+function dtps_page_navi() {
     global $wpdb, $wp_query;
     $request = $wp_query->request;
     $posts_per_page = intval( get_query_var( 'posts_per_page' ) );
@@ -136,11 +136,11 @@ function zume_page_navi() {
     }
     echo '<nav class="page-navigation"><ul class="pagination">';
     if ($start_page >= 2 && $pages_to_show < $max_page) {
-        $first_page_text = __( 'First', 'zume' );
+        $first_page_text = __( 'First', 'dtps' );
         echo '<li><a href="'.esc_attr( get_pagenum_link() ).'" title="'. esc_attr( $first_page_text ) .'">'. esc_html( $first_page_text ) .'</a></li>';
     }
     echo '<li>';
-    previous_posts_link( __( 'Previous', 'zume' ) );
+    previous_posts_link( __( 'Previous', 'dtps' ) );
     echo '</li>';
     for ($i = $start_page; $i <= $end_page; $i++) {
         if ($i == $paged) {
@@ -150,10 +150,10 @@ function zume_page_navi() {
         }
     }
     echo '<li>';
-    next_posts_link( __( 'Next', 'zume' ), 0 );
+    next_posts_link( __( 'Next', 'dtps' ), 0 );
     echo '</li>';
     if ($end_page < $max_page) {
-        $last_page_text = __( 'Last', 'zume' );
+        $last_page_text = __( 'Last', 'dtps' );
         echo '<li><a href="'. esc_attr( get_pagenum_link( $max_page ) ).'" title="'.esc_attr( $last_page_text ) .'">'. esc_html( $last_page_text ) .'</a></li>';
     }
     echo '</ul></nav>';

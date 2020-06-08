@@ -29,7 +29,7 @@ $thumb_url = $thumb_url_array[0];
     <footer class="article-footer">
 
 
-        <p class="tags"><?php the_tags( '<span class="tags-title">' . __( 'Tags:', 'zume' ) . '</span> ', ', ', '' ); ?></p>
+        <p class="tags"><?php the_tags( '<span class="tags-title">' . __( 'Tags:', 'dtps' ) . '</span> ', ', ', '' ); ?></p>
 
     </footer> <!-- end article footer -->
 

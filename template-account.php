@@ -7,8 +7,8 @@ if ( ! is_user_logged_in() ) {
 }
 
 /* Build variables for page */
-$zume_user = wp_get_current_user(); // Returns WP_User object
-$zume_user_meta = zume_get_user_meta( get_current_user_id() ); // Full array of user meta data
+$dtps_user = wp_get_current_user(); // Returns WP_User object
+$dtps_user_meta = dtps_get_user_meta( get_current_user_id() ); // Full array of user meta data
 
 get_header(); ?>
 
@@ -38,15 +38,15 @@ get_header(); ?>
                 <div class="grid-x grid-padding-x">
                     <div class="cell medium-4 google_elements">
                         <?php
-                        if ( ! get_user_meta( $zume_user->ID, 'google_sso_email', true ) ) :
-                            zume_google_link_account_button();
+                        if ( ! get_user_meta( $dtps_user->ID, 'google_sso_email', true ) ) :
+                            dtps_google_link_account_button();
                         endif;
                         ?>
                     </div>
                     <div class="cell medium-4 facebook_elements">
                         <?php
-                        if ( ! get_user_meta( $zume_user->ID, 'facebook_sso_email', true ) ) :
-                            zume_facebook_link_account_button();
+                        if ( ! get_user_meta( $dtps_user->ID, 'facebook_sso_email', true ) ) :
+                            dtps_facebook_link_account_button();
                         endif;
                         ?>
                     </div>

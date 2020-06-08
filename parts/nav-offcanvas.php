@@ -2,7 +2,7 @@
 /**
  * The off-canvas menu uses the Off-Canvas Component
  *
- * For more info: http://zume.com/docs/off-canvas-menu/
+ * For more info: http://dtps.com/docs/off-canvas-menu/
  */
 ?>
 
@@ -15,7 +15,7 @@
     <div class="top-bar-right">
         <ul class="menu">
             <!-- <li><button class="menu-icon" type="button" data-toggle="off-canvas"></button></li> -->
-            <li><a data-toggle="off-canvas"><?php _e( 'Menu', 'zume' ); ?></a></li>
+            <li><a data-toggle="off-canvas"><?php _e( 'Menu', 'dtps' ); ?></a></li>
         </ul>
     </div>
 </div>

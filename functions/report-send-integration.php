@@ -42,7 +42,7 @@ class Report_Send_Integration {
 
     public function add_api_routes() {
 
-        $namespace_v1 = "zume/v4";
+        $namespace_v1 = "dtps/v4";
 
         register_rest_route(
             $namespace_v1,
@@ -72,7 +72,7 @@ class Report_Send_Integration {
             ]
         ];
 
-        $result = wp_remote_post( 'https://global.zume-vision/wp-json/dt-public/v1/network/report', $packet );
+        $result = wp_remote_post( 'https://global.dtps-vision/wp-json/dt-public/v1/network/report', $packet );
 
         return wp_remote_retrieve_body( $result );
     }

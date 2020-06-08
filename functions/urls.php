@@ -6,10 +6,10 @@
  */
 
 /* Require Authentication for Zúme */
-function zume_force_login() {
+function dtps_force_login() {
     // if user is not logged in redirect to login
     if ( ! is_user_logged_in() ) {
-        wp_safe_redirect( zume_login_url() );
+        wp_safe_redirect( dtps_login_url() );
         exit;
     }
 }
@@ -23,7 +23,7 @@ if ( ! current_user_can( 'administrator' ) ) {
 /**
  * Remove menu items for coaches in the admin dashboard.
  */
-function zume_custom_menu_page_removing() {
+function dtps_custom_menu_page_removing() {
 
     if (is_admin() && current_user_can( 'coach' ) && !current_user_can( 'administrator' ) ) {
 
@@ -42,27 +42,27 @@ function zume_custom_menu_page_removing() {
 
     }
 }
-add_action( 'admin_menu', 'zume_custom_menu_page_removing' );
+add_action( 'admin_menu', 'dtps_custom_menu_page_removing' );
 
 
 
-function zume_home_url( $current_language = null ) {
+function dtps_home_url( $current_language = null ) {
     return site_url();
 }
 
 // changing the logo link from wordpress.org to your site
-function zume_login_url() {  return site_url() . '/login'; }
-add_filter( 'login_headerurl', 'zume_login_url' );
+function dtps_login_url() {  return site_url() . '/login'; }
+add_filter( 'login_headerurl', 'dtps_login_url' );
 
-function zume_lostpassword_url( $current_language = null ) {
+function dtps_lostpassword_url( $current_language = null ) {
     return site_url() . '/login/?action=lostpassword';
 }
 
-function zume_register_url( $current_language = null ) {
+function dtps_register_url( $current_language = null ) {
     return $url = site_url() . '/login/?action=register';
 }
 
-function zume_profile_url() {
+function dtps_profile_url() {
     return site_url( '/account' );
 }
 
@@ -72,24 +72,15 @@ function zume_profile_url() {
  * @param string $sub_folder
  * @return string
  */
-function zume_images_uri( $sub_folder = '' ) {
-    $zume_images_uri = site_url( '/wp-content/themes/zume-vision/assets/images/' );
+function dtps_images_uri( $sub_folder = '' ) {
+    $dtps_images_uri = site_url( '/wp-content/themes/disciple-tools-public-site/assets/images/' );
     if ( empty( $sub_folder ) ) {
-        return $zume_images_uri;
+        return $dtps_images_uri;
     } else {
-        return $zume_images_uri . $sub_folder . '/';
+        return $dtps_images_uri . $sub_folder . '/';
     }
 }
 
-function zume_files_uri() {
-    return 'https://storage.googleapis.com/zume-file-mirror/' . zume_current_language() . '/';
-}
-
-function zume_files_download_uri( $id ) {
-    // post id of downloads / meta field
-    return zume_files_uri() . '/';
-}
-
-function zume_home_id() {
+function dtps_home_id() {
     return site_url();
 }

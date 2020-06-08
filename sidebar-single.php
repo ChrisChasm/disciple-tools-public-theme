@@ -12,7 +12,7 @@
 
     <?php endif; ?>
 
-    <?php zume_related_posts() ?>
+    <?php dtps_related_posts() ?>
 
     <!-- subscribe section-->
     <?php get_template_part( "parts/content", "join" ); ?>

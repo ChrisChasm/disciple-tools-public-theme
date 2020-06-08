@@ -8,13 +8,13 @@ if ( !defined( 'ABSPATH' )) {
 } // Exit if accessed directly.
 
 /**
- * Zume_Reports_Post_Type Post Type Class
- * All functionality pertaining to project update post types in Zume_Reports_Post_Type.
+ * DTPS_Reports_Post_Type Post Type Class
+ * All functionality pertaining to project update post types in DTPS_Reports_Post_Type.
  *
  * @package  Disciple_Tools
  * @since    0.1.0
  */
-class Zume_Reports_Post_Type
+class DTPS_Reports_Post_Type
 {
     /**
      * The post type token.
@@ -62,7 +62,7 @@ class Zume_Reports_Post_Type
     public $taxonomies;
 
     /**
-     * Zume_Reports_Post_Type The single instance of Zume_Reports_Post_Type.
+     * DTPS_Reports_Post_Type The single instance of DTPS_Reports_Post_Type.
      * @var     object
      * @access  private
      * @since   0.1
@@ -70,11 +70,11 @@ class Zume_Reports_Post_Type
     private static $_instance = null;
 
     /**
-     * Main Zume_Reports_Post_Type Instance
+     * Main DTPS_Reports_Post_Type Instance
      *
-     * Ensures only one instance of Zume_Reports_Post_Type is loaded or can be loaded.
+     * Ensures only one instance of DTPS_Reports_Post_Type is loaded or can be loaded.
      *
-     * @return Zume_Reports_Post_Type instance
+     * @return DTPS_Reports_Post_Type instance
      * @since 0.1
      * @static
      */
@@ -225,7 +225,7 @@ class Zume_Reports_Post_Type
      */
     public function register_custom_column_headings( $defaults) {
 
-        $new_columns = []; //array( 'image' => __( 'Image', 'zume' ));
+        $new_columns = []; //array( 'image' => __( 'Image', 'dtps' ));
 
         $last_item = [];
 
@@ -498,7 +498,7 @@ class Zume_Reports_Post_Type
 
 
 
-        return apply_filters( 'zume_report_fields_settings', $fields );
+        return apply_filters( 'dtps_report_fields_settings', $fields );
     } // End get_custom_fields_settings()
 
     /**
@@ -523,4 +523,4 @@ class Zume_Reports_Post_Type
     } // End flush_rewrite_rules()
 
 } // End Class
-Zume_Reports_Post_Type::instance();
+DTPS_Reports_Post_Type::instance();

@@ -11,8 +11,8 @@
  */
 
 // Filter `user_has_cap` if denied caps should take precedence.
-if ( zume_multi_role_explicitly_deny_caps() ) {
-    add_filter( 'user_has_cap', 'zume_user_has_cap_filter', 10, 4 );
+if ( dtps_multi_role_explicitly_deny_caps() ) {
+    add_filter( 'user_has_cap', 'dtps_user_has_cap_filter', 10, 4 );
 }
 
 /**
@@ -31,7 +31,7 @@ if ( zume_multi_role_explicitly_deny_caps() ) {
  * @param  object $user
  * @return array
  */
-function zume_user_has_cap_filter( $allcaps, $caps, $args, $user ) {
+function dtps_user_has_cap_filter( $allcaps, $caps, $args, $user ) {
 
     // If the user doesn't have more than one role, bail.
     if ( 1 >= count( (array) $user->roles ) ) {
@@ -74,7 +74,7 @@ function zume_user_has_cap_filter( $allcaps, $caps, $args, $user ) {
  * @param  string  $role
  * @return bool
  */
-function zume_user_has_role( $user_id, $role ) {
+function dtps_user_has_role( $user_id, $role ) {
 
     $user = new WP_User( $user_id );
 
@@ -89,9 +89,9 @@ function zume_user_has_role( $user_id, $role ) {
  * @param  string  $role
  * @return bool
  */
-function zume_current_user_has_role( $role ) {
+function dtps_current_user_has_role( $role ) {
 
-    return is_user_logged_in() ? zume_user_has_role( get_current_user_id(), $role ) : false;
+    return is_user_logged_in() ? dtps_user_has_role( get_current_user_id(), $role ) : false;
 }
 
 /**
@@ -102,14 +102,14 @@ function zume_current_user_has_role( $role ) {
  * @param  int    $user_id
  * @return array
  */
-function zume_get_user_role_names( $user_id ) {
+function dtps_get_user_role_names( $user_id ) {
 
     $user = new WP_User( $user_id );
 
     $names = [];
 
     foreach ( $user->roles as $role ) {
-        $names[ $role ] = zume_multi_role_get_role_name( $role );
+        $names[ $role ] = dtps_multi_role_get_role_name( $role );
     }
 
     return $names;

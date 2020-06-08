@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Zume_Multi_Roles
+ * DTPS_Multi_Roles
  *
- * @class   Zume_Multi_Roles
+ * @class   DTPS_Multi_Roles
  * @version 0.1.0
  * @since   0.1.0
  * @package Disciple_Tools
@@ -13,12 +13,12 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; } // Exit if accessed directly
 
 /**
- * Class Zume_Multi_Roles
+ * Class DTPS_Multi_Roles
  */
-class Zume_Multi_Roles {
+class DTPS_Multi_Roles {
 
     /**
-     * Zume_Admin_Menus The single instance of Zume_Admin_Menus.
+     * DTPS_Admin_Menus The single instance of DTPS_Admin_Menus.
      *
      * @var    object
      * @access private
@@ -29,13 +29,13 @@ class Zume_Multi_Roles {
     public $role_user_count = [];
 
     /**
-     * Main Zume_Multi_Roles Instance
+     * Main DTPS_Multi_Roles Instance
      *
-     * Ensures only one instance of Zume_Multi_Roles is loaded or can be loaded.
+     * Ensures only one instance of DTPS_Multi_Roles is loaded or can be loaded.
      *
      * @since  0.1.0
      * @static
-     * @return Zume_Multi_Roles instance
+     * @return DTPS_Multi_Roles instance
      */
     public static function instance() {
         if ( is_null( self::$_instance ) ) {
@@ -76,4 +76,4 @@ class Zume_Multi_Roles {
     } // End __construct()
 
 }
-Zume_Multi_Roles::instance();
+DTPS_Multi_Roles::instance();

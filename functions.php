@@ -52,7 +52,7 @@ require_once( get_template_directory().'/functions/multi-role/multi-role.php' );
  */
 
 
-function zume_get_user_meta( $user_id = null ) {
+function dtps_get_user_meta( $user_id = null ) {
 
     if ( ! is_user_logged_in() ) {
         return [];

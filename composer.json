@@ -1,7 +1,9 @@
 {
+    "name": "disciple-tools/disciple-tools-public-site",
+    "description": "disciple tools code style management",
+    "license": "MIT",
     "require-dev": {
         "dealerdirect/phpcodesniffer-composer-installer": "*",
-        "wp-coding-standards/wpcs": "*",
-        "squizlabs/php_codesniffer": "*"
+        "wp-coding-standards/wpcs": "*"
     }
 }

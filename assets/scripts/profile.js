@@ -1,7 +1,7 @@
 // _ = _ || window.lodash // make sure lodash is defined so plugins like gutenberg don't break it.
 // const { __, _x, _n, _nx } = wp.i18n;
 
-const ZUME = zumeProfile
+const ZUME = dtpsProfile
 
 jQuery(document).ready( function() {
   write_profile()
@@ -27,21 +27,21 @@ function write_profile() {
 
 
     jQuery('#profile').empty().html(`
-    <h3 class="section-header">${__('Your Profile', 'zume')}</h3>
+    <h3 class="section-header">${__('Your Profile', 'dtps')}</h3>
 
     <style>.label-column { vertical-align: top; width: 100px; white-space: nowrap;}</style>
     <table class="hover stack" id="profile-fields">
         <tr style="vertical-align: top;">
             <td class="label-column">
-                <label for="zume_full_name">Name</label>
+                <label for="dtps_full_name">Name</label>
             </td>
             <td>
                 <input type="text"
-                       placeholder="${__('First and last name', 'zume')}"
-                       aria-describedby="${__('First and last name', 'zume')}"
+                       placeholder="${__('First and last name', 'dtps')}"
+                       aria-describedby="${__('First and last name', 'dtps')}"
                        class="profile-input"
-                       id="zume_full_name"
-                       name="zume_full_name"
+                       id="dtps_full_name"
+                       name="dtps_full_name"
                        value="${ZUME.user_profile_fields.name}"
                        data-abide-ignore />
             </td>
@@ -50,23 +50,23 @@ function write_profile() {
 
         <tr>
             <td class="label-column">
-                <label for="zume_phone_number">${__('Phone', 'zume')}</label>
+                <label for="dtps_phone_number">${__('Phone', 'dtps')}</label>
             </td>
             <td>
                 <input type="tel"
                        placeholder="111-111-1111"
                        class="profile-input"
-                       id="zume_phone_number"
-                       name="zume_phone_number"
+                       id="dtps_phone_number"
+                       name="dtps_phone_number"
                        value="${ZUME.user_profile_fields.phone}"
                        data-abide-ignore
                 />
             </td>
         </tr>
-        
+
         <tr>
             <td class="label-column">
-                <label for="user_email">${__('Email', 'zume')}</label>
+                <label for="user_email">${__('Email', 'dtps')}</label>
             </td>
             <td>
                 <input type="text"
@@ -78,21 +78,21 @@ function write_profile() {
                        data-abide-ignore
                 />
                 <span class="form-error">
-                  ${__('This form is required.', 'zume')}
+                  ${__('This form is required.', 'dtps')}
                 </span>
             </td>
         </tr>
-        
+
         <tr>
             <td class="label-column">
                 <label for="validate_address">
-                    ${__('City', 'zume')}
+                    ${__('City', 'dtps')}
                 </label>
             </td>
             <td>
                 <div class="input-group">
                     <input type="text"
-                           placeholder="${__('example: Denver, CO 80120', 'zume')}"
+                           placeholder="${__('example: Denver, CO 80120', 'dtps')}"
                            class="profile-input input-group-field"
                            id="validate_address"
                            name="validate_address"
@@ -106,59 +106,59 @@ function write_profile() {
                 </div>
 
                 <div id="possible-results">
-                    <input type="radio" style="display:none;" name="zume_user_address" id="zume_user_address" value="current" checked/>
+                    <input type="radio" style="display:none;" name="dtps_user_address" id="dtps_user_address" value="current" checked/>
                 </div>
             </td>
         </tr>
-       
+
 
     </table>
-    
+
     <div data-abide-error  class="alert alert-box" style="display:none;" id="alert">
-        <strong>${__('Oh snap!', 'zume')}</strong>
+        <strong>${__('Oh snap!', 'dtps')}</strong>
     </div>
 
 <div class="grid-x">
   <div class="cell center">
-      <button class="button" type="submit" onclick="load_form_validator()" id="submit_profile">${__('Save', 'zume')}</button> <span id="request_spinner"></span>
+      <button class="button" type="submit" onclick="load_form_validator()" id="submit_profile">${__('Save', 'dtps')}</button> <span id="request_spinner"></span>
   </div>
 </div>
-    
-    <h3>${__('Linked Accounts', 'zume')}</h3>
+
+    <h3>${__('Linked Accounts', 'dtps')}</h3>
     <table class="hover stack">
     <tr id="facebook-row"  class="label-column" style="display: none;">
             <td style="vertical-align: top;">
-                <label>${__('Linked Facebook Account', 'zume')}</label>
+                <label>${__('Linked Facebook Account', 'dtps')}</label>
             </td>
             <td>
                 <div class="input-group">
                     <input class="input-group-field profile-input" type="text"
                            value="${ZUME.user_profile_fields.facebook_sso_email}" id="facebook_email" readonly />
                     <div class="input-group-button">
-                        <button name="unlink_facebook" value="true" type="button" onclick="unlink_facebook_sso()"  class="button">${__('Unlink', 'zume')}</button>
+                        <button name="unlink_facebook" value="true" type="button" onclick="unlink_facebook_sso()"  class="button">${__('Unlink', 'dtps')}</button>
                     </div>
                 </div>
             </td>
         </tr>
-        
+
         <tr id="google-row"  class="label-column" style="display: none;">
             <td style="vertical-align: top;">
-                <label for="google_email">${__('Linked Google Account', 'zume')}</label>
+                <label for="google_email">${__('Linked Google Account', 'dtps')}</label>
             </td>
             <td>
                 <div class="input-group">
                     <input class="input-group-field profile-input" type="text"
                            value="${ZUME.user_profile_fields.google_sso_email}" id="google_email" readonly />
                     <div class="input-group-button">
-                        <button name="unlink_google" value="true" type="button" onclick="unlink_google_sso()" class="button">${__('Unlink', 'zume')}</button>
+                        <button name="unlink_google" value="true" type="button" onclick="unlink_google_sso()" class="button">${__('Unlink', 'dtps')}</button>
                     </div>
                 </div>
             </td>
         </tr>
     </table>
-    
 
-    
+
+
   `)
   } /* end if */
 
@@ -239,7 +239,7 @@ function validate_user_address_v4(user_address){
     let multiple_results = jQuery('#multiple-results')
 
     if( data.features.length < 1 ) {
-      multiple_results.empty().append(`${__( 'No location matches found. Try a less specific address.', 'zume' )}`)
+      multiple_results.empty().append(`${__( 'No location matches found. Try a less specific address.', 'dtps' )}`)
     }
 
     // Set globals
@@ -253,7 +253,7 @@ function validate_user_address_v4(user_address){
       if( index === 0 ) {
         checked = 'checked'
       }
-      multiple_results.append( `<input type="radio" name="zume_user_address" id="zume_user_address${_.escape( index )}" value="${_.escape( value.id )}" ${_.escape( checked )} /><label for="zume_user_address${_.escape( index )}">${_.escape( value.place_name )}</label><br>`)
+      multiple_results.append( `<input type="radio" name="dtps_user_address" id="dtps_user_address${_.escape( index )}" value="${_.escape( value.id )}" ${_.escape( checked )} /><label for="dtps_user_address${_.escape( index )}">${_.escape( value.place_name )}</label><br>`)
     })
 
     // enable ability to save
@@ -306,10 +306,10 @@ function update_profile() {
   let spinner = jQuery('#request_spinner')
   spinner.html(`<img src="${ZUME.theme_uri}/assets/images/spinner.svg" alt="spinner" style="width: 40px; vertical-align:top; margin-left: 5px;" />`)
 
-  let name = jQuery('#zume_full_name').val()
-  let phone = jQuery('#zume_phone_number').val()
+  let name = jQuery('#dtps_full_name').val()
+  let phone = jQuery('#dtps_phone_number').val()
   let email = jQuery('#user_email').val()
-  let affiliation_key = jQuery('#zume_affiliation_key').val()
+  let affiliation_key = jQuery('#dtps_affiliation_key').val()
 
   /**************/
   // Get address
@@ -357,7 +357,7 @@ function update_profile() {
     data: JSON.stringify(data),
     contentType: "application/json; charset=utf-8",
     dataType: "json",
-    url: ZUME.root + 'zume/v4/update_profile',
+    url: ZUME.root + 'dtps/v4/update_profile',
     beforeSend: function(xhr) {
       xhr.setRequestHeader('X-WP-Nonce', ZUME.nonce);
     },
@@ -380,7 +380,7 @@ function unlink_facebook_sso() {
     data: JSON.stringify({ type: 'facebook' } ),
     contentType: "application/json; charset=utf-8",
     dataType: "json",
-    url: ZUME.root + 'zume/v4/unlink_profile',
+    url: ZUME.root + 'dtps/v4/unlink_profile',
     beforeSend: function(xhr) {
       xhr.setRequestHeader('X-WP-Nonce', ZUME.nonce);
     },
@@ -403,7 +403,7 @@ function unlink_google_sso() {
     data: JSON.stringify({ type: 'google' }),
     contentType: "application/json; charset=utf-8",
     dataType: "json",
-    url: ZUME.root + 'zume/v4/unlink_profile',
+    url: ZUME.root + 'dtps/v4/unlink_profile',
     beforeSend: function(xhr) {
       xhr.setRequestHeader('X-WP-Nonce', ZUME.nonce);
     },

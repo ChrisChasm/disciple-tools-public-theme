@@ -2,12 +2,12 @@
 /**
  * The template part for displaying offcanvas content
  *
- * For more info: http://zume.com/docs/off-canvas-menu/
+ * For more info: http://dtps.com/docs/off-canvas-menu/
  */
 ?>
 
 <div class="off-canvas position-right" id="off-canvas" data-off-canvas>
-    <?php zume_off_canvas_nav(); ?>
+    <?php dtps_off_canvas_nav(); ?>
 
     <?php if ( is_active_sidebar( 'offcanvas' ) ) : ?>
 

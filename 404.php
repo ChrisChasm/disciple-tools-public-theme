@@ -16,11 +16,11 @@ get_header(); ?>
                 <article class="content-not-found">
 
                     <header class="article-header">
-                        <h1><?php _e( 'Epic 404 - Article Not Found', 'zume' ); ?></h1>
+                        <h1><?php _e( 'Epic 404 - Article Not Found', 'dtps' ); ?></h1>
                     </header> <!-- end article header -->
 
                     <section class="entry-content">
-                        <p><?php _e( 'The article you were looking for was not found, but maybe try looking again!', 'zume' ); ?></p>
+                        <p><?php _e( 'The article you were looking for was not found, but maybe try looking again!', 'dtps' ); ?></p>
                     </section> <!-- end article section -->
 
                     <section class="search">

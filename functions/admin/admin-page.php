@@ -19,7 +19,7 @@
 /**
  * PLEASE, RENAME CLASS AND FUNCTION NAMES BEFORE USING TEMPLATE
  * Rename these three strings:
- *      Zume Vision
+ *      DTPS Vision
  *      Vision_Page
  *      vision_page
  */
@@ -87,7 +87,7 @@ class Vision_Page {
             wp_die( 'You do not have sufficient permissions to access this page.' );
         }
 
-        $object = new Zume_Keys_Tab();
+        $object = new DTPS_Keys_Tab();
         $object->content();
     }
 
@@ -168,7 +168,7 @@ class Vision_Page {
 /**
  * Class Disciple_Tools_Keys_Tab
  */
-class Zume_Keys_Tab
+class DTPS_Keys_Tab
 {
     /**
      * Packages and returns tab page
@@ -214,7 +214,7 @@ class Zume_Keys_Tab
         $current_key = get_option( 'google_map_key' );
         ?>
         <form method="post">
-            <?php wp_nonce_field( 'zume_google_map_key_' . get_current_user_id() . '_nonce', 'zume_google_map_key' . get_current_user_id() ) ?>
+            <?php wp_nonce_field( 'dtps_google_map_key_' . get_current_user_id() . '_nonce', 'dtps_google_map_key' . get_current_user_id() ) ?>
             <table class="widefat striped">
                 <thead>
                 <th colspan="2">Google Maps API Key</th>
@@ -232,7 +232,7 @@ class Zume_Keys_Tab
                         <td>
                             <select name="default_keys" style="width: 100%;" <?php echo $this->is_default_key( $current_key ) ? '' : 'disabled' ?>>
                                 <?php
-                                $default_keys = zume_default_google_api_keys();
+                                $default_keys = dtps_default_google_api_keys();
                                 foreach ( $default_keys as $key => $value ) {
                                     echo '<option value="'.esc_attr( $key ).'" ';
                                     if ( array_search( $current_key, $default_keys ) == $key ) {
@@ -253,7 +253,7 @@ class Zume_Keys_Tab
                         <span style="font-size:.8em;">(clear key and save to remove key)</span>
                     </td>
                     <td>
-                        <input type="text" name="zume_google_map_key" id="zume_google_map_key" style="width: 100%;" value="<?php echo $this->is_default_key( $current_key ) ? '' : esc_attr( $current_key ) ?>"/>
+                        <input type="text" name="dtps_google_map_key" id="dtps_google_map_key" style="width: 100%;" value="<?php echo $this->is_default_key( $current_key ) ? '' : esc_attr( $current_key ) ?>"/>
                     </td>
                 </tr>
                 <tr>
@@ -269,9 +269,9 @@ class Zume_Keys_Tab
     }
 
     public function handle_post() {
-        if ( isset( $_POST[ 'zume_google_map_key' . get_current_user_id() ] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST[ 'zume_google_map_key' . get_current_user_id() ] ) ), 'zume_google_map_key_' . get_current_user_id() . '_nonce' ) ) {
-            if ( empty( $_POST['zume_google_map_key'] ) ) {
-                $default_keys = zume_default_google_api_keys();
+        if ( isset( $_POST[ 'dtps_google_map_key' . get_current_user_id() ] ) && wp_verify_nonce( sanitize_key( wp_unslash( $_POST[ 'dtps_google_map_key' . get_current_user_id() ] ) ), 'dtps_google_map_key_' . get_current_user_id() . '_nonce' ) ) {
+            if ( empty( $_POST['dtps_google_map_key'] ) ) {
+                $default_keys = dtps_default_google_api_keys();
                 $count = count( $default_keys ) - 1;
 
                 if ( ! empty( $_POST['default_keys'] ) ) {
@@ -288,8 +288,8 @@ class Zume_Keys_Tab
                 }
             }
             else {
-                dt_write_log( 'not empty zume_google_map_key' );
-                update_option( 'google_map_key', trim( sanitize_text_field( wp_unslash( $_POST['zume_google_map_key'] ) ) ) );
+                dt_write_log( 'not empty dtps_google_map_key' );
+                update_option( 'google_map_key', trim( sanitize_text_field( wp_unslash( $_POST['dtps_google_map_key'] ) ) ) );
                 return;
             }
         }
@@ -301,7 +301,7 @@ class Zume_Keys_Tab
         $current_key = get_option( 'mapbox_map_key' );
         ?>
         <form method="post">
-            <?php wp_nonce_field( 'zume_google_map_key_' . get_current_user_id() . '_nonce', 'zume_google_map_key' . get_current_user_id() ) ?>
+            <?php wp_nonce_field( 'dtps_google_map_key_' . get_current_user_id() . '_nonce', 'dtps_google_map_key' . get_current_user_id() ) ?>
             <table class="widefat striped">
                 <thead>
                 <th colspan="2">Google Maps API Key</th>
@@ -319,7 +319,7 @@ class Zume_Keys_Tab
                         <td>
                             <select name="default_keys" style="width: 100%;" <?php echo $this->is_default_key( $current_key ) ? '' : 'disabled' ?>>
                                 <?php
-                                $default_keys = zume_default_google_api_keys();
+                                $default_keys = dtps_default_google_api_keys();
                                 foreach ( $default_keys as $key => $value ) {
                                     echo '<option value="'.esc_attr( $key ).'" ';
                                     if ( array_search( $current_key, $default_keys ) == $key ) {
@@ -340,7 +340,7 @@ class Zume_Keys_Tab
                         <span style="font-size:.8em;">(clear key and save to remove key)</span>
                     </td>
                     <td>
-                        <input type="text" name="zume_google_map_key" id="zume_google_map_key" style="width: 100%;" value="<?php echo $this->is_default_key( $current_key ) ? '' : esc_attr( $current_key ) ?>"/>
+                        <input type="text" name="dtps_google_map_key" id="dtps_google_map_key" style="width: 100%;" value="<?php echo $this->is_default_key( $current_key ) ? '' : esc_attr( $current_key ) ?>"/>
                     </td>
                 </tr>
                 <tr>
@@ -358,7 +358,7 @@ class Zume_Keys_Tab
     public function is_default_key( $current_key ): bool
     {
         if ( empty( $current_key ) ) {
-            $keys = zume_default_google_api_keys();
+            $keys = dtps_default_google_api_keys();
             $count = count( $keys ) - 1;
             $key = $keys[ rand( 0, $count ) ];
 
@@ -366,7 +366,7 @@ class Zume_Keys_Tab
             return true;
         }
 
-        $default_keys = zume_default_google_api_keys();
+        $default_keys = dtps_default_google_api_keys();
         foreach ( $default_keys as $default_key ) {
             if ( $default_key === $current_key ) {
                 return true;
@@ -526,7 +526,7 @@ class Zume_Keys_Tab
 
 }
 
-function zume_default_google_api_keys() {
+function dtps_default_google_api_keys() {
     $default_keys = [
         'AIzaSyBkI5W07GdlhQCqzf3F8VW2E_3mhdzR3s4',
         'AIzaSyAaaZusK9pa9eLuO0nlllGnbQPyXHfTGxQ',

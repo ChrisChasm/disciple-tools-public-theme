@@ -33,7 +33,7 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
             if ( ! $format ) : if (have_posts()) : while (have_posts()) : the_post(); ?>
                         <?php get_template_part( 'parts/loop', 'report-archive' ); ?>
             <?php endwhile; ?>
-                    <?php zume_page_navi(); ?>
+                    <?php dtps_page_navi(); ?>
             <?php else : ?>
                 <?php get_template_part( 'parts/content', 'missing' ); ?>
             <?php endif;
@@ -50,7 +50,7 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
                     </tr>
                     <?php endwhile; ?>
                     </tbody></table>
-                    <?php zume_page_navi(); ?>
+                    <?php dtps_page_navi(); ?>
             <?php else : ?>
                 <?php get_template_part( 'parts/content', 'missing' ); ?>
             <?php endif;

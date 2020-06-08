@@ -17,7 +17,7 @@
  * @since  0.1.0
  * @access public
  */
-final class Zume_Multi_Role_Factory {
+final class DTPS_Multi_Role_Factory {
 
     /**
      * Array of roles added.
@@ -74,10 +74,10 @@ final class Zume_Multi_Role_Factory {
     public function add_role( $role ) {
 
         // If the role exists with WP but hasn't been added.
-        if ( zume_multi_role_role_exists( $role ) ) {
+        if ( dtps_multi_role_role_exists( $role ) ) {
 
             // Get the role object.
-            $this->roles[ $role ] = new Zume_Multi_Role( $role );
+            $this->roles[ $role ] = new DTPS_Multi_Role( $role );
 
             // Check if role is editable.
             if ( $this->roles[ $role ]->is_editable ) {
@@ -87,7 +87,7 @@ final class Zume_Multi_Role_Factory {
             }
 
             // Is WP role?
-            if ( zume_multi_role_is_wordpress_role( $role ) ) {
+            if ( dtps_multi_role_is_wordpress_role( $role ) ) {
                 $this->wordpress[ $role ] = $this->roles[ $role ];
             }
         }
@@ -159,7 +159,7 @@ final class Zume_Multi_Role_Factory {
         static $instance = null;
 
         if ( is_null( $instance ) ) {
-            $instance = new Zume_Multi_Role_Factory();
+            $instance = new DTPS_Multi_Role_Factory();
             $instance->setup_roles();
         }
 
