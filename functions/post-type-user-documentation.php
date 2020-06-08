@@ -156,10 +156,10 @@ class DTPS_User_Documentation_Post_Type
                 'menu_position' => 10, /* this is what order you want it to appear in on the left hand side menu */
                 'menu_icon' => 'dashicons-book', /* the icon for the custom post type menu. uses built-in dashicons (CSS class name) */
                 'rewrite' => array(
-                    'slug' => 'news',
+                    'slug' => 'user-docs',
                     'with_front' => true
                 ), /* you can specify its url slug */
-                'has_archive' => 'news', /* you can rename the slug here */
+                'has_archive' => 'user-docs', /* you can rename the slug here */
                 'capability_type' => 'post',
                 'hierarchical' => true,
                 /* the next one is important, it tells what's enabled in the post editor */
@@ -172,7 +172,7 @@ class DTPS_User_Documentation_Post_Type
     public function create_tag_taxonomies() {
         // Add new taxonomy, NOT hierarchical (like tags)
 
-        register_taxonomy('report_categories', 'news', array(
+        register_taxonomy('user_categories', 'user_documentation', array(
             'hierarchical' => true,
             'labels' => array(
                 'name' => _x( 'User Documentation Categories', 'taxonomy general name' ),
@@ -182,7 +182,7 @@ class DTPS_User_Documentation_Post_Type
             'show_ui' => true,
             'update_count_callback' => '_update_post_term_count',
             'query_var' => true,
-            'rewrite' => array( 'slug' => 'report-categories' ),
+            'rewrite' => array( 'slug' => 'user-categories' ),
             'show_in_rest' => true,
         ));
     }

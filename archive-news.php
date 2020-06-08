@@ -25,7 +25,7 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
             <?php /** Show Category Bread Crumb */
             global $wp;
             $url_parts = explode( '/', $wp->request );
-            if ( 'report-categories' === $url_parts[0] ) {
+            if ( 'news-categories' === $url_parts[0] ) {
                 the_archive_title();
             } ?>
 
@@ -60,7 +60,7 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
 
         <div class="sidebar cell large-4">
 
-            <?php get_sidebar( 'news-archive' ); ?>
+<!--            --><?php //get_sidebar( 'news-archive' ); ?>
 
         </div>
 
