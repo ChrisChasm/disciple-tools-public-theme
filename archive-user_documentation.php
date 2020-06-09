@@ -1,3 +1,7 @@
+<?php
+$landing_post_id = 391; // quick start
+?>
+
 <?php get_header(); ?>
 
 <!-- Main -->
@@ -15,7 +19,19 @@
 
             <div class="cell large-8">
 
-                <?php echo get_the_content( null, false, 335 ) ?>
+                <header class="article-header ">
+
+                    <h2 class="entry-title single-title vertical-padding" style="font-weight:bold;" itemprop="headline"><?php echo get_the_title(  $landing_post_id ) ?></h2>
+
+                </header> <!-- end article header -->
+
+                <hr>
+
+                <section class="entry-content" itemprop="text">
+
+                    <?php echo get_the_content( null, false, $landing_post_id ) ?>
+
+                </section> <!-- end article section -->
 
             </div>
 
