@@ -116,7 +116,7 @@ class DTPS_Dev_Documentation_Post_Type
                 $pt = sanitize_text_field( wp_unslash( $_GET['post_type'] ) );
                 if ($pt === $this->post_type) {
                     add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
-                    add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
+                    add_action( 'manage_pages_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );dt_write_log('here');
                 }
             }
         }
@@ -145,7 +145,7 @@ class DTPS_Dev_Documentation_Post_Type
                     'search_items' => 'Search Dev Documentation', /* Search Custom Type Title */
                     'not_found' => 'Nothing found in the Database.', /* This displays if there are no entries yet */
                     'not_found_in_trash' => 'Nothing found in Trash', /* This displays if there is nothing in the trash */
-                    'parent_item_colon' => 'Parent:'
+                    'parent_item_colon' => 'Parent'
                 ), /* end of arrays */
                 'description' => 'Movement report', /* Custom Type Description */
                 'public' => true,
@@ -198,14 +198,12 @@ class DTPS_Dev_Documentation_Post_Type
      * @return void
      * @since  0.1.0
      */
-    public function register_custom_columns( $column_name) {
-//        global $post;
+    public function register_custom_columns( $column_name, $post_id) {
+        global $post;
 
         switch ($column_name) {
-            case 'image':
-                break;
-            case 'phone':
-                echo '';
+            case 'order':
+                echo $post->menu_order;
                 break;
 
             default:
@@ -225,7 +223,7 @@ class DTPS_Dev_Documentation_Post_Type
      */
     public function register_custom_column_headings( $defaults) {
 
-        $new_columns = array(); //array( 'image' => __( 'Image', 'dtps' ));
+        $new_columns = array( 'order' => __( 'Order', 'dtps' ));
 
         $last_item = array();
 
