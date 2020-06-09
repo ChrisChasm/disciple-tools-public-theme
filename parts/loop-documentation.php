@@ -27,7 +27,6 @@
                     'child_of' =>  get_the_ID(),
                 ]) ?>
             </ul>
-
         </div>
     </section> <!-- end article section -->
 
