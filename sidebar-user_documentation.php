@@ -5,18 +5,12 @@
 ?>
 
 <div class="sidebar cell" role="complementary">
+    <h2 class="center title"><a href="/user-docs/">User Documentation</a></h2><hr>
 
-    <hr class="show-for-small-only" />
-
-    <?php get_template_part( "parts/content", "join" ); ?>
-    <hr>
-    <?php get_template_part( 'parts/content', 'news-subscribe' ); ?>
-    <hr>
-
-    <!-- Key News-->
-    <div class="padding-horizontal-1">
-        <h3>Special News</h3>
-        <?php dtps_news_nav() ?>
-    </div>
-
+    <?php wp_list_pages([
+        'post_type' => 'user_documentation',
+        'sort_column' => 'menu_order',
+        'echo' => true,
+        'title_li' => null,
+    ]) ?>
 </div>

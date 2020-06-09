@@ -85,7 +85,7 @@ CSS file.
 @include foundation-prototype-spacing;
 
 // Import your custom styles
-//@import "astra";
 @import "global";
 @import "main";
 @import "elementor";
+@import "documentation";
