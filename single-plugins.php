@@ -23,6 +23,12 @@ get_header(); ?>
 
             <div class="grid-x grid-margin-x">
 
+                <div class="sidebar cell large-4 ">
+
+                    <?php get_sidebar( 'plugins' ); ?>
+
+                </div>
+
                 <div class="blog cell large-8">
 
                     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -41,11 +47,7 @@ get_header(); ?>
 
                 </div>
 
-                <div class="sidebar cell large-4">
 
-                    <?php get_sidebar( 'plugins' ); ?>
-
-                </div>
             </div>
 
         </main> <!-- end #main -->
