@@ -39,7 +39,10 @@
 
     <script>
         jQuery(document).ready(function(){
-            jQuery("a:contains('<?php the_title(); ?>')").css( "text-decoration", "underline" ).css("font-weight", "bold")
+            jQuery("a").filter(function() {
+                return jQuery(this).text() === '<?php the_title(); ?>';
+            }).css( "text-decoration", "underline" ).css("font-weight", "bold")
+
             if ( jQuery('.section-contents-list li').text().length > 0 ) {
                 jQuery('.section-contents').show()
             }
