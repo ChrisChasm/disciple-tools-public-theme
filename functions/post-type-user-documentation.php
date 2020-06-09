@@ -299,7 +299,7 @@ class DTPS_User_Documentation_Post_Type
      * @since  0.1.0
      */
     public function meta_box_setup() {
-        add_meta_box( $this->post_type . '_scribes', 'User Documentation', array( $this, 'load_report_meta_box' ), $this->post_type, 'normal', 'high' );
+//        add_meta_box( $this->post_type . '_scribes', 'User Documentation', array( $this, 'load_report_meta_box' ), $this->post_type, 'normal', 'high' );
     } // End meta_box_setup()
 
     /**

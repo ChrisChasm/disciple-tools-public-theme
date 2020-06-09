@@ -1,9 +1,3 @@
-<?php
-$format = false;
-if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
-    $format = 'compact';
-}
-?>
 
 <?php get_header(); ?>
 
@@ -16,7 +10,7 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
                 <h1 class="center title">User Documentation</h1>
             </div>
         </div>
-        <div class="grid-x blue-notch-wrapper"><div class="cell center blue-notch"></div></div>
+
 
         <!-- Main -->
         <main role="main" id="post-main" >
@@ -26,48 +20,15 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
 
                 <div class="cell large-8">
 
-                    <?php /** Show Category Bread Crumb */
-                    global $wp;
-                    $url_parts = explode( '/', $wp->request );
-                    if ( 'news-categories' === $url_parts[0] ) {
-                        the_archive_title();
-                    } ?>
-
-                    <?php /* Show default full view*/
-                    if ( ! $format ) : if (have_posts()) : while (have_posts()) : the_post(); ?>
-                        <?php get_template_part( 'parts/loop', 'report-archive' ); ?>
-                    <?php endwhile; ?>
-                        <?php dtps_page_navi(); ?>
-                    <?php else : ?>
-                        <?php get_template_part( 'parts/content', 'missing' ); ?>
-                    <?php endif;
-                    endif; /* no format */ ?>
-
-
-                    <?php /* Show compressed view */
-                    if ( $format ) : if (have_posts()) : ?>
-                        <table class=""><thead><tr><th>Date</th><th></th></tr></thead><tbody>
-                            <?php while (have_posts()) : the_post(); ?>
-                                <tr>
-                                    <td><span class="small-text"><?php echo get_the_date() ?></span></td>
-                                    <td><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" style="text-decoration: none;"><?php the_title(); ?></a></td>
-                                </tr>
-                            <?php endwhile; ?>
-                            </tbody></table>
-                        <?php dtps_page_navi(); ?>
-                    <?php else : ?>
-                        <?php get_template_part( 'parts/content', 'missing' ); ?>
-                    <?php endif;
-                        /* have posts*/ endif; /* has format */  ?>
+                    Test
 
                 </div>
 
                 <div class="sidebar cell large-4">
 
-                    <?php get_sidebar( 'news-archive' ); ?>
+                    <?php get_sidebar( 'user_documentation' ); ?>
 
                 </div>
-
 
             </div>
 
@@ -75,7 +36,5 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
 
     </div>
 </div>
-
-<hr>
 
 <?php get_footer(); ?>
