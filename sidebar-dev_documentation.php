@@ -5,7 +5,7 @@
 ?>
 
 <div class="sidebar cell" role="complementary">
-    <h2 class="center title"><a href="/user-docs/">User Documentation</a></h2><hr>
+    <h2 class="center title"><a href="/dev-docs/">Developer Documentation</a></h2><hr>
 
     <?php wp_list_pages([
         'post_type' => get_post_type( get_the_ID() ),

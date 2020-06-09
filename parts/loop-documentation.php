@@ -20,7 +20,7 @@
         <div class="section-contents-list section-contents">
             <ul>
                 <?php wp_list_pages([
-                    'post_type' => 'user_documentation',
+                    'post_type' => get_post_type( get_the_ID() ),
                     'sort_column' => 'menu_order',
                     'echo' => true,
                     'title_li' => null,
