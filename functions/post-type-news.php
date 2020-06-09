@@ -145,7 +145,7 @@ class DTPS_News_Post_Type
                     'search_items' => 'Search News', /* Search Custom Type Title */
                     'not_found' => 'Nothing found in the Database.', /* This displays if there are no entries yet */
                     'not_found_in_trash' => 'Nothing found in Trash', /* This displays if there is nothing in the trash */
-                    'parent_item_colon' => ''
+                    'parent_item_colon' => 'Parent'
                 ), /* end of arrays */
                 'description' => 'Movement report', /* Custom Type Description */
                 'public' => true,
@@ -161,7 +161,7 @@ class DTPS_News_Post_Type
                 ), /* you can specify its url slug */
                 'has_archive' => 'news', /* you can rename the slug here */
                 'capability_type' => 'post',
-                'hierarchical' => true,
+                'hierarchical' => false,
                 /* the next one is important, it tells what's enabled in the post editor */
                 'show_in_rest' => true,
                 'supports' => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt' )

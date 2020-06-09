@@ -145,9 +145,9 @@ class DTPS_User_Documentation_Post_Type
                     'search_items' => 'Search User Documentation', /* Search Custom Type Title */
                     'not_found' => 'Nothing found in the Database.', /* This displays if there are no entries yet */
                     'not_found_in_trash' => 'Nothing found in Trash', /* This displays if there is nothing in the trash */
-                    'parent_item_colon' => ''
+                    'parent_item_colon' => 'Parent'
                 ), /* end of arrays */
-                'description' => 'Movement report', /* Custom Type Description */
+                'description' => 'User Documentation', /* Custom Type Description */
                 'public' => true,
                 'publicly_queryable' => true,
                 'exclude_from_search' => false,
