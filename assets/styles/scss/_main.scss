@@ -4,11 +4,6 @@ Stylesheet: Main Stylesheet
 
 *************************************************/
 
-/*********************
-GENERAL STYLES
-*********************/
-
-
 
 /*********************
 LINK STYLES
@@ -56,7 +51,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 }
 
 h1, .h1 {
-
+    font-size: $x-large-text;
 }
 
 h2, .h2 {
@@ -236,60 +231,24 @@ select {
     background: #2CACE2;
     color: $white;
 }
-.front-page-social-image {
-    display: block;
-    max-height: 80px;
-    margin-bottom: 15px;
-}
-.front-page-social + div {
-    margin-bottom: 20px;
-}
+
+
 .off-canvas li.is-submenu-item {
     padding-left: 1em;
 }
 
-@media only screen and (max-width: 639px) {
-    h2 {
-        font-size: 2em;
-    }
-    h3.secondary {
-        font-size: 1.5em;
-    }
-    h3.overview {
-        font-size: 1.5em;
-        font-weight: bold;
-    }
-}
-
-.dropdown.menu.medium-horizontal>li.is-dropdown-submenu-parent.active>a:after {
-    border-color: $white transparent transparent;
-}
-.dropdown.menu.medium-horizontal>li.is-dropdown-submenu-parent:hover>a:after {
-    border-color: $white transparent transparent;
-}
-
-.group-title {
-    font-size: 1.9375rem;
-}
-
-/* takes off border from the zendesk button */
-iframe#launcher {
-    border: none;
-}
-
-/* Resource Section */
-.resource-list {
-    list-style-type: none;
-}
-.resource-list li {
-    padding: .2em 0;
-}
-.resource-list li a {
-    color:white;
-    line-height: 1.5em;
-}
-
-
+//@media only screen and (max-width: 639px) {
+//    h2 {
+//        font-size: 2em;
+//    }
+//    h3.secondary {
+//        font-size: 1.5em;
+//    }
+//    h3.overview {
+//        font-size: 1.5em;
+//        font-weight: bold;
+//    }
+//}
 
 
 
@@ -371,8 +330,6 @@ POSTS & CONTENT STYLES
     }
 
 }
-
-
 
 .wp-caption {
 	max-width: 100%;
@@ -579,6 +536,15 @@ FOOTER STYLES
 #footer-menu-section {
     padding-top: 2em;
     //border-top: 1px solid $light-gray;
+}
+#footer-copyright-bar {
+    background-color: $medium-blue-color;
+
+    .copyright-content {
+        color: $white;
+        text-align: center;
+        padding: $x-jumbo-text;
+    }
 }
 
 /*********************
@@ -802,50 +768,6 @@ COMMENT FORM STYLES
 	}
 }
 
-// comment submit button
-#submit {}
-
-// comment form title
-#comment-form-title {
-	margin: 0 0 1.1em;
-}
-
-// cancel comment reply link
-#cancel-comment-reply {
-	a {}
-}
-
-// logged in comments
-.comments-logged-in-as {}
-
-// allowed tags
-#allowed_tags {
-	margin: 1.5em 10px 0.7335em 0;
-}
-
-// No comments
-.nocomments {
-	margin: 0 20px 1.1em;
-}
-
-// Overview image bar at the top
-
-.overview-image-bar {
-    display: flex;
-    align-items: flex-start;
-    @media only screen and (max-width: 900px) {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    @media only screen and (max-width: 600px) {
-        display: none;
-    }
-    img {
-        min-width: 0;
-        width: 100%;
-    }
-}
-
 /*********************
 SIDEBARS & ASIDES
 *********************/
@@ -885,182 +807,6 @@ FOOTER STYLES
 	margin-top: 1em;
 }
 
-/*********************
-PLUGIN STYLES
-*********************/
-// Makes Gravity Forms play nice with Foundation Form styles
-.gform_body ul {
-    list-style: none outside none;
-    margin: 0;
-}
-
-
-/*********************
-JQUERY STEPS WIZARD
-*********************/
-
-/* Jquery Steps Wizard css */
-
-
-@mixin steps($step-width, $step-margin, $mobile-step-width, $mobile-step-margin) {
-    text-align: center;
-
-    $border-thickness: 2px;
-
-    ul {
-        margin: 0;
-    }
-
-    li {
-        display: inline-block;
-        border: $border-thickness solid #CCCCCC;
-        color: #CCCCCC;
-        width: $step-width;
-        height: $step-width;
-        margin: 0 $step-margin;
-        text-align: center;
-        display: inline-block;
-        font-size: 1.8rem;
-        position: relative;
-        @media only screen and (max-width: 639px) {
-            width: $mobile-step-width;
-            height: $mobile-step-width;
-            margin: 5px $mobile-step-margin;
-            font-size: 1.2rem;
-        }
-    }
-    li:not(:last-child):after {
-        content: "";
-        position: absolute;
-        border: $border-thickness / 2 #CCC solid;
-        left: $step-width - $border-thickness;
-        top: ($step-width / 2) - $border-thickness - 1px;
-        width: $step-margin + 1px;
-        //@media only screen and (max-width: 639px) {
-			//border: 0;
-			//left: 0;
-			//width: 0;
-			//top: 0;
-			//display:none;
-        //}
-    }
-    li:not(:first-child):before {
-        content: "";
-        position: absolute;
-        border: $border-thickness / 2 #CCC solid;
-        left: -$step-margin - $border-thickness;
-        width: $step-margin + 1px;
-        top: ($step-width / 2) - $border-thickness - 1px;
-        //@media only screen and (max-width: 639px) {
-			//border: 0;
-			//left: 0;
-			//width: 0;
-			//top: 0;
-			//display:none;
-        //}
-    }
-    li.current:not(:last-child):after,
-    li.current:not(:first-child):before,
-    .current {
-        border-color: #00AEFF;
-		@media only screen and (max-width: 639px) {
-			border: 0;
-			left: 0;
-			width: 0;
-			top: 0;
-			display:none;
-		}
-    }
-    li:hover:not(.disabled),
-    li:hover:not(.disabled):not(:last-child):after,
-    li:hover:not(.disabled):not(:first-child):before {
-        border-color: #21336A;
-		@media only screen and (max-width: 639px) {
-			left: 0;
-			width: 0;
-			top: 0;
-			display:none;
-		}
-    }
-    .current-info.audible {
-        display: none;
-    }
-    .number {
-        color: #CCCCCC;
-    }
-
-    li > a {
-        width: 100%;
-        height: 100%;
-        display: inline-flex;
-        justify-content: center;
-        flex-direction: column;
-        left: 0;
-        top: 0;
-        position: absolute;
-    }
-}
-
-#overview.wizard > .steps {
-    @include steps(70px, 21px, 30px, 10px);
-}
-
-.course-steps.wizard > .steps {
-    @include steps(20px, 20px, 15px, 15px);
-    .number {
-        display: none;
-    }
-    li.done {
-        background-color: #21336A;
-        &, &:after, &:before {
-            border-color: #21336A;
-        }
-        &:hover {
-            &, &:after, &:before {
-                border-color: #CCCCCC;
-            }
-        }
-    }
-	li:not(:last-child):after {
-		@media only screen and (max-width: 639px) {
-			border: 0;
-			left: 0;
-			width: 0;
-			top: 0;
-			display:none;
-		}
-	}
-    li.disabled a:hover {
-        cursor: default;
-    }
-}
-
-.wizard .actions {
-    ul {
-        list-style-type: none;
-        text-align: center;
-        margin: 0;
-    }
-    li {
-        margin: 0 20px;
-        min-width: 130px;
-        display: inline-block;
-    }
-    li > a {
-        width: 100%;
-        height: 100%;
-        padding: 0.85em 1em;
-        display: inline-block;
-        vertical-align: middle;
-        text-align: center;
-        border: solid 1px $primary-color;
-        &:hover {
-            background: $primary-color;
-            color: $white;
-        }
-    }
-}
-
 ul.orbit-container {
 	padding-right: 1rem;
 	padding-left: 1rem;
@@ -1074,85 +820,6 @@ ul.orbit-container {
 	color: $white;
 	margin: 0 auto;
 }
-
-/**************************************/
-// Register
-/**************************************/
-
-.flex-register-container{
-	display: flex;
-	flex-wrap:wrap;
-	margin-bottom:30px;
-}
-
-.flex-register-item{
-	padding:0 15px 0 15px;
-	flex-grow:1;
-	max-width:500px;
-}
-
-/**************************************/
-// Additional Css classes
-/**************************************/
-
-.wistia_embed {
-	margin: 0 auto;
-}
-
-
-.hero-blocks {
-	height: 300px;
-}
-
-.starter-switch {
-	@include switch-size(3rem, 6rem, 0.75rem);
-}
-
-.switch {
-	margin-bottom: 0;
-	height:0;
-}
-
-.blue-ribbon {
-	background-color: #21336A;
-	color: $white;
-	padding-top: 20px;
-	padding-bottom: 10px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	margin-left: -0.9375rem;
-	margin-right: -0.9375rem;
-	padding-left: 0.9375rem;
-	padding-right: 0.9375rem;
-	h3 {
-		color: $white;
-	}
-}
-@media only screen and (min-width: 40em) { .blue-ribbon {
-	margin-left: -1.25rem;
-	margin-right: -1.25rem;
-	padding-left: 1.25rem;
-	padding-right: 1.25rem;
-}}
-@media only screen and (min-width: 75rem) { .blue-ribbon {
-	margin-left: calc(-100vw / 2 + 75rem / 2 - 1.25rem);
-	margin-right: calc(-100vw / 2 + 75rem / 2 - 1.25rem);
-	padding-left: calc(100vw / 2 - 75rem / 2 + 1.25rem);
-	padding-right: calc(100vw / 2 - 75rem / 2 + 1.25rem);
-}}
-
-.bp-template-notice.updated p{
-	background-color: #efc;
-	border: 1px solid #591;
-	color: #250;
-	padding: 10px;
-}
-
-.lowercase {
-	text-transform: lowercase !important;
-}
-
-
 
 
 hr {
