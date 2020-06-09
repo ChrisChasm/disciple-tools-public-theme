@@ -6,17 +6,12 @@
 
 <div id="report" class="sidebar cell" role="complementary">
 
-    <hr class="show-for-small-only" />
 
-    <!-- Description -->
-    <div class="padding-horizontal-1 padding-top-1">
-        <h3>What are these news?</h3>
-        <p>Progress can be reported through <a href="<?php echo get_post_permalink( 14 )?>">maps</a> and <a href="<?php echo get_post_permalink( 77 )?>">statistics</a>, but also through stories of kingdom wins and faith steps taken. These news are the stories of the Zúme vision unfolding.</p>
-    </div>
-    <hr>
-    <?php get_template_part( "parts/content", "join" ); ?>
 
-    <hr><!-- Divider -->
+
+
+
+
     <?php get_template_part( 'parts/content', 'news-subscribe' ); ?>
     <hr>
 
@@ -40,7 +35,7 @@
                 <?php
                 $categories = get_categories(array(
                     'hide_empty' => true,
-                    'taxonomy' => 'report_categories',
+                    'taxonomy' => 'news_categories',
                 ));
                 foreach ( $categories as $category ) {
 

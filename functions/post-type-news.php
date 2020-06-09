@@ -172,7 +172,7 @@ class DTPS_News_Post_Type
     public function create_tag_taxonomies() {
         // Add new taxonomy, NOT hierarchical (like tags)
 
-        register_taxonomy('report_categories', 'news', array(
+        register_taxonomy('news_categories', 'news', array(
             'hierarchical' => true,
             'labels' => array(
                 'name' => _x( 'News Categories', 'taxonomy general name' ),
@@ -182,7 +182,7 @@ class DTPS_News_Post_Type
             'show_ui' => true,
             'update_count_callback' => '_update_post_term_count',
             'query_var' => true,
-            'rewrite' => array( 'slug' => 'report-categories' ),
+            'rewrite' => array( 'slug' => 'news-categories' ),
             'show_in_rest' => true,
         ));
     }

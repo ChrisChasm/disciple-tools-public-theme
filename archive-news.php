@@ -16,7 +16,7 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
                 <h1 class="center title">News</h1>
             </div>
         </div>
-        <div class="grid-x blue-notch-wrapper"><div class="cell center blue-notch"></div></div>
+
 
         <!-- Main -->
         <main role="main" id="post-main" >
@@ -35,7 +35,7 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
 
                             <?php /* Show default full view*/
                             if ( ! $format ) : if (have_posts()) : while (have_posts()) : the_post(); ?>
-                                        <?php get_template_part( 'parts/loop', 'report-archive' ); ?>
+                                        <?php get_template_part( 'parts/loop', 'news-archive' ); ?>
                             <?php endwhile; ?>
                                     <?php dtps_page_navi(); ?>
                             <?php else : ?>

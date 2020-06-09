@@ -21,7 +21,7 @@ $post = get_post();
             </section> <!-- end article section -->
 
             <?php
-            $categories = wp_get_object_terms( $post->ID, 'report_categories' );
+            $categories = wp_get_object_terms( $post->ID, 'news_categories' );
 
             if ( ! empty( $categories ) ) {
                 echo '<footer class="article-footer padding-bottom-1">Categories: ';
@@ -31,7 +31,7 @@ $post = get_post();
                     if ( $i > 0 ) {
                         echo ', ';
                     }
-                    echo '<a href="'.site_url().'/report-categories/'.$category->slug.'">'. $category->name . '</a>';
+                    echo '<a href="'.site_url().'/news-categories/'.$category->slug.'">'. $category->name . '</a>';
                     $i++;
                 }
                 echo '</footer> <!-- end article footer -->';
