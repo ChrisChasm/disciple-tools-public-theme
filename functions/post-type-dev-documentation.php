@@ -116,7 +116,8 @@ class DTPS_Dev_Documentation_Post_Type
                 $pt = sanitize_text_field( wp_unslash( $_GET['post_type'] ) );
                 if ($pt === $this->post_type) {
                     add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
-                    add_action( 'manage_pages_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );dt_write_log('here');
+                    add_action( 'manage_pages_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
+                    dt_write_log( 'here' );
                 }
             }
         }
@@ -223,7 +224,7 @@ class DTPS_Dev_Documentation_Post_Type
      */
     public function register_custom_column_headings( $defaults) {
 
-        $new_columns = array( 'order' => __( 'Order', 'dtps' ));
+        $new_columns = array( 'order' => __( 'Order', 'dtps' ) );
 
         $last_item = array();
 

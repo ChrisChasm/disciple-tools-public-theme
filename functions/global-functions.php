@@ -177,18 +177,18 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
         function dt_get_translations() {
             require_once( ABSPATH . 'wp-admin/includes/translation-install.php' );
             $translations = wp_get_available_translations();
-            $translations["ar_MA"] = [
+            $translations["ar_MA"] = array(
                 "language" => "ar_MA",
                 "native_name" => "العربية (المغرب)",
                 "english_name" => "Arabic (Morocco)",
-                "iso" => [ "ar" ]
-            ];
-            $translations["sw"] = [
+                "iso" => array( "ar" )
+            );
+            $translations["sw"] = array(
                 "language" => "sw",
                 "native_name" => "Kiswahili",
                 "english_name" => "Swahili",
-                "iso" => [ "sw" ]
-            ];
+                "iso" => array( "sw" )
+            );
             return $translations;
         }
     }
@@ -197,7 +197,7 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
         function dt_get_available_languages() {
             $translations = dt_get_translations();
             $available_language_codes = get_available_languages( get_template_directory() .'/dt-assets/translation' );
-            $available_translations = [];
+            $available_translations = array();
 
             array_push( $available_translations, array(
                 'language' => 'en_US',

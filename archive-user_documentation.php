@@ -1,4 +1,3 @@
-
 <?php get_header(); ?>
 
 <!-- Main -->
@@ -16,7 +15,7 @@
 
             <div class="cell large-8">
 
-                <?php echo get_the_content(null, false, 335 ) ?>
+                <?php echo get_the_content( null, false, 335 ) ?>
 
             </div>
 

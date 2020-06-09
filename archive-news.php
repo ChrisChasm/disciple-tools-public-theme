@@ -35,7 +35,7 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
 
                             <?php /* Show default full view*/
                             if ( ! $format ) : if (have_posts()) : while (have_posts()) : the_post(); ?>
-                                <?php get_template_part( 'parts/loop', 'report-archive' ); ?>
+                                        <?php get_template_part( 'parts/loop', 'report-archive' ); ?>
                             <?php endwhile; ?>
                                     <?php dtps_page_navi(); ?>
                             <?php else : ?>

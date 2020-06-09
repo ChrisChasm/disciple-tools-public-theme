@@ -23,15 +23,12 @@
 
   <file>.</file>
 
-  <exclude-pattern>*/vendor/*</exclude-pattern>
-  <exclude-pattern>functions/utilities/class-tgm-plugin-activation.php</exclude-pattern>
-  <exclude-pattern>functions/login/wplogin_redirect.php</exclude-pattern>
-  <exclude-pattern>functions/utilities/debugger-log.php</exclude-pattern>
-
-  <!-- TODO: re-enable these files: -->
-  <exclude-pattern>functions/utilities/tgm-plugin-activation-class.php</exclude-pattern>
-  <exclude-pattern>*/dtps-dt-integration/wp-async-request.php</exclude-pattern>
-  <exclude-pattern>template-dtps-register.php</exclude-pattern>
+  <exclude-pattern>dt-assets/dependencies/*</exclude-pattern>
+  <exclude-pattern>vendor/*</exclude-pattern>
+  <exclude-pattern>dt-update/class-tgm-plugin-activation.php</exclude-pattern>
+  <exclude-pattern>dt-update/plugin-update-checker/*</exclude-pattern>
+  <exclude-pattern>dt-core/libraries/*</exclude-pattern>
+  <exclude-pattern>*.js</exclude-pattern>
 
   <arg name="extensions" value="php,inc,lib"/>
   <arg value="n"/>
@@ -72,6 +69,8 @@
     <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie.SpaceBeforeBrace" />
     <exclude name="Generic.PHP.ForbiddenFunctions.FoundWithAlternative" />
     <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
+    <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
+    <exclude name="WordPress.PHP.DisallowShortTernary.Found"/>
     <exclude name="PSR2.ControlStructures.SwitchDeclaration.BodyOnNextLineCASE" />
     <exclude name="PSR2.ControlStructures.SwitchDeclaration.BreakIndent" />
     <exclude name="PSR2.ControlStructures.SwitchDeclaration.SpaceBeforeColonCASE" />
@@ -213,9 +212,9 @@
   <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
   <rule ref="PEAR.NamingConventions.ValidClassName"/>
   <!--<rule ref="WordPress.NamingConventions.PrefixAllGlobals">-->
-  <!--<properties>-->
-  <!--<property name="prefixes" type="array" value="dt,Disciple_Tools" />-->
-  <!--</properties>-->
+    <!--<properties>-->
+      <!--<property name="prefixes" type="array" value="dt,Disciple_Tools" />-->
+    <!--</properties>-->
   <!--</rule>-->
 
   <!-- Maybe these rules will be enabled in the future: -->
@@ -233,6 +232,7 @@
   <!-- <rule ref="PEAR.NamingConventions.ValidVariableName"/> -->
   <!-- <rule ref="PSR2.Files.ClosingTag"/> -->
   <!-- <rule ref="Squiz.PHP.ForbiddenFunctions"/> -->
-  <!-- <rule ref="Generic.Arrays.DisallowLongArraySyntax"/> -->
+
 
 </ruleset>
+

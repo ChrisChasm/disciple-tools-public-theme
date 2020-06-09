@@ -15,7 +15,7 @@ class DT_Mapping_Module_Migration_0011 extends DT_Mapping_Module_Migration {
 
         $mapbox_key = $wpdb->get_var( "SELECT option_value FROM $wpdb->options WHERE option_name = 'dt_mapbox_api_key' " );
 
-        $lgm = [];
+        $lgm = array();
         $list = $wpdb->get_results( "SELECT * FROM $wpdb->dt_location_grid_meta WHERE post_type = 'contacts' ", ARRAY_A );
         foreach ( $list as $row ) {
             $lgm[$row['grid_meta_id']] = $row;
@@ -34,7 +34,7 @@ class DT_Mapping_Module_Migration_0011 extends DT_Mapping_Module_Migration {
                     $row = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $wpdb->dt_location_grid_meta WHERE grid_meta_id = %s", $result['grid_meta_id'] ), ARRAY_A );
 
                     $postmeta_id_location_grid = add_user_meta( $result['user_id'], $wpdb->prefix . 'location_grid', $row['grid_id'] );
-                    $data = [
+                    $data = array(
                         'post_id' => $result['user_id'],
                         'post_type' => 'users',
                         'postmeta_id_location_grid' => $postmeta_id_location_grid,
@@ -44,9 +44,9 @@ class DT_Mapping_Module_Migration_0011 extends DT_Mapping_Module_Migration {
                         'level' => $row['level'],
                         'source' => $row['source'],
                         'label' => $row['label'],
-                    ];
+                    );
 
-                    $format = [
+                    $format = array(
                         '%d',
                         '%s',
                         '%d',
@@ -56,7 +56,7 @@ class DT_Mapping_Module_Migration_0011 extends DT_Mapping_Module_Migration {
                         '%s',
                         '%s',
                         '%s'
-                    ];
+                    );
 
                     $wpdb->insert( $wpdb->dt_location_grid_meta, $data, $format );
                     $location_grid_meta_mid = add_user_meta( $result['user_id'], $wpdb->prefix . 'location_grid_meta', $wpdb->insert_id );
@@ -89,7 +89,7 @@ class DT_Mapping_Module_Migration_0011 extends DT_Mapping_Module_Migration {
      * @return array
      */
     public function get_expected_tables(): array {
-        return [];
+        return array();
     }
 
     /**

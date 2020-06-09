@@ -223,7 +223,7 @@ class DTPS_Plugins_Post_Type
      */
     public function register_custom_column_headings( $defaults) {
 
-        $new_columns =  array( 'order' => __( 'Order', 'dtps' ));
+        $new_columns = array( 'order' => __( 'Order', 'dtps' ) );
 
         $last_item = array();
 
@@ -279,7 +279,7 @@ class DTPS_Plugins_Post_Type
                 strtolower( $this->singular ),
                 // translators: Publish box date format, see http://php.net/date
                 '<strong>' . date_i18n('M j, Y @ G:i',
-                    strtotime( $post->post_date )) . '</strong>',
+                strtotime( $post->post_date )) . '</strong>',
                 '<a target="_blank" href="' . esc_url( get_permalink( $post->ID ) ) . '">',
                 '</a>'
             ),

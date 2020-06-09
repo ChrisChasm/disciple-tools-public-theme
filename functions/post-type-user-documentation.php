@@ -226,7 +226,7 @@ class DTPS_User_Documentation_Post_Type
      */
     public function register_custom_column_headings( $defaults) {
 
-        $new_columns =  array( 'order' => __( 'Order', 'dtps' ));
+        $new_columns = array( 'order' => __( 'Order', 'dtps' ) );
 
         $last_item = array();
 

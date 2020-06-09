@@ -252,10 +252,10 @@ if ( ! class_exists( 'DT_Mapbox_API' ) ) {
 
         public static function load_mapbox_header_scripts() {
             // Mabox Mapping API
-            wp_enqueue_script( 'jquery-cookie', 'https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js', [ 'jquery' ], '3.0.0' );
-            wp_enqueue_script( 'mapbox-cookie', trailingslashit( get_stylesheet_directory_uri() ) . 'dt-mapping/geocode-api/mapbox-cookie.js', [ 'jquery', 'jquery-cookie' ], '3.0.0' );
-            wp_enqueue_script( 'mapbox-gl', self::$mapbox_gl_js, [ 'jquery' ], self::$mapbox_gl_version, false );
-            wp_enqueue_style( 'mapbox-gl-css', self::$mapbox_gl_css, [], self::$mapbox_gl_version );
+            wp_enqueue_script( 'jquery-cookie', 'https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js', array( 'jquery' ), '3.0.0' );
+            wp_enqueue_script( 'mapbox-cookie', trailingslashit( get_stylesheet_directory_uri() ) . 'dt-mapping/geocode-api/mapbox-cookie.js', array( 'jquery', 'jquery-cookie' ), '3.0.0' );
+            wp_enqueue_script( 'mapbox-gl', self::$mapbox_gl_js, array( 'jquery' ), self::$mapbox_gl_version, false );
+            wp_enqueue_style( 'mapbox-gl-css', self::$mapbox_gl_css, array(), self::$mapbox_gl_version );
         }
 
         public static function load_mapbox_search_widget() {
@@ -268,7 +268,7 @@ if ( ! class_exists( 'DT_Mapbox_API' ) ) {
                 }
 
 
-                wp_enqueue_script( 'mapbox-search-widget', trailingslashit( get_stylesheet_directory_uri() ) . 'dt-mapping/geocode-api/mapbox-search-widget.js', [ 'jquery', 'mapbox-gl', 'shared-functions' ], filemtime( get_template_directory() . '/dt-mapping/geocode-api/mapbox-search-widget.js' ), true );
+                wp_enqueue_script( 'mapbox-search-widget', trailingslashit( get_stylesheet_directory_uri() ) . 'dt-mapping/geocode-api/mapbox-search-widget.js', array( 'jquery', 'mapbox-gl', 'shared-functions' ), filemtime( get_template_directory() . '/dt-mapping/geocode-api/mapbox-search-widget.js' ), true );
                 wp_localize_script(
                     "mapbox-search-widget", "dtMapbox", array(
                         'post_type' => get_post_type(),
@@ -282,7 +282,7 @@ if ( ! class_exists( 'DT_Mapbox_API' ) ) {
                         )
                     )
                 );
-                add_action( 'wp_head', [ 'DT_Mapbox_API', 'mapbox_search_widget_css' ] );
+                add_action( 'wp_head', array( 'DT_Mapbox_API', 'mapbox_search_widget_css' ) );
             }
         }
 
@@ -292,7 +292,7 @@ if ( ! class_exists( 'DT_Mapbox_API' ) ) {
             }
             if ( file_exists( get_template_directory() . '/dt-mapping/geocode-api/mapbox-users-search-widget.js' ) ) {
 
-                wp_enqueue_script( 'mapbox-search-widget', trailingslashit( get_stylesheet_directory_uri() ) . 'dt-mapping/geocode-api/mapbox-users-search-widget.js', [ 'jquery', 'mapbox-gl', 'shared-functions' ], filemtime( get_template_directory() . '/dt-mapping/geocode-api/mapbox-users-search-widget.js' ), true );
+                wp_enqueue_script( 'mapbox-search-widget', trailingslashit( get_stylesheet_directory_uri() ) . 'dt-mapping/geocode-api/mapbox-users-search-widget.js', array( 'jquery', 'mapbox-gl', 'shared-functions' ), filemtime( get_template_directory() . '/dt-mapping/geocode-api/mapbox-users-search-widget.js' ), true );
                 wp_localize_script(
                     "mapbox-search-widget", "dtMapbox", array(
                         'post_type' => 'user',
@@ -306,7 +306,7 @@ if ( ! class_exists( 'DT_Mapbox_API' ) ) {
                         )
                     )
                 );
-                add_action( 'wp_head', [ 'DT_Mapbox_API', 'mapbox_search_widget_css' ] );
+                add_action( 'wp_head', array( 'DT_Mapbox_API', 'mapbox_search_widget_css' ) );
             }
         }
 
@@ -361,11 +361,11 @@ if ( ! class_exists( 'DT_Mapbox_API' ) ) {
         }
 
         public static function load_header() {
-            add_action( "enqueue_scripts", [ 'DT_Mapbox_API', 'load_mapbox_header_scripts' ] );
+            add_action( "enqueue_scripts", array( 'DT_Mapbox_API', 'load_mapbox_header_scripts' ) );
         }
 
         public static function load_admin_header() {
-            add_action( "admin_enqueue_scripts", [ 'DT_Mapbox_API', 'load_mapbox_header_scripts' ] );
+            add_action( "admin_enqueue_scripts", array( 'DT_Mapbox_API', 'load_mapbox_header_scripts' ) );
         }
 
         public static function is_active_mapbox_key() : bool {
@@ -477,7 +477,7 @@ if ( ! class_exists( 'DT_Mapbox_API' ) ) {
                 return false;
             }
 
-            $data = [];
+            $data = array();
 
             switch ( $item ) {
                 case 'features':
@@ -606,7 +606,7 @@ if ( ! class_exists( 'DT_Mapbox_API' ) ) {
                  */
                 case 'neighborhood':
                     if ( $first_result_only ) {
-                        return $data[] = [ self::context_filter( $raw_response['features'][0]['context'], 'neighborhood' ) ];
+                        return $data[] = array( self::context_filter( $raw_response['features'][0]['context'], 'neighborhood' ) );
                     }
                     else {
                         foreach ( $raw_response['features'] as $feature ) {
@@ -621,7 +621,7 @@ if ( ! class_exists( 'DT_Mapbox_API' ) ) {
                     break;
                 case 'postcode':
                     if ( $first_result_only ) {
-                        return $data[] = [ self::context_filter( $raw_response['features'][0]['context'], 'postcode' ) ];
+                        return $data[] = array( self::context_filter( $raw_response['features'][0]['context'], 'postcode' ) );
                     }
                     else {
                         foreach ( $raw_response['features'] as $feature ) {
@@ -636,7 +636,7 @@ if ( ! class_exists( 'DT_Mapbox_API' ) ) {
                     break;
                 case 'place':
                     if ( $first_result_only ) {
-                        return $data[] = [ self::context_filter( $raw_response['features'][0]['context'], 'place' ) ];
+                        return $data[] = array( self::context_filter( $raw_response['features'][0]['context'], 'place' ) );
                     }
                     else {
                         foreach ( $raw_response['features'] as $feature ) {
@@ -651,7 +651,7 @@ if ( ! class_exists( 'DT_Mapbox_API' ) ) {
                     break;
                 case 'region':
                     if ( $first_result_only ) {
-                        return $data[] = [ self::context_filter( $raw_response['features'][0]['context'], 'region' ) ];
+                        return $data[] = array( self::context_filter( $raw_response['features'][0]['context'], 'region' ) );
                     }
                     else {
                         foreach ( $raw_response['features'] as $feature ) {
@@ -666,7 +666,7 @@ if ( ! class_exists( 'DT_Mapbox_API' ) ) {
                     break;
                 case 'country':
                     if ( $first_result_only ) {
-                        return $data[] = [ self::context_filter( $raw_response['features'][0]['context'], 'country' ) ];
+                        return $data[] = array( self::context_filter( $raw_response['features'][0]['context'], 'country' ) );
                     }
                     else {
                         foreach ( $raw_response['features'] as $feature ) {
@@ -731,7 +731,7 @@ if ( ! class_exists( 'DT_Mapbox_API' ) ) {
         }
 
         private static function context_filter( $context, $feature ) {
-            $data = [];
+            $data = array();
             foreach ( $context as $item ) {
                 $split = explode( '.', $item['id'] );
                 $data[$split[0]] = $item;

@@ -19,13 +19,13 @@
         <h5 class="section-contents">Section Contents</h5>
         <div class="section-contents-list section-contents">
             <ul>
-                <?php wp_list_pages([
+                <?php wp_list_pages(array(
                     'post_type' => get_post_type( get_the_ID() ),
                     'sort_column' => 'menu_order',
                     'echo' => true,
                     'title_li' => null,
-                    'child_of' =>  get_the_ID(),
-                ]) ?>
+                    'child_of' => get_the_ID(),
+                )) ?>
             </ul>
         </div>
     </section> <!-- end article section -->
