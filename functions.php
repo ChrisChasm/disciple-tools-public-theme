@@ -36,6 +36,7 @@ require_once( get_template_directory().'/functions/urls.php' );
 require_once( get_template_directory().'/functions/post-type-news.php' );
 require_once( get_template_directory().'/functions/post-type-user-documentation.php' );
 require_once( get_template_directory().'/functions/post-type-dev-documentation.php' );
+require_once( get_template_directory().'/functions/post-type-plugins.php' );
 
 // Integrations
 require_once( get_template_directory().'/functions/report-send-integration.php' );
