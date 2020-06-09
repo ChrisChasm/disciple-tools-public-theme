@@ -116,7 +116,7 @@ class DTPS_User_Documentation_Post_Type
                 $pt = sanitize_text_field( wp_unslash( $_GET['post_type'] ) );
                 if ($pt === $this->post_type) {
                     add_filter( 'manage_edit-' . $this->post_type . '_columns', array( $this, 'register_custom_column_headings' ), 10, 1 );
-                    add_action( 'manage_posts_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
+                    add_action( 'manage_pages_custom_column', array( $this, 'register_custom_columns' ), 10, 2 );
                 }
             }
         }
@@ -198,11 +198,12 @@ class DTPS_User_Documentation_Post_Type
      * @return void
      * @since  0.1.0
      */
-    public function register_custom_columns( $column_name) {
-//        global $post;
+    public function register_custom_columns( $column_name, $post_id ) {
+        global $post;
 
         switch ($column_name) {
-            case 'image':
+            case 'order':
+                echo $post->menu_order;
                 break;
             case 'phone':
                 echo '';
@@ -225,7 +226,7 @@ class DTPS_User_Documentation_Post_Type
      */
     public function register_custom_column_headings( $defaults) {
 
-        $new_columns = array(); //array( 'image' => __( 'Image', 'dtps' ));
+        $new_columns =  array( 'order' => __( 'Order', 'dtps' ));
 
         $last_item = array();
 
