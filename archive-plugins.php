@@ -1,14 +1,9 @@
-<?php
-$format = false;
-if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
-    $format = 'compact';
-}
-?>
 
 <?php get_header(); ?>
 
 <div class="page-wrapper">
-    <div class="page-inner-wrapper">
+
+    <div class="page-inner-wrapper-hd">
 
         <!-- Statistics Section-->
         <div class="grid-x grid-padding-x deep-blue-section padding-vertical-1">
@@ -20,8 +15,100 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
         <!-- Main -->
         <main role="main" id="post-main" >
 
-
             <div class="grid-x grid-margin-x">
+
+                <div class="cell large-8">
+
+                    <div class="grid-x grid-padding-x"> <!-- grid-->
+
+                        <div class="cell center padding-1">
+                            <h3 class="center">Featured Plugins</h3>
+                        </div>
+
+                        <!-- block -->
+                        <div class="cell medium-6 large-4">
+                            <div class="card" style="width:100%;">
+                                <div class="card-divider">
+                                    GenMapper
+                                </div>
+                                <img src="https://via.placeholder.com/200">
+                                <div class="card-section">
+                                    <h4>This is a card.</h4>
+                                    <p>It has an easy to override visual style, and is appropriately subdued.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- block -->
+                        <div class="cell medium-6 large-4">
+                            <div class="card" style="width:100%;">
+                                <div class="card-divider">
+                                    Training
+                                </div>
+                                <img src="https://via.placeholder.com/200">
+                                <div class="card-section">
+                                    <h4>This is a card.</h4>
+                                    <p>It has an easy to override visual style, and is appropriately subdued.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- block -->
+                        <div class="cell medium-6 large-4">
+                            <div class="card" style="width:100%;">
+                                <div class="card-divider">
+                                    Network Dashboard
+                                </div>
+                                <img src="https://via.placeholder.com/200">
+                                <div class="card-section">
+                                    <h4>This is a card.</h4>
+                                    <p>It has an easy to override visual style, and is appropriately subdued.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- block -->
+                        <div class="cell medium-6 large-4">
+                            <div class="card" style="width:100%;">
+                                <div class="card-divider">
+                                    Webform
+                                </div>
+                                <img src="https://via.placeholder.com/200">
+                                <div class="card-section">
+                                    <h4>This is a card.</h4>
+                                    <p>It has an easy to override visual style, and is appropriately subdued.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- block -->
+                        <div class="cell medium-6 large-4">
+                            <div class="card" style="width:100%;">
+                                <div class="card-divider">
+                                    Slack
+                                </div>
+                                <img src="https://via.placeholder.com/200">
+                                <div class="card-section">
+                                    <h4>This is a card.</h4>
+                                    <p>It has an easy to override visual style, and is appropriately subdued.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- block -->
+                        <div class="cell medium-6 large-4">
+                            <div class="card" style="width:100%;">
+                                <div class="card-divider">
+                                    Metrics
+                                </div>
+                                <img src="https://via.placeholder.com/200">
+                                <div class="card-section">
+                                    <h4>This is a card.</h4>
+                                    <p>It has an easy to override visual style, and is appropriately subdued.</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div> <!-- end grid -->
+
+
+                </div>
 
                 <div class="sidebar cell large-4">
 
@@ -29,52 +116,24 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
 
                 </div>
 
-                <div class="cell large-8">
-
-                    <?php /** Show Category Bread Crumb */
-                    global $wp;
-                    $url_parts = explode( '/', $wp->request );
-                    if ( 'news-categories' === $url_parts[0] ) {
-                        the_archive_title();
-                    } ?>
-
-                    <?php /* Show default full view*/
-                    if ( ! $format ) : if (have_posts()) : while (have_posts()) : the_post(); ?>
-                                <?php get_template_part( 'parts/loop', 'report-archive' ); ?>
-                    <?php endwhile; ?>
-                            <?php dtps_page_navi(); ?>
-                    <?php else : ?>
-                        <?php get_template_part( 'parts/content', 'missing' ); ?>
-                    <?php endif;
-                    endif; /* no format */ ?>
-
-
-                    <?php /* Show compressed view */
-                    if ( $format ) : if (have_posts()) : ?>
-                        <table class=""><thead><tr><th>Date</th><th></th></tr></thead><tbody>
-                            <?php while (have_posts()) : the_post(); ?>
-                                <tr>
-                                    <td><span class="small-text"><?php echo get_the_date() ?></span></td>
-                                    <td><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" style="text-decoration: none;"><?php the_title(); ?></a></td>
-                                </tr>
-                            <?php endwhile; ?>
-                            </tbody></table>
-                            <?php dtps_page_navi(); ?>
-                    <?php else : ?>
-                        <?php get_template_part( 'parts/content', 'missing' ); ?>
-                    <?php endif;
-                        /* have posts*/ endif; /* has format */  ?>
-
-                </div>
-
-
-
 
             </div>
 
         </main> <!-- end #main -->
 
     </div>
+</div>
+
+<div class="page-wrapper blue-background">
+
+    <div class="page-inner-wrapper-hd">
+        <div class="grid-x">
+            <div class="cell center padding-1">
+                <h2 style="color:white">Plugin Guides and Tutorials</h2>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <hr>
