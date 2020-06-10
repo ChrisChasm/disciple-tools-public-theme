@@ -17,56 +17,53 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
             </div>
         </div>
 
-
         <!-- Main -->
         <main role="main" id="post-main" >
 
+            <div class="grid-x grid-margin-x">
 
-                    <div class="grid-x grid-margin-x">
+                <div class="cell large-8">
 
-                        <div class="cell large-8">
+                    <?php /** Show Category Bread Crumb */
+                    global $wp;
+                    $url_parts = explode( '/', $wp->request );
+                    if ( 'news-categories' === $url_parts[0] ) {
+                        the_archive_title();
+                    } ?>
 
-                            <?php /** Show Category Bread Crumb */
-                            global $wp;
-                            $url_parts = explode( '/', $wp->request );
-                            if ( 'news-categories' === $url_parts[0] ) {
-                                the_archive_title();
-                            } ?>
+                    <?php /* Show default full view*/
+                    if ( ! $format ) : if (have_posts()) : while (have_posts()) : the_post(); ?>
+                        <hr><?php get_template_part( 'parts/loop', 'news-archive' ); ?>
+                    <?php endwhile; ?>
+                            <?php dtps_page_navi(); ?>
+                    <?php else : ?>
+                        <?php get_template_part( 'parts/content', 'missing' ); ?>
+                    <?php endif;  endif; /* no format */ ?>
 
-                            <?php /* Show default full view*/
-                            if ( ! $format ) : if (have_posts()) : while (have_posts()) : the_post(); ?>
-                                        <?php get_template_part( 'parts/loop', 'news-archive' ); ?>
+
+                    <?php /* Show compressed view */
+                    if ( $format ) : if (have_posts()) : ?>
+                        <table class=""><thead><tr><th>Date</th><th></th></tr></thead><tbody>
+                            <?php while (have_posts()) : the_post(); ?>
+                            <tr>
+                                <td><span class="small-text"><?php echo get_the_date() ?></span></td>
+                                <td><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" style="text-decoration: none;"><?php the_title(); ?></a></td>
+                            </tr>
                             <?php endwhile; ?>
-                                    <?php dtps_page_navi(); ?>
-                            <?php else : ?>
-                                <?php get_template_part( 'parts/content', 'missing' ); ?>
-                            <?php endif;
-               endif; /* no format */ ?>
+                            </tbody></table>
+                            <?php dtps_page_navi(); ?>
+                    <?php else : ?>
+                        <?php get_template_part( 'parts/content', 'missing' ); ?>
+                    <?php endif;
+        /* have posts*/ endif; /* has format */  ?>
 
+                </div>
 
-                            <?php /* Show compressed view */
-                            if ( $format ) : if (have_posts()) : ?>
-                                <table class=""><thead><tr><th>Date</th><th></th></tr></thead><tbody>
-                                    <?php while (have_posts()) : the_post(); ?>
-                                    <tr>
-                                        <td><span class="small-text"><?php echo get_the_date() ?></span></td>
-                                        <td><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" style="text-decoration: none;"><?php the_title(); ?></a></td>
-                                    </tr>
-                                    <?php endwhile; ?>
-                                    </tbody></table>
-                                    <?php dtps_page_navi(); ?>
-                            <?php else : ?>
-                                <?php get_template_part( 'parts/content', 'missing' ); ?>
-                            <?php endif;
-                /* have posts*/ endif; /* has format */  ?>
+                <div class="sidebar cell large-4">
 
-                        </div>
+                    <?php get_sidebar( 'news' ); ?>
 
-                        <div class="sidebar cell large-4">
-
-                            <?php get_sidebar( 'news-archive' ); ?>
-
-                        </div>
+                </div>
 
 
             </div>
