@@ -161,7 +161,7 @@ class DTPS_Plugins_Post_Type
                 ), /* you can specify its url slug */
                 'has_archive' => 'plugins', /* you can rename the slug here */
                 'capability_type' => 'post',
-                'hierarchical' => true,
+                'hierarchical' => false,
                 /* the next one is important, it tells what's enabled in the post editor */
                 'show_in_rest' => true,
                 'supports' => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt' )
@@ -297,7 +297,7 @@ class DTPS_Plugins_Post_Type
      * @since  0.1.0
      */
     public function meta_box_setup() {
-//        add_meta_box( $this->post_type . '_scribes', 'Plugins', array( $this, 'load_report_meta_box' ), $this->post_type, 'normal', 'high' );
+        add_meta_box( $this->post_type . '_scribes', 'Plugins', array( $this, 'load_report_meta_box' ), $this->post_type, 'normal', 'high' );
     } // End meta_box_setup()
 
     /**
@@ -487,10 +487,10 @@ class DTPS_Plugins_Post_Type
         $fields = array();
 
         $fields['1'] = array(
-            'name' => 'Welcome to Plugins',
+            'name' => 'Top List Order',
             'description' => '',
-            'type' => 'link',
-            'default' => '247062938',
+            'type' => 'text',
+            'default' => '',
             'section' => 'description',
         );
 

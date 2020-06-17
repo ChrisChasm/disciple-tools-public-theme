@@ -11,7 +11,7 @@ $landing_post_id = 391; // quick start
 
         <div class="grid-x grid-margin-x grid-padding-x">
 
-            <div class="cell large-4 callout">
+            <div class="cell large-4 callout gray-background">
 
                 <?php get_sidebar( 'user_documentation' ); ?>
 
