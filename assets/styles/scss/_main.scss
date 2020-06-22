@@ -99,6 +99,9 @@ HEADER STYLES
 .blue-background {
     background-color: $primary-color;
     color: $white;
+    a {
+        color: $white;
+    }
 }
 .gray-background {
     background-color: $light-gray;

@@ -65,3 +65,8 @@ function dtps_get_user_meta( $user_id = null ) {
     return array_map( function ( $a ) { return maybe_unserialize( $a[0] );
     }, get_user_meta( $user_id ) );
 }
+
+function dtps_filter_meta( $meta ) {
+    return array_map( function ( $a ) { return maybe_unserialize( $a[0] );
+    }, $meta );
+}

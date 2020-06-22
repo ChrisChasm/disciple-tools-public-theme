@@ -164,7 +164,7 @@ class DTPS_Plugins_Post_Type
                 'hierarchical' => false,
                 /* the next one is important, it tells what's enabled in the post editor */
                 'show_in_rest' => true,
-                'supports' => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt' )
+                'supports' => array( 'title', 'editor', 'thumbnail', 'page-attributes', 'excerpt', 'custom-header' )
             ) /* end of options */
         ); /* end of register post type */
     } // End register_post_type()

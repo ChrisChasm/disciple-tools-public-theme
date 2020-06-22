@@ -3,6 +3,9 @@
  * The template for displaying all single posts and attachments
  */
 
+$post = get_post();
+$post_id = $post->ID;
+$postmeta = dtps_filter_meta( get_post_meta( $post->ID ) );
 
 get_header(); ?>
 
@@ -40,26 +43,33 @@ get_header(); ?>
 
                     <div id="releases"></div>
 
-                    <?php
-                    $result = wp_remote_get('https://api.github.com/repos/DiscipleTools/disciple-tools-webform/releases');
-                    $releases = [];
-                    if ( isset(  $result['body'] ) ) {
-                        $releases = json_decode( $result['body'], true );
-                    }
-                    ?>
-
-                    <?php foreach( $releases as $release ) : ?>
-
-                        <p><strong><?php echo $release['name'] ?></strong></p>
-                        <p><?php echo nl2br( $release['body'] ) ?></p>
-
-                    <?php if ( isset( $release['assets'][0]['browser_download_url'] ) ) : ?>
-                        <p><a href="<?php echo  $release['assets'][0]['browser_download_url']  ?>" class="button">Download</a> <?php echo date( 'm-d-Y', strtotime( $release['published_at'] ) ) ?></p>
-                        <?php endif; ?>
+                    <?php if ( isset( $postmeta['releases_url'] ) && ! empty( $postmeta['releases_url'] ) ) :  ?>
+                        <h2>Releases</h2>
                         <hr>
+                        <?php
+                        $result = wp_remote_get( $postmeta['releases_url'] );
+                        $releases = [];
+                        if ( isset( $result['body'] ) ) {
+                            $releases = json_decode( $result['body'], true );
+                        }
 
-                    <?php endforeach; ?>
+                        ?>
 
+                        <?php foreach( $releases as $release ) : ?>
+
+                            <p><strong><?php echo $release['name'] ?></strong></p>
+                            <p><?php echo nl2br( $release['body'] ) ?></p>
+
+                            <?php if ( isset( $release['assets'][0]['browser_download_url'] ) ) : ?>
+
+                                <p><a href="<?php echo  $release['assets'][0]['browser_download_url']  ?>" class="button">Download</a> <?php echo date( 'm-d-Y', strtotime( $release['published_at'] ) ) ?></p>
+
+                            <?php endif; ?>
+                            <hr>
+
+                        <?php endforeach; ?>
+
+                    <?php endif; ?>
 
                 </div>
 

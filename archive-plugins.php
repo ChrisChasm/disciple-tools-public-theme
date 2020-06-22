@@ -47,6 +47,24 @@
                         <div class="cell center padding-1">
                             <h3 class="center">Community Plugins</h3>
                         </div>
+                        <div class="cell">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>
+                                        Name
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Name
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
 
                 </div>
@@ -60,6 +78,7 @@
 
             </div>
 
+
         </main> <!-- end #main -->
 
     </div>
@@ -72,6 +91,7 @@
             <div class="cell center padding-1">
                 <h2 style="color:white">Plugin Guides and Tutorials</h2>
             </div>
+
         </div>
     </div>
 
