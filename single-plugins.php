@@ -3,6 +3,7 @@
  * The template for displaying all single posts and attachments
  */
 
+
 get_header(); ?>
 
 <div class="page-wrapper">
@@ -23,12 +24,6 @@ get_header(); ?>
 
             <div class="grid-x grid-margin-x">
 
-                <div class="sidebar cell large-4 ">
-
-                    <?php get_sidebar( 'plugins' ); ?>
-
-                </div>
-
                 <div class="blog cell large-8">
 
                     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -43,7 +38,34 @@ get_header(); ?>
 
                     <hr>
 
-                    <a class="button primary-button-hollow" href="/news">Return to News</a>
+                    <div id="releases"></div>
+
+                    <?php
+                    $result = wp_remote_get('https://api.github.com/repos/DiscipleTools/disciple-tools-webform/releases');
+                    $releases = [];
+                    if ( isset(  $result['body'] ) ) {
+                        $releases = json_decode( $result['body'], true );
+                    }
+                    ?>
+
+                    <?php foreach( $releases as $release ) : ?>
+
+                        <p><strong><?php echo $release['name'] ?></strong></p>
+                        <p><?php echo nl2br( $release['body'] ) ?></p>
+
+                    <?php if ( isset( $release['assets'][0]['browser_download_url'] ) ) : ?>
+                        <p><a href="<?php echo  $release['assets'][0]['browser_download_url']  ?>" class="button">Download</a> <?php echo date( 'm-d-Y', strtotime( $release['published_at'] ) ) ?></p>
+                        <?php endif; ?>
+                        <hr>
+
+                    <?php endforeach; ?>
+
+
+                </div>
+
+                <div class="sidebar cell large-4 ">
+
+                    <?php get_sidebar( 'plugins' ); ?>
 
                 </div>
 

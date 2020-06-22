@@ -486,8 +486,43 @@ class DTPS_Plugins_Post_Type
     public function get_custom_fields_settings() {
         $fields = array();
 
-        $fields['1'] = array(
-            'name' => 'Top List Order',
+        $fields['releases_url'] = array(
+            'name' => 'Releases URL',
+            'description' => 'https://api.github.com/repos/{owner}/{repo_name}/releases',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'description',
+        );
+        $fields['git_hub_url'] = array(
+            'name' => 'GitHub URL',
+            'description' => '',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'description',
+        );
+        $fields['download_url'] = array(
+            'name' => 'Download URL',
+            'description' => '',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'description',
+        );
+        $fields['version_control_url'] = array(
+            'name' => 'Version Control URL',
+            'description' => '',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'description',
+        );
+        $fields['issues_url'] = array(
+            'name' => 'Issues URL',
+            'description' => '',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'description',
+        );
+        $fields['current_version'] = array(
+            'name' => 'Current Version',
             'description' => '',
             'type' => 'text',
             'default' => '',
