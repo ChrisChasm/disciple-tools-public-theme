@@ -17,100 +17,41 @@
 
             <div class="grid-x grid-margin-x">
 
-                <div class="cell large-8">
-
-                    <div class="grid-x grid-padding-x"> <!-- grid-->
-
+                <div class="cell medium-9 large-8">
+                    <div class="grid-x">
                         <div class="cell center padding-1">
                             <h3 class="center">Featured Plugins</h3>
                         </div>
+                    </div>
 
-                        <!-- block -->
-                        <div class="cell medium-6 large-4">
-                            <div class="card" style="width:100%;">
-                                <div class="card-divider">
-                                    GenMapper
-                                </div>
-                                <img src="https://via.placeholder.com/200">
-                                <div class="card-section">
-                                    <h4>This is a card.</h4>
-                                    <p>It has an easy to override visual style, and is appropriately subdued.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- block -->
-                        <div class="cell medium-6 large-4">
-                            <div class="card" style="width:100%;">
-                                <div class="card-divider">
-                                    Training
-                                </div>
-                                <img src="https://via.placeholder.com/200">
-                                <div class="card-section">
-                                    <h4>This is a card.</h4>
-                                    <p>It has an easy to override visual style, and is appropriately subdued.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- block -->
-                        <div class="cell medium-6 large-4">
-                            <div class="card" style="width:100%;">
-                                <div class="card-divider">
-                                    Network Dashboard
-                                </div>
-                                <img src="https://via.placeholder.com/200">
-                                <div class="card-section">
-                                    <h4>This is a card.</h4>
-                                    <p>It has an easy to override visual style, and is appropriately subdued.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- block -->
-                        <div class="cell medium-6 large-4">
-                            <div class="card" style="width:100%;">
-                                <div class="card-divider">
-                                    Webform
-                                </div>
-                                <img src="https://via.placeholder.com/200">
-                                <div class="card-section">
-                                    <h4>This is a card.</h4>
-                                    <p>It has an easy to override visual style, and is appropriately subdued.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- block -->
-                        <div class="cell medium-6 large-4">
-                            <div class="card" style="width:100%;">
-                                <div class="card-divider">
-                                    Slack
-                                </div>
-                                <img src="https://via.placeholder.com/200">
-                                <div class="card-section">
-                                    <h4>This is a card.</h4>
-                                    <p>It has an easy to override visual style, and is appropriately subdued.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- block -->
-                        <div class="cell medium-6 large-4">
-                            <div class="card" style="width:100%;">
-                                <div class="card-divider">
-                                    Metrics
-                                </div>
-                                <img src="https://via.placeholder.com/200">
-                                <div class="card-section">
-                                    <h4>This is a card.</h4>
-                                    <p>It has an easy to override visual style, and is appropriately subdued.</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="grid-x grid-padding-x" data-equalizer data-equalize-on="medium"> <!-- grid-->
 
+                        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+
+                            <!-- To see additional archive styles, visit the /parts directory -->
+                            <?php get_template_part( 'parts/loop', 'plugin-tile' ); ?>
+
+                        <?php endwhile; ?>
+
+                            <?php dtps_page_navi(); ?>
+
+                        <?php else : ?>
+
+                            <?php get_template_part( 'parts/content', 'missing' ); ?>
+
+                        <?php endif; ?>
 
                     </div> <!-- end grid -->
 
+                    <div class="grid-x">
+                        <div class="cell center padding-1">
+                            <h3 class="center">Community Plugins</h3>
+                        </div>
+                    </div>
 
                 </div>
 
-                <div class="sidebar cell large-4">
+                <div class="sidebar cell medium-3 large-4" style="padding-right:20px;">
 
                     <?php get_sidebar( 'plugins' ); ?>
 
