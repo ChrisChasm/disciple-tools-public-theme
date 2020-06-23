@@ -52,19 +52,20 @@ get_header(); ?>
                         if ( isset( $result['body'] ) ) {
                             $releases = json_decode( $result['body'], true );
                         }
-
                         ?>
 
                         <?php foreach( $releases as $release ) : ?>
 
-                            <p><strong><?php echo $release['name'] ?></strong></p>
+                            <p><strong><a href="<?php echo $release['assets'][0]['browser_download_url']  ?>"><?php echo $release['name'] ?></a></strong></p>
+
                             <p><?php echo nl2br( $release['body'] ) ?></p>
 
                             <?php if ( isset( $release['assets'][0]['browser_download_url'] ) ) : ?>
 
-                                <p><a href="<?php echo  $release['assets'][0]['browser_download_url']  ?>" class="button">Download</a> <?php echo date( 'm-d-Y', strtotime( $release['published_at'] ) ) ?></p>
+                                <p><a href="<?php echo  $release['assets'][0]['browser_download_url']  ?>" class="button">Download</a> <br><?php echo date( 'm-d-Y', strtotime( $release['published_at'] ) ) ?></p>
 
                             <?php endif; ?>
+
                             <hr>
 
                         <?php endforeach; ?>
@@ -75,7 +76,7 @@ get_header(); ?>
 
                 <div class="sidebar cell large-4 ">
 
-                    <?php get_sidebar( 'plugins' ); ?>
+                    <?php get_sidebar( 'plugins-single' ); ?>
 
                 </div>
 

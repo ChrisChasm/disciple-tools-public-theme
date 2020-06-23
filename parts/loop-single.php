@@ -16,10 +16,10 @@
     <section class="entry-content" itemprop="text">
 
         <?php the_content(); ?>
+
     </section> <!-- end article section -->
 
     <footer class="article-footer">
-        <p><?php echo get_the_date() ?></p>
         <p class="tags"><?php the_tags( '<span class="tags-title">' . __( 'Tags:', 'dtps' ) . '</span> ', ', ', '' ); ?></p>
     </footer> <!-- end article footer -->
 

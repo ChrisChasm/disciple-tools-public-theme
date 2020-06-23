@@ -71,7 +71,7 @@
 
                 <div class="sidebar cell medium-3 large-4" style="padding-right:20px;">
 
-                    <?php get_sidebar( 'plugins' ); ?>
+                    <?php get_sidebar( 'plugins-archive' ); ?>
 
                 </div>
 
