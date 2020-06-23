@@ -306,8 +306,26 @@ class DTPS_Plugins_Post_Type
      * @access public
      * @since  0.1.0
      */
-    public function load_report_meta_box() {
+    public function load_report_meta_box( $post ) {
+        // test check current version
+
         $this->meta_box_content( 'description' ); // prints
+    }
+
+    public static function update_version_info() {
+        global $post;
+        $url = get_post_meta( $post->ID, 'releases_url', true );
+        if ( $url ) {
+            $result = wp_remote_get( $url );
+            $releases = [];
+            if ( isset( $result['body'] ) ) {
+                $releases = json_decode( $result['body'], true );
+            }
+            print_r( $releases );
+
+
+        }
+
     }
 
     /**
@@ -486,6 +504,27 @@ class DTPS_Plugins_Post_Type
     public function get_custom_fields_settings() {
         $fields = array();
 
+        $fields['github_owner'] = array(
+            'name' => 'Github Owner',
+            'description' => 'Account or organization hosting the repo',
+            'type' => 'text',
+            'default' => 'DiscipleTools',
+            'section' => 'description',
+        );
+        $fields['github_repo'] = array(
+            'name' => 'Github Repo',
+            'description' => 'Repo Name (no spaces). Ex. disciple-tools-training',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'description',
+        );
+        $fields['git_hub_url'] = array(
+            'name' => 'GitHub URL',
+            'description' => 'URL for the Github repository',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'description',
+        );
         $fields['releases_url'] = array(
             'name' => 'Releases URL',
             'description' => 'https://api.github.com/repos/{owner}/{repo_name}/releases',
@@ -493,37 +532,31 @@ class DTPS_Plugins_Post_Type
             'default' => '',
             'section' => 'description',
         );
-        $fields['git_hub_url'] = array(
-            'name' => 'GitHub URL',
-            'description' => '',
-            'type' => 'text',
-            'default' => '',
-            'section' => 'description',
-        );
-        $fields['download_url'] = array(
-            'name' => 'Download URL',
-            'description' => '',
-            'type' => 'text',
-            'default' => '',
-            'section' => 'description',
-        );
+
         $fields['version_control_url'] = array(
             'name' => 'Version Control URL',
-            'description' => '',
+            'description' => 'Url for the version control json',
             'type' => 'text',
             'default' => '',
             'section' => 'description',
         );
         $fields['issues_url'] = array(
             'name' => 'Issues URL',
-            'description' => '',
+            'description' => 'Url for the issues section on Github',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'description',
+        );
+        $fields['download_url'] = array(
+            'name' => 'Download URL',
+            'description' => 'Link to download the zip. This is auto maintained from releases url if available.',
             'type' => 'text',
             'default' => '',
             'section' => 'description',
         );
         $fields['current_version'] = array(
             'name' => 'Current Version',
-            'description' => '',
+            'description' => 'Current version. This is auto maintained from releases url if available.',
             'type' => 'text',
             'default' => '',
             'section' => 'description',

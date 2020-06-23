@@ -52,6 +52,8 @@ get_header(); ?>
                         if ( isset( $result['body'] ) ) {
                             $releases = json_decode( $result['body'], true );
                         }
+                        echo '<pre>';
+                        print_r( $releases );
                         ?>
 
                         <?php foreach( $releases as $release ) : ?>
