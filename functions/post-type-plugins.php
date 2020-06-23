@@ -518,21 +518,6 @@ class DTPS_Plugins_Post_Type
             'default' => '',
             'section' => 'description',
         );
-        $fields['git_hub_url'] = array(
-            'name' => 'GitHub URL',
-            'description' => 'URL for the Github repository',
-            'type' => 'text',
-            'default' => '',
-            'section' => 'description',
-        );
-        $fields['releases_url'] = array(
-            'name' => 'Releases URL',
-            'description' => 'https://api.github.com/repos/{owner}/{repo_name}/releases',
-            'type' => 'text',
-            'default' => '',
-            'section' => 'description',
-        );
-
         $fields['version_control_url'] = array(
             'name' => 'Version Control URL',
             'description' => 'Url for the version control json',
@@ -540,27 +525,14 @@ class DTPS_Plugins_Post_Type
             'default' => '',
             'section' => 'description',
         );
-        $fields['issues_url'] = array(
-            'name' => 'Issues URL',
-            'description' => 'Url for the issues section on Github',
+        $fields['travis_url'] = array(
+            'name' => 'Travis URL',
+            'description' => 'Travis Continuous Integration Image URL',
             'type' => 'text',
             'default' => '',
             'section' => 'description',
         );
-        $fields['download_url'] = array(
-            'name' => 'Download URL',
-            'description' => 'Link to download the zip. This is auto maintained from releases url if available.',
-            'type' => 'text',
-            'default' => '',
-            'section' => 'description',
-        );
-        $fields['current_version'] = array(
-            'name' => 'Current Version',
-            'description' => 'Current version. This is auto maintained from releases url if available.',
-            'type' => 'text',
-            'default' => '',
-            'section' => 'description',
-        );
+
 
         return apply_filters( 'dtps_plugins_fields_settings', $fields );
     } // End get_custom_fields_settings()
