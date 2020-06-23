@@ -46,11 +46,15 @@ get_header(); ?>
 
                             <header class="article-header center">
 
-                                <div><img src="<?php echo esc_url( $release['banners']['high'] ) ?>" alt="header banner" /></div>
+                                <?php if ( has_post_thumbnail() ) : ?>
+                                    <div><?php the_post_thumbnail('full'); ?></div>
+                                <?php endif; ?>
+
+<!--                                <div><img src="--><?php //echo esc_url( $release['banners']['high'] ) ?><!--" alt="header banner" /></div>-->
 
                                 <h2 class="entry-title single-title vertical-padding" itemprop="headline"><?php the_title(); ?></h2>
 
-                                <div class="center"><a href="<?php echo $release['download_url'] ?>" class="button"><i class="fi-download"></i> Download</a> <a href="<?php echo $release['homepage'] ?>" class="button"><i class="fi-social-github"></i> View on Github</a></div>
+                                <div class="center"><a href="<?php echo $release['download_url'] ?>" class="button"><i class="fi-download"></i> Download</a> </div>
 
                             </header> <!-- end article header -->
                             <hr>
@@ -77,10 +81,32 @@ get_header(); ?>
 
                                 <p><?php echo nl2br( $release['sections']['installation'] ) ?></p>
 
+                                <hr>
+
+                                <p>
+                                     <a href="<?php echo $release['homepage'] ?>" class="button primary-button-hollow"><i class="fi-social-github"></i> View Code</a>
+
+                                    <?php if ( isset( $release['projects_url'] ) && ! empty( $release['projects_url']  ) ) : ?>
+                                        <a href="<?php echo $release['projects_url'] ?>" class="button primary-button-hollow"> View Projects</a>
+                                    <?php endif; ?>
+
+                                    <?php if ( isset( $release['wiki_url'] ) && ! empty( $release['wiki_url']  ) ) : ?>
+                                        <a href="<?php echo $release['wiki_url'] ?>" class="button primary-button-hollow"> View Wiki</a>
+                                    <?php endif; ?>
+
+                                    <?php if ( isset( $release['issues_url'] ) && ! empty( $release['issues_url']  ) ) : ?>
+                                        <a href="<?php echo $release['issues_url'] ?>" class="button primary-button-hollow"> View Issues</a>
+                                    <?php endif; ?>
+
+                                    <?php if ( isset( $release['license_url'] ) && ! empty( $release['license_url']  ) ) : ?>
+                                        <a href="<?php echo $release['license_url'] ?>" class="button primary-button-hollow"> View License</a>
+                                    <?php endif; ?>
+                                </p>
+
                             </section> <!-- end article section -->
 
                             <footer class="article-footer">
- 
+
                                 <p class="tags"><?php the_tags( '<span class="tags-title">' . __( 'Tags:', 'dtps' ) . '</span> ', ', ', '' ); ?></p>
 
                             </footer> <!-- end article footer -->

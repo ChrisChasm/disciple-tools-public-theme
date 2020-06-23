@@ -297,7 +297,7 @@ class DTPS_Plugins_Post_Type
      * @since  0.1.0
      */
     public function meta_box_setup() {
-        add_meta_box( $this->post_type . '_scribes', 'Plugins', array( $this, 'load_report_meta_box' ), $this->post_type, 'normal', 'high' );
+        add_meta_box( $this->post_type . '_repo_connections', 'Repo Connection Options', array( $this, 'load_report_meta_box' ), $this->post_type, 'normal', 'high' );
     } // End meta_box_setup()
 
     /**
@@ -308,7 +308,10 @@ class DTPS_Plugins_Post_Type
      */
     public function load_report_meta_box( $post ) {
         // test check current version
+        echo "<h3>Option 1</h3><br>Use only the version control url and the page will draw all details from the version control url. Using only title and featured image from this post.<br>";
+        $this->meta_box_content( 'upper_description' ); // prints
 
+        echo "<hr><h3>Option 2</h3><br>If not a DT version controlled plugin, then include the Github Owner and Repo. The title, content, and featured images will be used.";
         $this->meta_box_content( 'description' ); // prints
     }
 
@@ -504,6 +507,14 @@ class DTPS_Plugins_Post_Type
     public function get_custom_fields_settings() {
         $fields = array();
 
+        $fields['version_control_url'] = array(
+            'name' => 'Version Control URL',
+            'description' => 'Url for the version control json',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'upper_description',
+        );
+
         $fields['github_owner'] = array(
             'name' => 'Github Owner',
             'description' => 'Account or organization hosting the repo',
@@ -518,21 +529,6 @@ class DTPS_Plugins_Post_Type
             'default' => '',
             'section' => 'description',
         );
-        $fields['version_control_url'] = array(
-            'name' => 'Version Control URL',
-            'description' => 'Url for the version control json',
-            'type' => 'text',
-            'default' => '',
-            'section' => 'description',
-        );
-        $fields['travis_url'] = array(
-            'name' => 'Travis URL',
-            'description' => 'Travis Continuous Integration Image URL',
-            'type' => 'text',
-            'default' => '',
-            'section' => 'description',
-        );
-
 
         return apply_filters( 'dtps_plugins_fields_settings', $fields );
     } // End get_custom_fields_settings()

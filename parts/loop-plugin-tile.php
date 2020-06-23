@@ -4,10 +4,11 @@
         <div class="card-divider blue-background ">
             <a href="<?php echo $permalink ?>"><strong><?php the_title() ?></strong></a>
         </div>
-        <div style="width:100%; height:250px;overflow: hidden;">
-            <a href="<?php echo $permalink ?>"><?php the_post_thumbnail( '300' ); ?></a>
+        <div style="width:100%;overflow: hidden;">
+            <a href="<?php echo $permalink ?>"><?php the_post_thumbnail( [1200,400 ] ); ?></a>
         </div>
         <div class="card-section">
+            <p><a href="<?php echo $permalink ?>"><strong><?php the_title() ?></strong></a></p>
             <p><?php the_excerpt(); ?></p>
             <p>
                 <a href="<?php echo $permalink ?>" class="button">View</a>
