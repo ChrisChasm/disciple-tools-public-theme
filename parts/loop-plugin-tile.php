@@ -1,9 +1,7 @@
 <?php $permalink = get_permalink() ?>
 <div class="cell medium-6 large-4">
     <div class="card" style="width:100%;" data-equalizer-watch>
-        <div class="card-divider blue-background ">
-            <a href="<?php echo $permalink ?>"><strong><?php the_title() ?></strong></a>
-        </div>
+        
         <div style="width:100%;overflow: hidden;">
             <a href="<?php echo $permalink ?>"><?php the_post_thumbnail( [1200,400 ] ); ?></a>
         </div>
