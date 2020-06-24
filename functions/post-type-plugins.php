@@ -170,8 +170,6 @@ class DTPS_Plugins_Post_Type
     } // End register_post_type()
 
     public function create_tag_taxonomies() {
-        // Add new taxonomy, NOT hierarchical (like tags)
-
         register_taxonomy('plugin_categories', 'plugins', array(
             'hierarchical' => true,
             'labels' => array(

@@ -30,20 +30,49 @@
 
 </div>
 <hr>
-<div>
-    <p>
-        <strong>Here are three starter templates:</strong>
-    </p>
-    <ul>
-        <li><a href="https://github.com/DiscipleTools/disciple-tools-starter-plugin-template">Starter Plugin Template</a></li>
-        <li><a href="https://github.com/DiscipleTools/disciple-tools-one-page-extension">One Page Extension</a></li>
-    </ul>
-</div>
-<hr>
-<div>
-    <p>
-        <strong>Hire a developer for your ministry</strong>
-    </p>
 
+<div class="grid-x">
+    <div class="cell padding-1">
+        <h3>Plugin Community</h3>
+    </div>
+    <div class="cell">
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <?php
+            $loop = new WP_Query(
+                [  'post_type' => 'plugins',
+                    'nopaging' => true,
+                    'orderby' => 'rand',
+                    'tax_query' => [
+                        [
+                            'taxonomy' => 'plugin_categories',
+                            'field'    => 'slug',
+                            'terms'    => 'featured',
+                            'operator' => 'NOT IN'
+                        ],
+                    ]
+                ]
+            );
+            if ( $loop->have_posts() ) :
+                while ( $loop->have_posts() ) : $loop->the_post(); ?>
+                    <tr>
+                        <td>
+                            <a href="<?php echo get_permalink() ?>"><?php the_title() ?></a>
+                        </td>
+                    </tr>
+                <?php endwhile;
+            endif;
+            wp_reset_postdata();
+            ?>
+            </tbody>
+        </table>
+    </div>
 </div>
-<hr>
