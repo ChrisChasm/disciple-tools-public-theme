@@ -239,11 +239,11 @@ select {
 }
 
 #top-full-menu-div ul a:hover {
-    background: #2CACE2;
+    background: $secondary-color;
     color: $white;
 }
 #top-full-menu-div ul.dropdown.menu .is-active>a{
-    background: #2CACE2;
+    background: $secondary-color;
     color: $white;
 }
 

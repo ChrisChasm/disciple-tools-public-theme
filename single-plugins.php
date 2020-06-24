@@ -64,7 +64,15 @@ get_header(); ?>
 
                                 <p><strong>Description</strong></p>
 
-                                <p><?php echo nl2br( esc_html(  $release['sections']['description'] ) ) ?></p>
+                                <?php if ( ! empty( get_the_content() )) : ?>
+
+                                    <?php the_content() ?>
+
+                                <?php else: ?>
+
+                                    <p><?php echo nl2br( esc_html(  $release['sections']['description'] ) ) ?></p>
+
+                                <?php endif; ?>
 
                                 <p><strong>Current Version</strong></p>
 
