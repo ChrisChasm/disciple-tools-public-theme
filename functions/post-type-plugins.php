@@ -305,13 +305,70 @@ class DTPS_Plugins_Post_Type
      * @since  0.1.0
      */
     public function load_report_meta_box( $post ) {
-        // test check current version
-        echo "<h3>Option 1</h3><br>Use only the version control url and the page will draw all details from the version control url. Using only title and featured image from this post.<br>";
-        $this->meta_box_content( 'upper_description' ); // prints
+        ?>
+        <?php $this->meta_box_content( 'plugin_config' ); ?>
 
-        echo "<hr><h3>Option 2</h3><br>If not a DT version controlled plugin, then include the Github Owner and Repo. The title, content, and featured images will be used.";
-        $this->meta_box_content( 'description' ); // prints
+        <hr>
+
+        <h3>Remote Sync (optional) </h3>
+
+        <?php $this->meta_box_content( 'plugin_remote_sync' ); ?>
+
+
+        <div id="json-button-wrapper">
+            <p><button type="button" class="components-button is-secondary" onclick="sync_remote_json()">Trigger Remote Sync</button></p>
+            <span id="json-error"></span>
+        </div>
+        <script>
+            function sync_remote_json() {
+                let url = jQuery('#version_control_json_url').val()
+                let error = jQuery('#json-error')
+                error.empty()
+
+                if ( '' === url ) {
+                    error.append('No json url available. Please, add json url.')
+                    return
+                }
+
+                jQuery.ajax({
+                    url: url,
+                    dataType: 'json'
+                })
+                    .done(function(data) {
+                        jQuery.each( data, function(i,v) {
+                            if ( i === 'banners' || i === 'sections' ) {
+                                jQuery.each(v, function(ii,vv) {
+                                    jQuery('#'+ii).val(vv)
+                                })
+                            } else {
+                                jQuery('#'+i).val(v)
+                            }
+                        })
+                    })
+                .fail(function(e) {
+                    error.append('Failed to retrieve json. Check url.')
+                })
+
+                jQuery('.editor-post-publish-button').click()
+            }
+        </script>
+
+        <hr>
+        <h3>Version Control Data</h3>
+        <br>NEW RELEASE FIELDS: These fields are generally the ones updated with a new version
+        <?php $this->meta_box_content( 'plugin_version_control_fields_dynamic' ); ?>
+
+        <hr>
+        <br>DESCRIPTION FIELDS: These fields are generally stable from version to version and can be left alone when updating.
+        <?php $this->meta_box_content( 'plugin_version_control_fields' ); ?>
+
+        <hr>
+        <h3>Rendered JSON URL </h3>
+        <a href="<?php echo WP_CONTENT_URL . '/themes/disciple-tools-public-site/version-control.php?id=' . hash('SHA256', $post->ID ) ?>" target="_blank"><?php echo WP_CONTENT_URL . '/themes/disciple-tools-public-site/version-control.php?id=' . hash('SHA256', $post->ID ) ?></a>
+
+        <?php
     }
+
 
     public static function update_version_info() {
         global $post;
@@ -323,8 +380,6 @@ class DTPS_Plugins_Post_Type
                 $releases = json_decode( $result['body'], true );
             }
             print_r( $releases );
-
-
         }
 
     }
@@ -397,6 +452,35 @@ class DTPS_Plugins_Post_Type
                                 echo '>' . esc_html( $vv ) . '</option>';
                             }
                             echo '</select>' . "\n";
+                            echo '<p class="description">' . esc_html( $v['description'] ) . '</p>' . "\n";
+                            echo '</td><tr/>' . "\n";
+                            break;
+                        case 'date':
+                            echo '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . esc_attr( $v['name'] ) . '</label></th><td>
+                                    <input name="' . esc_attr( $k ) . '" class="datepicker regular-text" type="date" id="' . esc_attr( $k ) . '"  value="' . esc_attr( $data ) . '" />' . "\n";
+                            echo '<p class="description">' . esc_html( $v['description'] ) . '</p>' . "\n";
+                            echo '</td><tr/>' . "\n";
+
+                            break;
+                        case 'key_select':
+                            echo '<tr class="' . esc_attr( $v['section'] ) . '" id="row_' . esc_attr( $k ) . '" valign="top"><th scope="row">
+                                <label for="' . esc_attr( $k ) . '">' . esc_attr( $v['name'] ) . '</label></th>
+                                <td>
+                                <select name="' . esc_attr( $k ) . '" id="' . esc_attr( $k ) . '" class="regular-text">';
+                            // Iterate the options
+                            foreach ( $v['default'] as $kk => $vv ) {
+                                echo '<option value="' . esc_attr( $kk ) . '" ';
+                                if ( $kk == $data ) {
+                                    echo 'selected';
+                                }
+                                echo '>' . esc_attr( $vv ) . '</option>';
+                            }
+                            echo '</select>' . "\n";
+                            echo '<p class="description">' . esc_attr( $v['description'] ) . '</p>' . "\n";
+                            echo '</td><tr/>' . "\n";
+                            break;
+                        case 'textarea':
+                            echo '<tr valign="top"><th scope="row"><label for="' . esc_attr( $k ) . '">' . esc_attr( $v['name'] ) . '</label></th><td><textarea name="' . esc_attr( $k ) . '" style="width:100%;" type="text" id="' . esc_attr( $k ) . '" class="regular-text" rows="5" />' . esc_attr( $data ) . '</textarea>' . "\n";
                             echo '<p class="description">' . esc_html( $v['description'] ) . '</p>' . "\n";
                             echo '</td><tr/>' . "\n";
                             break;
@@ -476,6 +560,16 @@ class DTPS_Plugins_Post_Type
         return $post_id;
     } // End meta_box_save()
 
+//    public static function process_remote_vc_json( $post_id, $url ) {
+//        // @todo process vc json
+//        dt_write_log(__METHOD__);
+//        dt_write_log($post_id);
+//        dt_write_log($url);
+//
+//        update_post_meta( $post_id, 'version', '1.0' );
+//
+//    }
+
 
     /**
      * Customise the "Enter title here" text.
@@ -505,27 +599,170 @@ class DTPS_Plugins_Post_Type
     public function get_custom_fields_settings() {
         $fields = array();
 
-        $fields['version_control_url'] = array(
-            'name' => 'Version Control URL',
-            'description' => 'Url for the version control json',
-            'type' => 'text',
-            'default' => '',
-            'section' => 'upper_description',
-        );
 
         $fields['github_owner'] = array(
             'name' => 'Github Owner',
             'description' => 'Account or organization hosting the repo',
             'type' => 'text',
             'default' => 'DiscipleTools',
-            'section' => 'description',
+            'section' => 'plugin_config',
         );
         $fields['github_repo'] = array(
             'name' => 'Github Repo',
             'description' => 'Repo Name (no spaces). Ex. disciple-tools-training',
             'type' => 'text',
             'default' => '',
-            'section' => 'description',
+            'section' => 'plugin_config',
+        );
+
+
+
+        $fields['version_control_json_url'] = array(
+            'name' => 'Remote Version Control JSON URL',
+            'description' => 'If url is present, hourly cron job will attempt to sync details from remote VC JSON.',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'plugin_remote_sync',
+        );
+
+
+        // dynamic vc
+        $fields['version'] = array(
+            'name' => 'Current Version Number',
+            'description' => '',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'plugin_version_control_fields_dynamic',
+        );
+        $fields['last_updated'] = array(
+            'name' => 'Release Date',
+            'description' => '',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'plugin_version_control_fields_dynamic',
+        );
+        $fields['download_url'] = array(
+            'name' => 'Current Download URL',
+            'description' => '',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'plugin_version_control_fields_dynamic',
+        );
+        $fields['changelog'] = array(
+            'name' => 'Current Change Log Message',
+            'description' => '',
+            'type' => 'textarea',
+            'default' => '',
+            'section' => 'plugin_version_control_fields_dynamic',
+        );
+
+        // stable vc
+
+        $fields['name'] = array(
+            'name' => 'Name',
+            'description' => '',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['description'] = array(
+            'name' => 'Description',
+            'description' => '',
+            'type' => 'textarea',
+            'default' => '',
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['installation'] = array(
+            'name' => 'Installation Notes',
+            'description' => '',
+            'type' => 'textarea',
+            'default' => '(Required) You must have Disciple.Tools Theme installed before using this plugin. Once Disciple.Tools is installed, you can use the normal Plugin system to install the plugin.',
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['requires'] = array(
+            'name' => 'WP Minimum Version Required',
+            'description' => '',
+            'type' => 'text',
+            'default' => '4.7',
+            'section' => 'plugin_version_control_fields',
+        );
+        global $wp_version;
+        $fields['tested'] = array(
+            'name' => 'WP Version Tested',
+            'description' => '',
+            'type' => 'text',
+            'default' => $wp_version,
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['low'] = array(
+            'name' => 'Banners Low Image',
+            'description' => '',
+            'type' => 'text',
+            'default' => 'https://raw.githubusercontent.com/DiscipleTools/disciple-tools-version-control/master/images/dt-placeholder-772x250.jpg',
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['high'] = array(
+            'name' => 'Banners High Image',
+            'description' => '',
+            'type' => 'text',
+            'default' => 'https://raw.githubusercontent.com/DiscipleTools/disciple-tools-version-control/master/images/dt-placeholder-1544x500.jpg',
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['author'] = array(
+            'name' => 'Author',
+            'description' => '',
+            'type' => 'text',
+            'default' => 'DiscipleTools',
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['author_homepage'] = array(
+            'name' => 'Author Homepage',
+            'description' => '',
+            'type' => 'text',
+            'default' => 'https://disciple.tools',
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['homepage'] = array(
+            'name' => 'Repo URL',
+            'description' => 'If empty, button will not display.',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['issues_url'] = array(
+            'name' => 'Issues URL',
+            'description' => 'If empty, button will not display.',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['projects_url'] = array(
+            'name' => 'Projects URL',
+            'description' => 'If empty, button will not display.',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['wiki_url'] = array(
+            'name' => 'Wiki URL',
+            'description' => 'If empty, button will not display.',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['license_url'] = array(
+            'name' => 'License URL',
+            'description' => 'If empty, button will not display.',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['readme_url'] = array(
+            'name' => 'Readme URL',
+            'description' => 'If empty, button will not display.',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'plugin_version_control_fields',
         );
 
         return apply_filters( 'dtps_plugins_fields_settings', $fields );
