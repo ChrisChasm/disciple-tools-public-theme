@@ -64,15 +64,14 @@ get_header(); ?>
 
                                 <p><strong>Description</strong></p>
 
-                                <?php if ( ! empty( get_the_content() )) : ?>
+                                <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-                                    <?php the_content() ?>
+                                    <?php the_content(); ?>
 
-                                <?php else: ?>
+                                <?php endwhile; endif; ?>
 
-                                    <p><?php echo nl2br( esc_html(  $release['sections']['description'] ) ) ?></p>
+                                <p><?php echo nl2br( esc_html(  $release['sections']['description'] ) ) ?></p>
 
-                                <?php endif; ?>
 
                                 <p><strong>Current Version</strong></p>
 
