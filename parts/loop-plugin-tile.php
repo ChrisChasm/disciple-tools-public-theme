@@ -10,7 +10,7 @@
             <p><?php the_excerpt(); ?></p>
             <p>
                 <a href="<?php echo $permalink ?>" class="button">View</a>
-                <?php if ( $download_link = get_post_meta( $post->ID, 'download_url')) : ?>
+                <?php if ( $download_link = get_post_meta( $post->ID, 'download_url', true )) : ?>
                 <a href="<?php echo esc_html( $download_link ) ?>" class="button">Download</a>
                 <?php endif; ?>
             </p>
