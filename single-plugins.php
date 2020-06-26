@@ -108,6 +108,10 @@ get_header(); ?>
                                     <?php if ( isset( $release['license_url'] ) && ! empty( $release['license_url']  ) ) : ?>
                                         <a href="<?php echo $release['license_url'] ?>" class="button primary-button-hollow"> View License</a>
                                     <?php endif; ?>
+
+                                    <?php if ( isset( $release['readme_url'] ) && ! empty( $release['readme_url']  ) ) : ?>
+                                        <a href="<?php echo $release['readme_url'] ?>" class="button primary-button-hollow"> View Readme</a>
+                                    <?php endif; ?>
                                 </p>
 
                             </section> <!-- end article section -->
