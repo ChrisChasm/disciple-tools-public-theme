@@ -177,18 +177,18 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
         function dt_get_translations() {
             require_once( ABSPATH . 'wp-admin/includes/translation-install.php' );
             $translations = wp_get_available_translations();
-            $translations["ar_MA"] = array(
+            $translations["ar_MA"] = [
                 "language" => "ar_MA",
                 "native_name" => "العربية (المغرب)",
                 "english_name" => "Arabic (Morocco)",
-                "iso" => array( "ar" )
-            );
-            $translations["sw"] = array(
+                "iso" => [ "ar" ]
+            ];
+            $translations["sw"] = [
                 "language" => "sw",
                 "native_name" => "Kiswahili",
                 "english_name" => "Swahili",
-                "iso" => array( "sw" )
-            );
+                "iso" => [ "sw" ]
+            ];
             return $translations;
         }
     }
@@ -197,7 +197,7 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
         function dt_get_available_languages() {
             $translations = dt_get_translations();
             $available_language_codes = get_available_languages( get_template_directory() .'/dt-assets/translation' );
-            $available_translations = array();
+            $available_translations = [];
 
             array_push( $available_translations, array(
                 'language' => 'en_US',
@@ -225,6 +225,19 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
                 $s .= 'key_' . substr( md5( rand( 10000, 100000 ) ), 0, 3 );
             }
             return $s;
+        }
+    }
+
+    if ( ! function_exists( 'dt_has_permissions' ) ) {
+        function dt_has_permissions( array $permissions ) : bool {
+            if ( count( $permissions ) > 0 ) {
+                foreach ( $permissions as $permission ){
+                    if ( current_user_can( $permission ) ){
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 

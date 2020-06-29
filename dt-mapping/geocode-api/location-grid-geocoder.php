@@ -16,7 +16,7 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
         public $mirror_source;
 
         public function __construct() {
-            $this->geojson         = array();
+            $this->geojson         = [];
             $this->geometry_folder = $this->_geometry_folder();
             $this->mirror_source = get_option( 'dt_location_grid_mirror' );
         }
@@ -86,7 +86,7 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
                 return $test4;
             }
 
-            return array();
+            return [];
         }
 
         public function get_possible_matches_by_lnglat( $longitude, $latitude, $country_code = null ) {
@@ -100,11 +100,11 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
 
             $query = $this->query_possible_matches_by_lnglat( $longitude, $latitude, $country_code );
             if ( empty( $query ) ) {
-                return array();
+                return [];
             }
 
             $lowest          = 0;
-            $multiple_admin0 = array();
+            $multiple_admin0 = [];
             foreach ( $query as $row ) {
                 // lowest level
                 if ( $row['level'] > $lowest ) {
@@ -115,7 +115,7 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
                 $multiple_admin0[ $row['admin0_grid_id'] ] = true;
             }
 
-            $compiled = array();
+            $compiled = [];
             foreach ( $query as $result ) {
                 if ( $result['level'] === $lowest ) {
                     $compiled[ $result['grid_id'] ] = $result;
@@ -335,12 +335,12 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
 
             // get location_grid geojson from test 2
             $geojson         = $this->geojson;
-            $coordinate_list = array();
+            $coordinate_list = [];
 
             // build flat associative array of all coordinates
             foreach ( $results as $result ) {
                 $grid_id  = $result['grid_id'];
-                $features = $geojson[ $grid_id ]['features'] ?? array();
+                $features = $geojson[ $grid_id ]['features'] ?? [];
 
                 // handle Polygon and MultiPolygon geometries
                 foreach ( $features as $feature ) {
@@ -365,7 +365,7 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
             }
 
             // get distance between reference and all points
-            $distance = array();
+            $distance = [];
             foreach ( $coordinate_list as $key => $pair ) {
                 $distance[ $key ] = $this->_distance( $pair[0], $pair[1], $longitude, $latitude );
             }
@@ -406,7 +406,7 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
 
             if ( ! empty( $results ) ) {
 
-                $distance = array();
+                $distance = [];
                 foreach ( $results as $result ) {
                     $distance[ $result['grid_id'] ] = $this->_distance( $result['longitude'], $result['latitude'], $longitude, $latitude );
                 }
@@ -541,15 +541,15 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
          * @return array
          */
         public function _split_polygon( array $polygon_geometry ) {
-            $longitude = $latitude = $data = array();
+            $longitude = $latitude = $data = [];
             foreach ( $polygon_geometry as $vertices ) {
                 $longitude[] = $vertices[0];
                 $latitude[]  = $vertices[1];
             }
-            $data = array(
+            $data = [
                 'longitude' => $longitude,
                 'latitude'  => $latitude,
-            );
+            ];
 
             return $data;
         }
@@ -590,9 +590,9 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
                 if ( empty( $query ) ) {
                     error_log( 'No location records found. You must install location_grid database.' );
 
-                    return array();
+                    return [];
                 }
-                $country_levels = array();
+                $country_levels = [];
                 foreach ( $query as $country ) {
                     if ( ! empty( $country['country_code'] ) ) {
                         $country_levels[ $country['country_code'] ] = $country;
@@ -636,7 +636,7 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
 		", $latitude, $latitude, $longitude, $longitude, $level ), ARRAY_A );
 
             if ( empty( $query ) ) {
-                return array();
+                return [];
             }
 
             return $query;
@@ -666,7 +666,7 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
             ", $latitude, $latitude, $longitude, $longitude ), ARRAY_A );
 
                 if ( empty( $query ) ) {
-                    return array();
+                    return [];
                 }
 
                 // get highest level found
@@ -710,7 +710,7 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
             ", $level, $latitude, $latitude, $longitude, $longitude ), ARRAY_A );
 
                 if ( empty( $query ) ) {
-                    return array();
+                    return [];
                 }
 
                 return $query;
@@ -743,7 +743,7 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
             }
 
             if ( empty( $query ) ) {
-                return array();
+                return [];
             }
 
             foreach ( $query as $index => $item ) {
@@ -796,7 +796,7 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
             }
 
             if ( empty( $raw_query ) ) {
-                return array();
+                return [];
             }
 
             return $this->_format_location_grid_results( $raw_query );
@@ -846,9 +846,9 @@ if ( ! class_exists( 'Location_Grid_Geocoder' ) ) {
 
         public function _format_location_grid_results( $query ) {
             if ( empty( $query ) ) {
-                $keyed_query = array();
+                $keyed_query = [];
                 foreach ( $keyed_query as $index => $row ) {
-                    $keyed_query[ $index ] = array();
+                    $keyed_query[ $index ] = [];
 
                     if ( isset( $row['grid_id'] ) ) {
                         $keyed_query[ $index ] = (int) $row['grid_id'];
