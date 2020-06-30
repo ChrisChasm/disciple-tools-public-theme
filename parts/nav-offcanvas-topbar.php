@@ -22,7 +22,7 @@
             </div>
 
             <div class="cell large-2 hide-for-small show-for-large float-right">
-                <a class="green-button" href="">Get Started</a>
+                <a class="green-button" href="/launch-demo/">Demo</a>
             </div>
 
             <div class="cell small-3 show-for-small hide-for-large" id="top-mobile-menu-div">
