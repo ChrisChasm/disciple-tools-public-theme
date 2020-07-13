@@ -1,3 +1,4 @@
+_ = _ || window.lodash
 window.dtpsAPICore = dtpsCore
 window.dtpsAPI = {
 
