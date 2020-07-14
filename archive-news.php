@@ -38,7 +38,8 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
                             <?php dtps_page_navi(); ?>
                     <?php else : ?>
                         <?php get_template_part( 'parts/content', 'missing' ); ?>
-                    <?php endif;  endif; /* no format */ ?>
+                    <?php endif;
+endif; /* no format */ ?>
 
 
                     <?php /* Show compressed view */

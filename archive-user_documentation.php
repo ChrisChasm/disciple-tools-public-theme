@@ -21,7 +21,7 @@ $landing_post_id = 391; // quick start
 
                 <header class="article-header ">
 
-                    <h2 class="entry-title single-title vertical-padding" style="font-weight:bold;" itemprop="headline"><?php echo get_the_title(  $landing_post_id ) ?></h2>
+                    <h2 class="entry-title single-title vertical-padding" style="font-weight:bold;" itemprop="headline"><?php echo get_the_title( $landing_post_id ) ?></h2>
 
                 </header> <!-- end article header -->
 

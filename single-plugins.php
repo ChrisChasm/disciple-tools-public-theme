@@ -6,7 +6,7 @@
 $release = [];
 $post = get_post();
 $version_control_url = get_post_meta( $post->ID, 'version_control_url', true );
-if ( isset( $version_control_url ) && ! empty( $version_control_url) ) {
+if ( isset( $version_control_url ) && ! empty( $version_control_url ) ) {
     $result = wp_remote_get( $version_control_url );
     if ( ! is_wp_error( $result ) ) {
         $release = json_decode( $result['body'], true );
@@ -38,7 +38,7 @@ get_header(); ?>
                 IF USING PU4 DT UPDATE SYSTEM
 
                 -------------------------------->
-                <?php if ( ! empty( $release) ) : ?>
+                <?php if ( ! empty( $release ) ) : ?>
 
                     <div class="blog cell large-8">
 
@@ -47,7 +47,7 @@ get_header(); ?>
                             <header class="article-header center">
 
                                 <?php if ( has_post_thumbnail() ) : ?>
-                                    <div><?php the_post_thumbnail('full'); ?></div>
+                                    <div><?php the_post_thumbnail( 'full' ); ?></div>
                                 <?php endif; ?>
 
 <!--                                <div><img src="--><?php //echo esc_url( $release['banners']['high'] ) ?><!--" alt="header banner" /></div>-->
@@ -66,18 +66,19 @@ get_header(); ?>
 
                                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-                                    <?php the_content(); ?>
+                                        <?php the_content(); ?>
 
-                                <?php endwhile; endif; ?>
+                                <?php endwhile;
+endif; ?>
 
-                                <p><?php echo nl2br( esc_html(  $release['sections']['description'] ) ) ?></p>
+                                <p><?php echo nl2br( esc_html( $release['sections']['description'] ) ) ?></p>
 
 
                                 <p><strong>Current Version</strong></p>
 
                                 <p>
                                     Version: <?php echo $release['version'] ?><br>
-                                    Released: <?php echo date( 'F, Y' , strtotime( $release['last_updated'] ) ) ?>
+                                    Released: <?php echo date( 'F, Y', strtotime( $release['last_updated'] ) ) ?>
                                 </p>
 
                                 <p><strong>Latest Release Notes</strong></p>
@@ -93,23 +94,23 @@ get_header(); ?>
                                 <p>
                                      <a href="<?php echo $release['homepage'] ?>" class="button primary-button-hollow"><i class="fi-social-github"></i> View Code</a>
 
-                                    <?php if ( isset( $release['projects_url'] ) && ! empty( $release['projects_url']  ) ) : ?>
+                                    <?php if ( isset( $release['projects_url'] ) && ! empty( $release['projects_url'] ) ) : ?>
                                         <a href="<?php echo $release['projects_url'] ?>" class="button primary-button-hollow"> View Projects</a>
                                     <?php endif; ?>
 
-                                    <?php if ( isset( $release['wiki_url'] ) && ! empty( $release['wiki_url']  ) ) : ?>
+                                    <?php if ( isset( $release['wiki_url'] ) && ! empty( $release['wiki_url'] ) ) : ?>
                                         <a href="<?php echo $release['wiki_url'] ?>" class="button primary-button-hollow"> View Wiki</a>
                                     <?php endif; ?>
 
-                                    <?php if ( isset( $release['issues_url'] ) && ! empty( $release['issues_url']  ) ) : ?>
+                                    <?php if ( isset( $release['issues_url'] ) && ! empty( $release['issues_url'] ) ) : ?>
                                         <a href="<?php echo $release['issues_url'] ?>" class="button primary-button-hollow"> View Issues</a>
                                     <?php endif; ?>
 
-                                    <?php if ( isset( $release['license_url'] ) && ! empty( $release['license_url']  ) ) : ?>
+                                    <?php if ( isset( $release['license_url'] ) && ! empty( $release['license_url'] ) ) : ?>
                                         <a href="<?php echo $release['license_url'] ?>" class="button primary-button-hollow"> View License</a>
                                     <?php endif; ?>
 
-                                    <?php if ( isset( $release['readme_url'] ) && ! empty( $release['readme_url']  ) ) : ?>
+                                    <?php if ( isset( $release['readme_url'] ) && ! empty( $release['readme_url'] ) ) : ?>
                                         <a href="<?php echo $release['readme_url'] ?>" class="button primary-button-hollow"> View Readme</a>
                                     <?php endif; ?>
                                 </p>
@@ -143,7 +144,7 @@ get_header(); ?>
 
                         <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-                            <?php get_template_part( 'parts/loop', 'single' ); ?>
+                                <?php get_template_part( 'parts/loop', 'single' ); ?>
 
                         <?php endwhile; else : ?>
 

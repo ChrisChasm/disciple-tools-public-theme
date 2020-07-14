@@ -20,29 +20,32 @@ if ( ! isset( $_SERVER['DOCUMENT_ROOT'] ) ) {
 require_once $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php'; //@phpcs:ignore
 
 // set header type
-header('Content-type: application/json');
+header( 'Content-type: application/json' );
 
 // test id exists
 global $wpdb;
 if ( isset( $_GET['id'] ) && ! empty( $_GET['id'] ) ) {
     $hash = sanitize_text_field( wp_unslash( $_GET['id'] ) );
 } else {
-    echo json_encode( ['status' => 'Error', 'error_message' => 'Missing valid id.'] );
+    echo json_encode( [
+        'status' => 'Error',
+        'error_message' => 'Missing valid id.'
+    ] );
     return;
 }
 
 // test hash against post_id's
 $selected_plugin = [];
 $list = [];
-$results = $wpdb->get_results("SELECT post_id, meta_key, meta_value FROM $wpdb->postmeta WHERE post_id IN (SELECT ID FROM $wpdb->posts WHERE post_type = 'plugins' AND post_status = 'publish')", ARRAY_A );
-if ( ! empty( $results) ) {
-    foreach( $results as $item ) {
+$results = $wpdb->get_results( "SELECT post_id, meta_key, meta_value FROM $wpdb->postmeta WHERE post_id IN (SELECT ID FROM $wpdb->posts WHERE post_type = 'plugins' AND post_status = 'publish')", ARRAY_A );
+if ( ! empty( $results ) ) {
+    foreach ( $results as $item ) {
         if ( ! isset( $list[$item['post_id']] ) ) {
             $list[$item['post_id']] = [];
         }
         $list[$item['post_id']][$item['meta_key']] = $item['meta_value'];
     }
-    foreach( $list as $key => $value ) {
+    foreach ( $list as $key => $value ) {
         if ( $hash === hash( 'SHA256', $key ) ) {
             $selected_plugin = $value;
             break;
@@ -50,7 +53,10 @@ if ( ! empty( $results) ) {
     }
 }
 if ( empty( $selected_plugin ) ) {
-    echo json_encode( ['status' => 'Error', 'error_message' => 'No plugin found with that id.'] );
+    echo json_encode( [
+        'status' => 'Error',
+        'error_message' => 'No plugin found with that id.'
+    ] );
 }
 
 // load array
