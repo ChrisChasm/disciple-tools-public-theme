@@ -20,17 +20,30 @@
                                 <div class="cell large-2">
                                     <p>
                                         <strong>Product</strong><br>
-                                        <a href="/features">Features</a><br>
-                                        <a href="/security">Security</a><br>
-                                        <a href="/pricing">Pricing</a><br>
-                                        <a href="/demo">Demo</a>
+                                        <a href="/features/">Features</a><br>
+                                        <a href="/security/">Security</a><br>
+                                        <a href="/pricing/">Pricing</a><br>
+                                        <a href="/launch-demo/">Demo</a>
                                     </p>
                                 </div>
                                 <div class="cell large-2">
-                                    <p><strong>Solutions</strong><br>Team Leader<br>Media Access<br>Mission Organization<br>Network<br>Remote Collaboration<br>Kingdom.Training</p>
+                                    <p>
+                                        <strong>Solutions</strong><br>
+                                        <a href="/for-online-strategies/">For Online Strategies</a><br>
+                                        <a href="/for-single-teams/">For Single Teams</a><br>
+                                        <a href="/for-multiple-teams/">For Multiple Teams</a><br>
+                                        <a href="https://kingdom.training">Kingdom.Training</a>
+                                    </p>
                                 </div>
                                 <div class="cell large-2">
-                                    <p><strong>Resources</strong><br>News<br>Documentation<br>Security News<br>Endorsements<br>FAQ</p>
+                                    <p>
+                                        <strong>Resources</strong><br>
+                                        News<br>
+                                        Documentation<br>
+                                        Security News<br>
+                                        Endorsements<br>
+                                        FAQ
+                                    </p>
                                 </div>
                                 <div class="cell large-2">
                                     <p><strong>Developers</strong><br>User Story<br>Open Source<br>GitHub</p>
