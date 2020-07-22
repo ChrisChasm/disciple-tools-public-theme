@@ -560,17 +560,6 @@ class DTPS_Plugins_Post_Type
         return $post_id;
     } // End meta_box_save()
 
-//    public static function process_remote_vc_json( $post_id, $url ) {
-//        // @todo process vc json
-//        dt_write_log(__METHOD__);
-//        dt_write_log($post_id);
-//        dt_write_log($url);
-//
-//        update_post_meta( $post_id, 'version', '1.0' );
-//
-//    }
-
-
     /**
      * Customise the "Enter title here" text.
      *
@@ -642,14 +631,14 @@ class DTPS_Plugins_Post_Type
             'section' => 'plugin_version_control_fields_dynamic',
         );
         $fields['download_url'] = array(
-            'name' => 'Current Download URL',
+            'name' => 'Current Download URL (optional)',
             'description' => '',
             'type' => 'text',
             'default' => '',
             'section' => 'plugin_version_control_fields_dynamic',
         );
         $fields['changelog'] = array(
-            'name' => 'Current Change Log Message',
+            'name' => 'Current Change Log Message (optional)',
             'description' => '',
             'type' => 'textarea',
             'default' => '',
