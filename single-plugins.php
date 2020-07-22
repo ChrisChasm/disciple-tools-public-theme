@@ -3,8 +3,19 @@
  * The template for displaying all single posts and attachments
  */
 
-$release = [];
+// build defaults
+$plugin_post_type = DTPS_Plugins_Post_Type::instance();
+$raw_defaults = array_keys( $plugin_post_type->get_custom_fields_settings() );
+$plugin_defaults = [];
+foreach( $raw_defaults as $row ) {
+    $plugin_defaults[$row] = '';
+}
+
+// get post values
 $post = get_post();
+$post_meta = wp_parse_args( dtps_filter_meta( get_post_meta($post->ID ) ), $plugin_defaults );
+
+$release = [];
 $version_control_url = get_post_meta( $post->ID, 'version_control_url', true );
 if ( isset( $version_control_url ) && ! empty( $version_control_url ) ) {
     $result = wp_remote_get( $version_control_url );
@@ -33,13 +44,6 @@ get_header(); ?>
 
             <div class="grid-x grid-margin-x">
 
-                <!------------------------------
-
-                IF USING PU4 DT UPDATE SYSTEM
-
-                -------------------------------->
-                <?php if ( ! empty( $release ) ) : ?>
-
                     <div class="blog cell large-8">
 
                         <article id="post-<?php the_ID(); ?>" <?php post_class( '' ); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
@@ -50,70 +54,47 @@ get_header(); ?>
                                     <div><?php the_post_thumbnail( 'full' ); ?></div>
                                 <?php endif; ?>
 
-<!--                                <div><img src="--><?php //echo esc_url( $release['banners']['high'] ) ?><!--" alt="header banner" /></div>-->
 
                                 <h2 class="entry-title single-title vertical-padding" itemprop="headline"><?php the_title(); ?></h2>
 
-                                <div class="center"><a href="<?php echo $release['download_url'] ?>" class="button"><i class="fi-download"></i> Download</a> </div>
+                                <div class="center"><a href="https://github.com/<?php echo esc_attr( $post_meta['github_owner'] ) ?>/<?php echo esc_attr( $post_meta['github_repo'] ) ?>/releases/latest/download/<?php echo esc_attr( $post_meta['github_repo'] ) ?>.zip" class="button"><i class="fi-download"></i> Download</a> </div>
 
                             </header> <!-- end article header -->
                             <hr>
                             <section class="entry-content" itemprop="text">
 
-                                <h2><?php echo $release['name'] ?></h2>
+                                <h2><?php echo $post_meta['name'] ?></h2>
 
                                 <p><strong>Description</strong></p>
 
-                                <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                                <?php if (have_posts()) : ?>
+
+                                    <?php while (have_posts()) : the_post(); ?>
 
                                         <?php the_content(); ?>
 
-                                <?php endwhile;
-endif; ?>
+                                    <?php endwhile; ?>
 
-                                <p><?php echo nl2br( esc_html( $release['sections']['description'] ) ) ?></p>
+                                <?php else: ?>
 
+                                    <p><?php echo nl2br( esc_html( $post_meta['description'] ) ) ?></p>
+
+                                <?php endif; ?>
 
                                 <p><strong>Current Version</strong></p>
 
                                 <p>
-                                    Version: <?php echo $release['version'] ?><br>
-                                    Released: <?php echo date( 'F, Y', strtotime( $release['last_updated'] ) ) ?>
+                                    Version: <?php echo $post_meta['version'] ?><br>
+                                    Released: <?php echo date( 'F, Y', strtotime( $post_meta['last_updated'] ) ) ?>
                                 </p>
 
                                 <p><strong>Latest Release Notes</strong></p>
 
-                                <p><?php echo nl2br( esc_html( $release['sections']['changelog'] ) ) ?></p>
+                                <p><?php echo nl2br( esc_html( $post_meta['changelog'] ) ) ?></p>
 
                                 <p><strong>Installation</strong></p>
 
-                                <p><?php echo nl2br( $release['sections']['installation'] ) ?></p>
-
-                                <hr>
-
-                                <p>
-                                     <a href="<?php echo $release['homepage'] ?>" class="button primary-button-hollow"><i class="fi-social-github"></i> View Code</a>
-
-                                    <?php if ( isset( $release['projects_url'] ) && ! empty( $release['projects_url'] ) ) : ?>
-                                        <a href="<?php echo $release['projects_url'] ?>" class="button primary-button-hollow"> View Projects</a>
-                                    <?php endif; ?>
-
-                                    <?php if ( isset( $release['wiki_url'] ) && ! empty( $release['wiki_url'] ) ) : ?>
-                                        <a href="<?php echo $release['wiki_url'] ?>" class="button primary-button-hollow"> View Wiki</a>
-                                    <?php endif; ?>
-
-                                    <?php if ( isset( $release['issues_url'] ) && ! empty( $release['issues_url'] ) ) : ?>
-                                        <a href="<?php echo $release['issues_url'] ?>" class="button primary-button-hollow"> View Issues</a>
-                                    <?php endif; ?>
-
-                                    <?php if ( isset( $release['license_url'] ) && ! empty( $release['license_url'] ) ) : ?>
-                                        <a href="<?php echo $release['license_url'] ?>" class="button primary-button-hollow"> View License</a>
-                                    <?php endif; ?>
-
-                                    <?php if ( isset( $release['readme_url'] ) && ! empty( $release['readme_url'] ) ) : ?>
-                                        <a href="<?php echo $release['readme_url'] ?>" class="button primary-button-hollow"> View Readme</a>
-                                    <?php endif; ?>
-                                </p>
+                                <p><?php echo nl2br( $post_meta['installation'] ) ?></p>
 
                             </section> <!-- end article section -->
 
@@ -129,38 +110,89 @@ endif; ?>
 
                     <div class="sidebar cell large-4 ">
 
-                        <?php get_sidebar( 'plugins-single' ); ?>
+                        <hr class="show-for-small-only" />
 
-                    </div>
+                        <?php get_template_part( 'parts/content', 'plugin-search' ); ?>
 
-                <!------------------------------
+                        <hr>
 
-                IF NOT USING PU4 DT UPDATE SYSTEM
+                        <h4>Plugin Author</h4>
+                        <div class="padding-left-1">
+                            <a href="<?php echo get_post_meta( get_the_ID(), 'author_homepage', true ) ?>">
+                                <?php echo get_post_meta( get_the_ID(), 'author', true ) ?>
+                            </a>
+                        </div>
 
-                -------------------------------->
-                <?php else : ?>
+                        <hr>
 
-                    <div class="blog cell large-8">
+                        <h4>Plugin Links</h4>
+                        <p>
+                            <?php if ( isset( $post_meta['homepage'] ) && ! empty( $post_meta['homepage'] ) ) : ?>
+                                <a href="<?php echo $post_meta['homepage'] ?>" class="button primary-button-hollow expanded"> View Source Code</a>
+                            <?php endif; ?>
 
-                        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                            <?php if ( isset( $post_meta['wiki_url'] ) && ! empty( $post_meta['wiki_url'] ) ) : ?>
+                                <a href="<?php echo $post_meta['wiki_url'] ?>" class="button primary-button-hollow expanded"> View Documentation</a>
+                            <?php endif; ?>
 
-                                <?php get_template_part( 'parts/loop', 'single' ); ?>
+                            <?php if ( isset( $post_meta['issues_url'] ) && ! empty( $post_meta['issues_url'] ) ) : ?>
+                                <a href="<?php echo $post_meta['issues_url'] ?>" class="button primary-button-hollow"> View Issues</a>
+                            <?php endif; ?>
 
-                        <?php endwhile; else : ?>
+                            <?php if ( isset( $post_meta['projects_url'] ) && ! empty( $post_meta['projects_url'] ) ) : ?>
+                                <a href="<?php echo $post_meta['projects_url'] ?>" class="button primary-button-hollow"> View Projects</a>
+                            <?php endif; ?>
 
-                            <?php get_template_part( 'parts/content', 'missing' ); ?>
+                            <?php if ( isset( $post_meta['license_url'] ) && ! empty( $post_meta['license_url'] ) ) : ?>
+                                <a href="<?php echo $post_meta['license_url'] ?>" class="button primary-button-hollow"> View License</a>
+                            <?php endif; ?>
+                        </p>
 
+                        <hr>
+                        <?php  if ( ! empty( $post_meta['github_owner'] ) ) : ?>
+                        <h4>Version Info</h4>
+                        <div class="padding-left-1">
+                            <div id="current_version"></div>
+                            <p><a href="javascript:void(0)" onclick="jQuery('#releases').toggle()">Show Previous Versions</a></p>
+                        </div>
+
+                        <div id="releases" style="display:none;"></div>
+                        <script>
+                            jQuery(document).ready(function(){
+                                jQuery.getJSON('https://api.github.com/repos/<?php echo esc_attr( $post_meta['github_owner'] ) ?>/<?php echo esc_attr( $post_meta['github_repo'] ) ?>/releases', function(data) {
+                                    let r = jQuery('#releases')
+
+                                    r.append(`<p><h4>Past Versions</h4></p><table class="hover">
+                                            <tbody id="release_list"></tbody></table>`)
+
+                                    let rl = jQuery('#release_list')
+                                    let cv = jQuery('#current_version')
+
+                                    jQuery.each( data, function(i,v){
+                                        if ( v.draft === true ) {
+                                            return
+                                        }
+
+                                        let str = nl2br(v.body)
+                                        if ( 0 === i ) {
+                                            cv.append(`<strong>${v.tag_name}</strong><br>${str}`)
+                                        } else {
+                                            rl.append(`<tr><td><strong>${v.tag_name}</strong><br>${str}</td></tr>`)
+                                        }
+                                    })
+                                })
+                            })
+                            function nl2br (str, is_xhtml) {
+                                var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+                                return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+                            }
+                        </script>
+                        <hr>
                         <?php endif; ?>
 
-                    </div>
-
-                    <div class="sidebar cell large-4 ">
-
-                        <?php get_sidebar( 'plugins-single' ); ?>
+                        <?php get_template_part( 'parts/content', 'plugin-makelist' ); ?>
 
                     </div>
-
-                <?php endif; ?>
 
             </div>
 

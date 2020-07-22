@@ -6,20 +6,10 @@
 
 <hr class="show-for-small-only" />
 
-<div>
-    <form>
-        <div class="input-group">
-            <input type="text" class="input-group-field" placeholder="Search Plugins" />
-            <div class="input-group-button">
-                <input type="submit" class="button" value="Submit">
-            </div>
-        </div>
-
-    </form>
-</div>
+<?php get_template_part( 'parts/content', 'plugin-search' ); ?>
 <hr>
 <div>
-    <h3>What's a Plugin?</h3>
+    <h2>What's a Plugin?</h2>
     <p>
         Plugins are ways of extending the Disciple Tools system to meet the unique needs of your project, ministry, or movement.
     </p>
@@ -30,11 +20,11 @@
 
 </div>
 <hr>
+<?php get_template_part( 'parts/content', 'plugin-makelist' ); ?>
+<hr>
 
 <div class="grid-x">
-    <div class="cell padding-1">
-        <h3>Plugin Community</h3>
-    </div>
+    <h4>Community Plugins</h4>
     <div class="cell">
         <table>
             <thead>
