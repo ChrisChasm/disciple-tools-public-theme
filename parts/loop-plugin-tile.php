@@ -6,7 +6,7 @@
             <a href="<?php echo $permalink ?>"><?php the_post_thumbnail( [1200,400 ] ); ?></a>
         </div>
         <div class="card-section">
-            <p><a href="<?php echo $permalink ?>"><strong><?php the_title() ?></strong></a></p>
+            <p><h3><a href="<?php echo $permalink ?>"><strong><?php the_title() ?></strong></a></h3></p>
             <p><?php the_excerpt(); ?></p>
             <?php if ( $author = get_post_meta( get_the_ID(), 'author', true ) ) : ?>
                 <p style="color: grey;">Author: <?php echo esc_attr( $author ) ?></p>
