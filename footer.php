@@ -38,11 +38,9 @@
                                 <div class="cell large-2">
                                     <p>
                                         <strong>Resources</strong><br>
-                                        News<br>
-                                        Documentation<br>
-                                        Security News<br>
-                                        Endorsements<br>
-                                        FAQ
+                                        <a href="/news/">News</a><br>
+                                        <a href="/user-docs/">User Documentation</a><br>
+                                        <a href="/dev-docs/">Developer Docs</a><br>
                                     </p>
                                 </div>
                                 <div class="cell large-2">
