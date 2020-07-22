@@ -21,7 +21,7 @@
 
                     <div class="grid-x">
                         <div class="cell center padding-1">
-                            <h3 class="center">Community Plugins</h3>
+                            <h3 class="center"><?php $term = get_term( get_queried_object()->term_id ); echo $term->name ?> Plugins</h3>
                         </div>
                     </div>
 
