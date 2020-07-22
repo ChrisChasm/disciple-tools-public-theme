@@ -1,3 +1,7 @@
+<?php
+$term = get_term( get_queried_object()->term_id );
+?>
+
 
 <?php get_header(); ?>
 
@@ -21,27 +25,45 @@
 
                     <div class="grid-x">
                         <div class="cell center padding-1">
-                            <h3 class="center"><?php $term = get_term( get_queried_object()->term_id ); echo $term->name ?> Plugins</h3>
+                            <h3 class="center"><?php echo esc_html( $term->name ) ?> Plugins</h3>
                         </div>
                     </div>
 
                     <div class="grid-x grid-padding-x" data-equalizer data-equalize-on="medium"> <!-- grid-->
 
                         <?php
-                        $loop = new WP_Query(
-                            [  'post_type' => 'plugins',
-                                'order' => 'ASC',
-                                'orderby' => 'menu_order',
-                                'tax_query' => [
-                                    [
-                                        'taxonomy' => 'plugin_categories',
-                                        'field'    => 'slug',
-                                        'terms'    => 'featured',
-                                        'operator' => 'NOT IN'
-                                    ],
+                        if ( 'Community' === $term->name ) {
+                            $loop = new WP_Query(
+                                [  'post_type' => 'plugins',
+                                    'order' => 'ASC',
+                                    'orderby' => 'menu_order',
+                                    'tax_query' => [
+                                        [
+                                            'taxonomy' => 'plugin_categories',
+                                            'field'    => 'slug',
+                                            'terms'    => 'featured',
+                                            'operator' => 'NOT IN'
+                                        ],
+                                    ]
                                 ]
-                            ]
-                        );
+                            );
+                        } else {
+                            $loop = new WP_Query(
+                                [  'post_type' => 'plugins',
+                                    'order' => 'ASC',
+                                    'orderby' => 'menu_order',
+                                    'tax_query' => [
+                                        [
+                                            'taxonomy' => 'plugin_categories',
+                                            'field'    => 'slug',
+                                            'terms'    => $term->slug,
+                                            'operator' => 'NOT IN'
+                                        ],
+                                    ]
+                                ]
+                            );
+                        }
+                        
                         if ( $loop->have_posts() ) :
                             while ( $loop->have_posts() ) : $loop->the_post(); ?>
                                 <?php get_template_part( 'parts/loop', 'plugin-tile' ); ?>
