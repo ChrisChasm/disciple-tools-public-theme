@@ -57,13 +57,12 @@ $term = get_term( get_queried_object()->term_id );
                                             'taxonomy' => 'plugin_categories',
                                             'field'    => 'slug',
                                             'terms'    => $term->slug,
-                                            'operator' => 'NOT IN'
                                         ],
                                     ]
                                 ]
                             );
                         }
-                        
+
                         if ( $loop->have_posts() ) :
                             while ( $loop->have_posts() ) : $loop->the_post(); ?>
                                 <?php get_template_part( 'parts/loop', 'plugin-tile' ); ?>
