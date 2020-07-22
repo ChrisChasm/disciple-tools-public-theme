@@ -40,7 +40,7 @@
                                         <strong>Resources</strong><br>
                                         <a href="/news/">News</a><br>
                                         <a href="/user-docs/">User Docs</a><br>
-                                        <a href="/plugins/">Plugins</a>
+                                        <a href="/plugins/">Plugins</a><br>
                                         <a href="https://www.youtube.com/channel/UCwQQSXUJunyqnj1bL_Fh6mQ/playlists">Youtube Training</a><br>
                                     </p>
                                 </div>
@@ -49,7 +49,7 @@
                                         <strong>Developers</strong><br>
                                         <a href="/dev-docs/">Developer Docs</a><br>
                                         <a href="/open-source/">Open Source</a><br>
-                                        <a href="https://github.com/DiscipleTools">Github Project</a>
+                                        <a href="https://github.com/DiscipleTools">Github Project</a><br>
                                         <a href="/join-the-community/">Join the Community</a>
                                     </p>
                                 </div>
