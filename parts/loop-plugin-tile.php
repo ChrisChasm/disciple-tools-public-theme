@@ -11,8 +11,6 @@
             <?php if ( $author = get_post_meta( get_the_ID(), 'author', true ) ) : ?>
                 <p style="color: grey;">Author: <?php echo esc_attr( $author ) ?></p>
             <?php endif; ?>
-        </div>
-        <div class="card-section">
             <p>
                 <a href="<?php echo $permalink ?>" class="button">View</a>
                 <?php if ( $repo = get_post_meta(get_the_ID(), 'github_repo', true ) ) : ?>
