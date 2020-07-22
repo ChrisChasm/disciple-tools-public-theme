@@ -10,8 +10,8 @@
             <p><?php the_excerpt(); ?></p>
             <p>
                 <a href="<?php echo $permalink ?>" class="button">View</a>
-                <?php if ( $download_link = get_post_meta( $post->ID, 'download_url', true )) : ?>
-                <a href="<?php echo esc_html( $download_link ) ?>" class="button">Download</a>
+                <?php if ( $repo = get_post_meta(get_the_ID(), 'github_repo', true ) ) : ?>
+                <a href="https://github.com/<?php echo esc_attr( get_post_meta(get_the_ID(), 'github_owner', true ) ) ?>/<?php echo esc_attr( $repo ) ?>/releases/latest/download/<?php echo esc_attr( $repo ) ?>.zip" class="button">Download</a>
                 <?php endif; ?>
             </p>
         </div>

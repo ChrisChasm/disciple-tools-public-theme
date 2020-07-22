@@ -81,17 +81,6 @@ get_header(); ?>
 
                                 <?php endif; ?>
 
-                                <p><strong>Current Version</strong></p>
-
-                                <p>
-                                    Version: <?php echo $post_meta['version'] ?><br>
-                                    Released: <?php echo date( 'F, Y', strtotime( $post_meta['last_updated'] ) ) ?>
-                                </p>
-
-                                <p><strong>Latest Release Notes</strong></p>
-
-                                <p><?php echo nl2br( esc_html( $post_meta['changelog'] ) ) ?></p>
-
                                 <p><strong>Installation</strong></p>
 
                                 <p><?php echo nl2br( $post_meta['installation'] ) ?></p>
@@ -153,7 +142,7 @@ get_header(); ?>
                         <h4>Version Info</h4>
                         <div class="padding-left-1">
                             <div id="current_version"></div>
-                            <p><a href="javascript:void(0)" onclick="jQuery('#releases').toggle()">Show Previous Versions</a></p>
+                            <p id="past_versions" style="display:none;"><a href="javascript:void(0)" onclick="jQuery('#releases').toggle()">Show Previous Versions</a></p>
                         </div>
 
                         <div id="releases" style="display:none;"></div>
@@ -167,6 +156,7 @@ get_header(); ?>
 
                                     let rl = jQuery('#release_list')
                                     let cv = jQuery('#current_version')
+                                    let pv = jQuery('#past_versions')
 
                                     jQuery.each( data, function(i,v){
                                         if ( v.draft === true ) {
@@ -177,6 +167,7 @@ get_header(); ?>
                                         if ( 0 === i ) {
                                             cv.append(`<strong>${v.tag_name}</strong><br>${str}`)
                                         } else {
+                                            pv.show()
                                             rl.append(`<tr><td><strong>${v.tag_name}</strong><br>${str}</td></tr>`)
                                         }
                                     })
