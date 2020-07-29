@@ -120,6 +120,8 @@ class DTPS_Plugins_Post_Type
                 }
             }
         }
+
+
     } // End __construct()
 
     /**

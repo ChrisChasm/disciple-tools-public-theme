@@ -29,6 +29,19 @@ $landing_post_id = 391; // quick start
 
                 <section class="entry-content" itemprop="text">
 
+                    <div class="callout padding-3">
+                        <h3>Search</h3>
+                        <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url() ) ?>">
+                            <div class="input-group large">
+                                <input type="search" class="input-group-field search-field" placeholder="Search Guide ..." value="" name="s" title="Search for:">
+                                <input type="hidden" name="post_type[]" value="user_documentation" />
+                                <div class="input-group-button">
+                                    <input type="submit" class="search-submit button" value="Search User Guide">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
                     <?php echo get_the_content( null, false, $landing_post_id ) ?>
 
                 </section> <!-- end article section -->

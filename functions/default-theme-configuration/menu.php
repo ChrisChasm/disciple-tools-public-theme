@@ -6,7 +6,6 @@ register_nav_menus(
         'offcanvas-nav' => __( 'The Off-Canvas Menu', 'dtps' ),
         'footer-links' => __( 'Footer Links', 'dtps' ),
         'news' => __( 'News', 'dtps' ),
-        'top-articles' => __( 'Top Articles', 'dtps' )
     )
 );
 
@@ -74,24 +73,24 @@ class DTPS_News_Menu_Walker extends Walker_Nav_Menu {
     }
 }
 
-function dtps_top_articles_nav() {
-    wp_nav_menu(array(
-        'container' => false,                           // Remove nav container
-        'menu_class' => 'vertical menu sidebar-menu underline',       // Adding custom nav class
-        'items_wrap' => '<ul id="%1$s" class="%2$s" data-accordion-menu data-submenu-toggle="true">%3$s</ul>',
-        'theme_location' => 'top-articles',                 // Where it's located in the theme
-        'depth' => 5,                                   // Limit the depth of the nav
-        'fallback_cb' => false,                         // Fallback function (see below)
-        'walker' => new DTPS_Top_Articles_Menu_Walker()
-    ));
-}
-
-class DTPS_Top_Articles_Menu_Walker extends Walker_Nav_Menu {
-    public function start_lvl( &$output, $depth = 0, $args = array() ) {
-        $indent = str_repeat( "\t", $depth );
-        $output .= "\n$indent<ul class=\"vertical menu\">\n";
-    }
-}
+//function dtps_top_articles_nav() {
+//    wp_nav_menu(array(
+//        'container' => false,                           // Remove nav container
+//        'menu_class' => 'vertical menu sidebar-menu underline',       // Adding custom nav class
+//        'items_wrap' => '<ul id="%1$s" class="%2$s" data-accordion-menu data-submenu-toggle="true">%3$s</ul>',
+//        'theme_location' => 'top-articles',                 // Where it's located in the theme
+//        'depth' => 5,                                   // Limit the depth of the nav
+//        'fallback_cb' => false,                         // Fallback function (see below)
+//        'walker' => new DTPS_Top_Articles_Menu_Walker()
+//    ));
+//}
+//
+//class DTPS_Top_Articles_Menu_Walker extends Walker_Nav_Menu {
+//    public function start_lvl( &$output, $depth = 0, $args = array() ) {
+//        $indent = str_repeat( "\t", $depth );
+//        $output .= "\n$indent<ul class=\"vertical menu\">\n";
+//    }
+//}
 
 
 // Add Foundation active class to menu

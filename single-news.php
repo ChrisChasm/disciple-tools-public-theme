@@ -42,7 +42,8 @@ get_header(); ?>
                 </div>
 
                 <div class="sidebar cell large-4">
-                    <hr />
+
+                    <hr class="show-for-small-only" />
 
                     <?php get_sidebar( 'news' ); ?>
 

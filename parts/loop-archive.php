@@ -27,7 +27,7 @@ $post = get_post();
             </section> <!-- end article section -->
 
             <footer class="article-footer">
-                <p class="tags small-text"><?php echo get_the_date() ?> | Found in: <a href="<?php echo site_url() . '/' . esc_html( $post->post_type ) . '/'  ?>"><?php echo esc_html( ucwords( $post->post_type ) ) ?></a></p>
+                <p class="tags small-text"><?php echo get_the_date() ?></p>
             </footer> <!-- end article footer -->
         </div>
     </div>

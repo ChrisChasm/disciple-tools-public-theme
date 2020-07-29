@@ -9,7 +9,7 @@
         <a onclick="jQuery('.user-guide-menu-items').toggle()"><i class="fi-list"></i> Menu</a>
     </div>
     <div class="hide-for-small-only">
-        <h3 class="center title"><a href="/user-docs/">User Guide</a></h3>
+        <h3 class="center title"><a href="/user-docs/">User Guide</a><span style="float:right;"><a href="/user-docs/"><i class="fi-magnifying-glass"></i></a></span></h3>
     </div>
 
     <div class="user-guide-menu-items">
