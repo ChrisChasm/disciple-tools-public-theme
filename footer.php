@@ -72,7 +72,7 @@
                     <div class="page-wrapper" id="footer-copyright-bar">
                         <div class="page-inner-wrapper">
                             <div class="grid-x">
-                                <div class="cell copyright-content">&copy; <?php echo date( 'Y' ); ?> Disciple.Tools</div>
+                                <div class="cell copyright-content">&copy; <?php echo esc_html( gmdate( 'Y' ) ) ?> Disciple.Tools</div>
                             </div>
                         </div>
                     </div>

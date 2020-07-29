@@ -7,13 +7,13 @@
 $plugin_post_type = DTPS_Plugins_Post_Type::instance();
 $raw_defaults = array_keys( $plugin_post_type->get_custom_fields_settings() );
 $plugin_defaults = [];
-foreach( $raw_defaults as $row ) {
+foreach ( $raw_defaults as $row ) {
     $plugin_defaults[$row] = '';
 }
 
 // get post values
-$post = get_post();
-$post_meta = wp_parse_args( dtps_filter_meta( get_post_meta($post->ID ) ), $plugin_defaults );
+//$post = get_post();
+$post_meta = wp_parse_args( dtps_filter_meta( get_post_meta( $post->ID ) ), $plugin_defaults );
 
 $release = [];
 $version_control_url = get_post_meta( $post->ID, 'version_control_url', true );
@@ -63,7 +63,7 @@ get_header(); ?>
                             <hr>
                             <section class="entry-content" itemprop="text">
 
-                                <h2><?php echo $post_meta['name'] ?></h2>
+                                <h2><?php echo esc_html( $post_meta['name'] ) ?></h2>
 
                                 <p><strong>Description</strong></p>
 
@@ -75,7 +75,7 @@ get_header(); ?>
 
                                     <?php endwhile; ?>
 
-                                <?php else: ?>
+                                <?php else : ?>
 
                                     <p><?php echo nl2br( esc_html( $post_meta['description'] ) ) ?></p>
 
@@ -83,7 +83,7 @@ get_header(); ?>
 
                                 <p><strong>Installation</strong></p>
 
-                                <p><?php echo nl2br( $post_meta['installation'] ) ?></p>
+                                <p><?php echo esc_html( nl2br( $post_meta['installation'] ) ) ?></p>
 
                             </section> <!-- end article section -->
 
@@ -107,8 +107,8 @@ get_header(); ?>
 
                         <h4>Plugin Author</h4>
                         <div class="padding-left-1">
-                            <a href="<?php echo get_post_meta( get_the_ID(), 'author_homepage', true ) ?>">
-                                <?php echo get_post_meta( get_the_ID(), 'author', true ) ?>
+                            <a href="<?php echo esc_url( get_post_meta( get_the_ID(), 'author_homepage', true ) ) ?>">
+                                <?php echo esc_html( get_post_meta( get_the_ID(), 'author', true ) ) ?>
                             </a>
                         </div>
 
@@ -117,28 +117,28 @@ get_header(); ?>
                         <h4>Plugin Links</h4>
                         <p>
                             <?php if ( isset( $post_meta['homepage'] ) && ! empty( $post_meta['homepage'] ) ) : ?>
-                                <a href="<?php echo $post_meta['homepage'] ?>" class="button primary-button-hollow expanded"> View Source Code</a>
+                                <a href="<?php echo esc_url( $post_meta['homepage'] ) ?>" class="button primary-button-hollow expanded"> View Source Code</a>
                             <?php endif; ?>
 
                             <?php if ( isset( $post_meta['wiki_url'] ) && ! empty( $post_meta['wiki_url'] ) ) : ?>
-                                <a href="<?php echo $post_meta['wiki_url'] ?>" class="button primary-button-hollow expanded"> View Documentation</a>
+                                <a href="<?php echo esc_url( $post_meta['wiki_url'] ) ?>" class="button primary-button-hollow expanded"> View Documentation</a>
                             <?php endif; ?>
 
                             <?php if ( isset( $post_meta['issues_url'] ) && ! empty( $post_meta['issues_url'] ) ) : ?>
-                                <a href="<?php echo $post_meta['issues_url'] ?>" class="button primary-button-hollow"> View Issues</a>
+                                <a href="<?php echo esc_url( $post_meta['issues_url'] ) ?>" class="button primary-button-hollow"> View Issues</a>
                             <?php endif; ?>
 
                             <?php if ( isset( $post_meta['projects_url'] ) && ! empty( $post_meta['projects_url'] ) ) : ?>
-                                <a href="<?php echo $post_meta['projects_url'] ?>" class="button primary-button-hollow"> View Projects</a>
+                                <a href="<?php echo esc_url( $post_meta['projects_url'] ) ?>" class="button primary-button-hollow"> View Projects</a>
                             <?php endif; ?>
 
                             <?php if ( isset( $post_meta['license_url'] ) && ! empty( $post_meta['license_url'] ) ) : ?>
-                                <a href="<?php echo $post_meta['license_url'] ?>" class="button primary-button-hollow"> View License</a>
+                                <a href="<?php echo esc_url( $post_meta['license_url'] ) ?>" class="button primary-button-hollow"> View License</a>
                             <?php endif; ?>
                         </p>
 
                         <hr>
-                        <?php  if ( ! empty( $post_meta['github_owner'] ) ) : ?>
+                        <?php if ( ! empty( $post_meta['github_owner'] ) ) : ?>
                         <h4>Version Info</h4>
                         <div class="padding-left-1">
                             <div id="current_version"></div>

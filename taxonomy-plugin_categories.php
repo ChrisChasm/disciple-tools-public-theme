@@ -1,5 +1,5 @@
 <?php
-$term = get_term( get_queried_object()->term_id );
+$page_term = get_term( get_queried_object()->term_id );
 ?>
 
 
@@ -25,16 +25,17 @@ $term = get_term( get_queried_object()->term_id );
 
                     <div class="grid-x">
                         <div class="cell center padding-1">
-                            <h3 class="center"><?php echo esc_html( $term->name ) ?> Plugins</h3>
+                            <h3 class="center"><?php echo esc_html( $page_term->name ) ?> Plugins</h3>
                         </div>
                     </div>
 
                     <div class="grid-x grid-padding-x" data-equalizer data-equalize-on="medium"> <!-- grid-->
 
                         <?php
-                        if ( 'Community' === $term->name ) {
+                        if ( 'Community' === $page_term->name ) {
                             $loop = new WP_Query(
-                                [  'post_type' => 'plugins',
+                                [
+                                'post_type' => 'plugins',
                                     'order' => 'ASC',
                                     'orderby' => 'menu_order',
                                     'tax_query' => [
@@ -49,14 +50,15 @@ $term = get_term( get_queried_object()->term_id );
                             );
                         } else {
                             $loop = new WP_Query(
-                                [  'post_type' => 'plugins',
+                                [
+                                'post_type' => 'plugins',
                                     'order' => 'ASC',
                                     'orderby' => 'menu_order',
                                     'tax_query' => [
                                         [
                                             'taxonomy' => 'plugin_categories',
                                             'field'    => 'slug',
-                                            'terms'    => $term->slug,
+                                            'terms'    => $page_term->slug,
                                         ],
                                     ]
                                 ]
@@ -119,7 +121,8 @@ $term = get_term( get_queried_object()->term_id );
 
                             <?php
                             $loop = new WP_Query(
-                                [  'post_type' => 'plugins',
+                                [
+                                'post_type' => 'plugins',
                                     'nopaging' => true,
                                     'orderby' => 'rand',
                                     'tax_query' => [
@@ -135,10 +138,10 @@ $term = get_term( get_queried_object()->term_id );
                                 while ( $loop->have_posts() ) : $loop->the_post(); ?>
                                     <tr>
                                         <td>
-                                            <a href="<?php echo get_permalink() ?>"><?php the_title() ?></a>
+                                            <a href="<?php echo esc_url( get_permalink() ) ?>"><?php the_title() ?></a>
                                         </td>
                                         <td>
-                                            <?php echo get_post_meta( get_the_ID(), 'author', true ) ?>
+                                            <?php echo esc_html( get_post_meta( get_the_ID(), 'author', true ) ) ?>
                                         </td>
                                     </tr>
                                 <?php endwhile;

@@ -9,11 +9,11 @@
     <?php if ( is_search() ) : ?>
 
         <header class="article-header">
-            <h3><?php _e( 'Sorry, No Results.', 'dtps' );?></h3>
+            <h3><?php esc_html_e( 'Sorry, No Results.', 'dtps' );?></h3>
         </header>
 
         <section class="entry-content">
-            <p><?php _e( 'Try your search again.', 'dtps' );?></p>
+            <p><?php esc_html_e( 'Try your search again.', 'dtps' );?></p>
         </section>
 
         <section class="search">
@@ -21,17 +21,17 @@
         </section> <!-- end search section -->
 
         <footer class="article-footer">
-            <p><?php _e( 'This is the error message in the parts/content-missing.php template.', 'dtps' ); ?></p>
+            <p><?php esc_html_e( 'This is the error message in the parts/content-missing.php template.', 'dtps' ); ?></p>
         </footer>
 
     <?php else : ?>
 
         <header class="article-header">
-            <h3><?php _e( 'Oops, Post Not Found!', 'dtps' ); ?></h3>
+            <h3><?php esc_html_e( 'Oops, Post Not Found!', 'dtps' ); ?></h3>
         </header>
 
         <section class="entry-content">
-            <p><?php _e( 'Uh Oh. Something is missing. Try double checking things.', 'dtps' ); ?></p>
+            <p><?php esc_html_e( 'Uh Oh. Something is missing. Try double checking things.', 'dtps' ); ?></p>
         </section>
 
         <section class="search">

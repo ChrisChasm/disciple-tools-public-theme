@@ -45,7 +45,7 @@
                     'taxonomy' => 'news_categories',
                 ));
                 foreach ( $categories as $category ) {
-                    echo '<option value="'.site_url().'/news-categories/'. $category->slug.'">' . $category->name . '</option>';
+                    echo '<option value="'.esc_url( site_url() ).'/news-categories/'. esc_attr( $category->slug ).'">' . esc_html( $category->name ) . '</option>';
                 }
                 ?>
             </select>

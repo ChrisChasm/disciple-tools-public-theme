@@ -203,7 +203,7 @@ class DTPS_User_Documentation_Post_Type
 
         switch ($column_name) {
             case 'order':
-                echo $post->menu_order;
+                echo esc_html( $post->menu_order );
                 break;
             case 'phone':
                 echo '';

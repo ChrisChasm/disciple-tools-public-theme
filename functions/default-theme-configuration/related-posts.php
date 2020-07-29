@@ -16,13 +16,15 @@ function dtps_related_posts() {
         $related_posts = get_posts( $args );
         if ($related_posts) {
             echo '<div class="widget">';
-            echo __( '<h4 class="widgettitle">Related Posts</h4>', 'dtps' );
+            echo esc_html__( '<h4 class="widgettitle">Related Posts</h4>', 'dtps' );
             echo '<ul class="dtps-related-posts">';
-            foreach ( $related_posts as $post ) : setup_postdata( $post ); ?>
+            // @phpcs:disable
+            foreach ( $related_posts as $post ) : setup_postdata( $post); ?>
                 <li class="related_post">
                     <a href="<?php the_permalink() ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
                 </li>
             <?php endforeach; }
+            // @phpcs:enable
             echo '</div>';
     }
     wp_reset_postdata();

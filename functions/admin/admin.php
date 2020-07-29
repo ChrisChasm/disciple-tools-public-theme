@@ -31,16 +31,16 @@ function dtps_rss_dashboard_widget() {
         $limit = $feed->get_item_quantity( 5 );                      // specify number of items
         $items = $feed->get_items( 0, $limit );                      // create an array of items
     }
-    if ($limit == 0) { echo '<div>' . __( 'The RSS Feed is either empty or unavailable.', 'dtps' ) . '</div>';   // fallback message
+    if ($limit == 0) { echo '<div>The RSS Feed is either empty or unavailable.</div>';   // fallback message
     } else { foreach ($items as $item) { ?>
 
     <h4 style="margin-bottom: 0;">
-        <a href="<?php echo $item->get_permalink(); ?>" title="<?php echo mysql2date( __( 'j F Y @ g:i a', 'dtps' ), $item->get_date( 'Y-m-d H:i:s' ) ); ?>" target="_blank">
-            <?php echo $item->get_title(); ?>
+        <a href="<?php echo esc_url( $item->get_permalink() ) ?>" title="<?php echo esc_html( mysql2date( __( 'j F Y @ g:i a', 'dtps' ), $item->get_date( 'Y-m-d H:i:s' ) ) ) ?>" target="_blank">
+            <?php echo esc_html( $item->get_title() ) ?>
         </a>
     </h4>
     <p style="margin-top: 0.5em;">
-            <?php echo substr( $item->get_description(), 0, 200 ); ?>
+            <?php echo esc_html( substr( $item->get_description(), 0, 200 ) ) ?>
     </p>
     <?php }
     }

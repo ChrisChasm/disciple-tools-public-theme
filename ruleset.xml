@@ -52,6 +52,7 @@
 
     <!-- We currently don't want these rules that WordPress imports: -->
 
+    <exclude name="WordPress.Files.FileName"/>
     <exclude name="Generic.Classes.OpeningBraceSameLine.BraceOnNewLine" />
     <exclude name="Generic.Classes.OpeningBraceSameLine.SpaceBeforeBrace" />
     <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedELSE" />

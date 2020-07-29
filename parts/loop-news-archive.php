@@ -4,7 +4,7 @@
  *
  * Used for single, index, archive, search.
  */
-$post = get_post();
+//$post = get_post();
 ?>
 
 <article id="post-<?php the_ID(); ?>" role="article">
@@ -31,7 +31,7 @@ $post = get_post();
                     if ( $i > 0 ) {
                         echo ', ';
                     }
-                    echo '<a href="'.site_url().'/news-categories/'.$category->slug.'">'. $category->name . '</a>';
+                    echo '<a href="'.esc_url( site_url() ).'/news-categories/'.esc_html( $category->slug ).'">'. esc_html( $category->name ) . '</a>';
                     $i++;
                 }
                 echo '</footer> <!-- end article footer -->';

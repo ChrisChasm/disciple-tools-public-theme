@@ -1,7 +1,8 @@
 <?php
 // Comment Layout
 function dtps_comments( $comment, $args, $depth) {
-    $GLOBALS['comment'] = $comment; ?>
+    // @phpcs:disable
+    $GLOBALS['comment'] = $comment; // @phpcs:ignore ?>
     <li <?php comment_class( 'panel' ); ?>>
         <div class="media-object">
             <div class="media-object-section">
@@ -34,5 +35,7 @@ function dtps_comments( $comment, $args, $depth) {
             </div>
         </div>
     <!-- </li> is added by WordPress automatically -->
+
     <?php
+    // @phpcs:enable
 }

@@ -1,4 +1,3 @@
-
 <?php get_header(); ?>
 
 <div class="page-wrapper">
@@ -29,7 +28,8 @@
 
                         <?php
                         $loop = new WP_Query(
-                            [  'post_type' => 'plugins',
+                            [
+                            'post_type' => 'plugins',
                                 'order' => 'ASC',
                                 'orderby' => 'menu_order',
                                 'tax_query' => [
@@ -97,7 +97,8 @@
 
                             <?php
                             $loop = new WP_Query(
-                                [  'post_type' => 'plugins',
+                                [
+                                'post_type' => 'plugins',
                                     'nopaging' => true,
                                     'orderby' => 'rand',
                                     'tax_query' => [
@@ -114,10 +115,10 @@
                                 while ( $loop->have_posts() ) : $loop->the_post(); ?>
                                     <tr>
                                         <td>
-                                            <a href="<?php echo get_permalink() ?>"><?php the_title() ?></a>
+                                            <a href="<?php echo esc_url( get_permalink() ) ?>"><?php the_title() ?></a>
                                         </td>
                                         <td>
-                                            <?php echo get_post_meta( get_the_ID(), 'author', true ) ?>
+                                            <?php echo esc_html( get_post_meta( get_the_ID(), 'author', true ) ) ?>
                                         </td>
                                     </tr>
                                 <?php endwhile;

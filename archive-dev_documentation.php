@@ -21,7 +21,7 @@ $landing_post_id = 313; // quick start
 
                 <header class="article-header ">
 
-                    <h2 class="entry-title single-title vertical-padding" style="font-weight:bold;" itemprop="headline"><?php echo get_the_title( $landing_post_id ) ?></h2>
+                    <h2 class="entry-title single-title vertical-padding" style="font-weight:bold;" itemprop="headline"><?php echo esc_html( get_the_title( $landing_post_id ) ) ?></h2>
 
                 </header> <!-- end article header -->
 
@@ -42,7 +42,9 @@ $landing_post_id = 313; // quick start
                         </form>
                     </div>
 
-                    <?php echo get_the_content( null, false, $landing_post_id ) ?>
+                    <?php
+                    echo wp_kses_post( get_the_content( null, false, $landing_post_id ) );
+                    ?>
 
                 </section> <!-- end article section -->
 

@@ -38,7 +38,8 @@
 
             <?php
             $loop = new WP_Query(
-                [  'post_type' => 'plugins',
+                [
+                'post_type' => 'plugins',
                     'nopaging' => true,
                     'orderby' => 'rand',
                     'tax_query' => [
@@ -55,7 +56,7 @@
                 while ( $loop->have_posts() ) : $loop->the_post(); ?>
                     <tr>
                         <td>
-                            <a href="<?php echo get_permalink() ?>"><?php the_title() ?></a>
+                            <a href="<?php echo esc_url( get_permalink() ) ?>"><?php the_title() ?></a>
                         </td>
                     </tr>
                 <?php endwhile;

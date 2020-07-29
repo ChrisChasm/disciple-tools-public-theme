@@ -1,3 +1,4 @@
+<?php // @phpcs:disable ?>
 <div class="padding-horizontal-1">
 <h3>Get news via email</h3>
 
@@ -27,3 +28,4 @@
 <!--End mc_embed_signup-->
 
 </div>
+<?php // @phpcs:enable ?>

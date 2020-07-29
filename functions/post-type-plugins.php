@@ -203,7 +203,7 @@ class DTPS_Plugins_Post_Type
 
         switch ($column_name) {
             case 'order':
-                echo $post->menu_order;
+                echo esc_html( $post->menu_order );
                 break;
 
             default:
@@ -366,7 +366,7 @@ class DTPS_Plugins_Post_Type
 
         <hr>
         <h3>Rendered JSON URL </h3>
-        <a href="<?php echo WP_CONTENT_URL . '/themes/disciple-tools-public-site/version-control.php?id=' . hash('SHA256', $post->ID ) ?>" target="_blank"><?php echo WP_CONTENT_URL . '/themes/disciple-tools-public-site/version-control.php?id=' . hash('SHA256', $post->ID ) ?></a>
+        <a href="<?php echo esc_url( WP_CONTENT_URL ) . '/themes/disciple-tools-public-site/version-control.php?id=' . esc_attr( hash( 'SHA256', $post->ID ) ) ?>" target="_blank"><?php echo esc_url( WP_CONTENT_URL ) . '/themes/disciple-tools-public-site/version-control.php?id=' . esc_attr( hash( 'SHA256', $post->ID ) ) ?></a>
 
         <?php
     }

@@ -9,7 +9,7 @@ get_header(); ?>
 
 <main class="main white-section" role="main" style="max-width:1100px; padding: 1em; margin: 0 auto;">
 
-    <header><h1 class="center"><?php _e( 'Results for:', 'dtps' ); ?> <?php echo esc_attr( get_search_query() ); ?></h1></header>
+    <header><h1 class="center"><?php esc_html_e( 'Results for:', 'dtps' ); ?> <?php echo esc_attr( get_search_query() ); ?></h1></header>
 
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
