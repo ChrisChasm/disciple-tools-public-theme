@@ -15,7 +15,7 @@
         <!-- Main -->
         <main role="main" id="post-main" >
 
-            <div class="grid-x grid-margin-x">
+            <div class="grid-x grid-margin-x grid-padding-x">
 
                 <div class="cell medium-9 large-8">
 
@@ -54,7 +54,7 @@
 
                 </div>
 
-                <div class="sidebar cell medium-3 large-4" style="padding-right:20px;">
+                <div class="sidebar cell medium-3 large-4 " style="padding-right:20px;">
 
                     <hr class="show-for-small-only" />
 
