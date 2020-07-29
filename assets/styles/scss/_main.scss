@@ -146,7 +146,7 @@ NAVIGATION STYLES
     }
 
     @media ( max-width: $breakpoint-medium ) {
-
+        padding: 10px 0 0;
     }
 }
 
@@ -162,8 +162,8 @@ NAVIGATION STYLES
 
         @media ( max-width: $breakpoint-medium ) {
             background-image: url( $global-images-url + 'dt-logo-medium.png');
-            width: 65px;
-            padding-right:5px;
+            width: 105px;
+            margin:10px 10px 5px;
         }
     }
 
@@ -188,7 +188,13 @@ NAVIGATION STYLES
 }
 #top-mobile-menu-div {
     @media ( max-width: $breakpoint-medium ) {
-
+        .mobile-menu {
+            a {
+                i {
+                    font-size:1.4em;
+                }
+            }
+        }
     }
 }
 #top-lang-div {
@@ -891,5 +897,19 @@ hr {
     .callout {
         margin-right: 7px;
         margin-left: 7px;
+    }
+}
+
+@media ( max-width: $breakpoint-medium ) {
+    .elementor-48 .elementor-element.elementor-element-9e76d8e .elementor-heading-title {
+        line-height:2.2rem;
+        padding: 2rem 0;
+    }
+}
+
+.elementor-kit-8 {
+    button {
+        color: $primary-color !important;
+        background-color: inherit !important;
     }
 }

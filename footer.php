@@ -13,11 +13,11 @@
                     <!-- Footer Menu -->
                     <div class="page-wrapper" id="footer-menu-section">
                         <div class="page-inner-wrapper">
-                            <div class="grid-x">
-                                <div class="cell large-4">
+                            <div class="grid-x grid-padding-x">
+                                <div class="cell medium-4">
                                     <img class="hfe-retina-img elementor-animation-" src="https://dtools.wpengine.com/wp-content/uploads/2020/04/dt-emblem.png" srcset="https://dtools.wpengine.com/wp-content/uploads/2020/04/dt-emblem.png 1x,https://dtools.wpengine.com/wp-content/uploads/2020/04/dt-emblem-150px.png 2x">
                                 </div>
-                                <div class="cell large-2">
+                                <div class="cell medium-2">
                                     <p>
                                         <strong>Product</strong><br>
                                         <a href="/features/">Features</a><br>
@@ -26,7 +26,7 @@
                                         <a href="/launch-demo/">Demo</a>
                                     </p>
                                 </div>
-                                <div class="cell large-2">
+                                <div class="cell medium-2">
                                     <p>
                                         <strong>Solutions</strong><br>
                                         <a href="/for-online-strategies/">For Online Strategies</a><br>
@@ -35,7 +35,7 @@
                                         <a href="https://kingdom.training">Kingdom.Training</a>
                                     </p>
                                 </div>
-                                <div class="cell large-2">
+                                <div class="cell medium-2">
                                     <p>
                                         <strong>Resources</strong><br>
                                         <a href="/news/">News</a><br>
@@ -44,7 +44,7 @@
                                         <a href="https://www.youtube.com/channel/UCwQQSXUJunyqnj1bL_Fh6mQ/playlists">Youtube Training</a><br>
                                     </p>
                                 </div>
-                                <div class="cell large-2">
+                                <div class="cell medium-2">
                                     <p>
                                         <strong>Developers</strong><br>
                                         <a href="/dev-docs/">Developer Docs</a><br>
@@ -61,15 +61,15 @@
                     <!-- Footer Contact Bar-->
                     <div class="page-wrapper " id="footer-contact-bar">
                         <div class="page-inner-wrapper">
-                            <div class="grid-x">
-                                <div class="cell large-6" style="padding-top:15px;"><span><a href="/join-the-community/">Contact Us</a></span></div>
-                                <div class="cell large-6 "><span class="float-right"><a href="https://www.youtube.com/channel/UCwQQSXUJunyqnj1bL_Fh6mQ"><i class="fi-social-youtube"></i></a> <a href="https://github.com/DiscipleTools"><i class="fi-social-github"></i></a></span></div>
+                            <div class="grid-x grid-padding-x">
+                                <div class="cell small-6" style="padding-top:15px;"><span><a href="/join-the-community/">Contact Us</a></span></div>
+                                <div class="cell small-6 "><span class="float-right"><a href="https://www.youtube.com/channel/UCwQQSXUJunyqnj1bL_Fh6mQ"><i class="fi-social-youtube"></i></a> <a href="https://github.com/DiscipleTools"><i class="fi-social-github"></i></a></span></div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Footer Contact Bar-->
-                    <div class="page-wrapper " id="footer-copyright-bar">
+                    <div class="page-wrapper" id="footer-copyright-bar">
                         <div class="page-inner-wrapper">
                             <div class="grid-x">
                                 <div class="cell copyright-content">&copy; <?php echo date( 'Y' ); ?> Disciple.Tools</div>
