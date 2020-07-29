@@ -913,3 +913,12 @@ hr {
         background-color: inherit !important;
     }
 }
+
+.elementor-720 .elementor-element.elementor-element-d7746fc .elementor-button {
+    @media ( max-width: $breakpoint-medium ) {
+        font-size:24px !important;
+        .elementor-button-icon {
+            display:none;
+        }
+    }
+}
