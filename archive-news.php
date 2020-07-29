@@ -20,7 +20,7 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
         <!-- Main -->
         <main role="main" id="post-main" >
 
-            <div class="grid-x grid-margin-x">
+            <div class="grid-x grid-margin-x grid-padding-x">
 
                 <div class="cell large-8">
 
@@ -61,6 +61,8 @@ endif; /* no format */ ?>
                 </div>
 
                 <div class="sidebar cell large-4">
+
+                    <hr class="show-for-small-only" />
 
                     <?php get_sidebar( 'news' ); ?>
 

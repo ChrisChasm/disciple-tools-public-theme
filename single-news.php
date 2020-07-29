@@ -15,13 +15,13 @@ get_header(); ?>
                 <a href="<?php echo esc_url( home_url() ); ?>/news">News</a>&nbsp;&nbsp;&#187;&nbsp;&nbsp;
                 <?php echo esc_html( the_title() ) ?>
             </div>
-            <div class="breadcrumb-mobile show-for-small-only"><a href="<?php echo esc_url( home_url() ); ?>/news">News</a></div>
+            <div class="breadcrumb-mobile show-for-small-only padding-horizontal-1"><a href="<?php echo esc_url( home_url() ); ?>/news">News</a></div>
         </nav>
 
         <!-- Main -->
         <main role="main" id="post-main">
 
-            <div class="grid-x grid-margin-x">
+            <div class="grid-x grid-padding-x">
 
                 <div class="blog cell large-8">
 
@@ -42,6 +42,7 @@ get_header(); ?>
                 </div>
 
                 <div class="sidebar cell large-4">
+                    <hr />
 
                     <?php get_sidebar( 'news' ); ?>
 
