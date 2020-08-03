@@ -20,8 +20,8 @@
                     <?php dtps_top_nav(); ?>
                 </div>
             </div>
-            <div class="cell large-2 hide-for-small show-for-large float-right">
-                <a class="green-button" href="/launch-demo/">Demo</a>
+            <div class="cell large-2 hide-for-small show-for-large">
+                <a class="green-button float-right" href="/launch-demo/">Demo</a>
             </div>
 
             <div class="cell small-6 show-for-small hide-for-large" id="top-mobile-menu-div">

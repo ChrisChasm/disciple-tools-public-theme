@@ -117,7 +117,7 @@ NAVIGATION STYLES
 
 }
 #top-bar-inner-wrapper {
-    max-width: 1140px;
+    max-width: $global-width;
     margin: 0 auto;
 
     a {
@@ -129,6 +129,7 @@ NAVIGATION STYLES
 
     background-color: $white;
     padding: 10px 0;
+
     a {
         color: $black;
         font-weight: normal;
@@ -148,6 +149,9 @@ NAVIGATION STYLES
     @media ( max-width: $breakpoint-medium ) {
         padding: 10px 0 0;
     }
+}
+.float-right {
+    float: right;
 }
 
 #top-logo-div {

@@ -5,9 +5,9 @@
     <div class="page-inner-wrapper-hd">
 
         <!-- Statistics Section-->
-        <div class="grid-x grid-padding-x deep-blue-section padding-vertical-1">
+        <div class="grid-x grid-padding-x deep-blue-section padding-vertical-2">
             <div class="cell center" style="cursor:pointer;" onclick="window.location = '<?php site_url() ?>/plugins'">
-                <h1 class="center title">Plugins</h1>
+                <h1 class="center title">Featured Plugins</h1>
             </div>
         </div>
 
@@ -17,12 +17,6 @@
             <div class="grid-x grid-margin-x grid-padding-x">
 
                 <div class="cell medium-9 large-8">
-
-                    <div class="grid-x">
-                        <div class="cell center padding-1">
-                            <h3 class="center">Featured Plugins</h3>
-                        </div>
-                    </div>
 
                     <div class="grid-x grid-padding-x" data-equalizer data-equalize-on="medium"> <!-- grid-->
 
@@ -66,11 +60,11 @@
                         <h4>What's a Plugin?</h4>
                         <div class="padding-left-1">
                             <p>
-                                Plugins are ways of extending the Disciple Tools system to meet the unique needs of your project, ministry, or movement.
+                                Plugins are ways of extending the Disciple.Tools system to meet the unique needs of your project, ministry, or movement.
                             </p>
                             <p>
                                 The power of our open source model is that you don't have to wait on us! Using our starter plugin templates, complete sections can be
-                                added to Disciple Tools to track and steward ministry information important to you.
+                                added to Disciple.Tools to track and steward ministry information important to you.
                             </p>
                         </div>
                     </div>
