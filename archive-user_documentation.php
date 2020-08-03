@@ -11,9 +11,9 @@ $landing_post_id = 391; // quick start
 
         <div class="grid-x grid-margin-x grid-padding-x">
 
-            <div class="cell large-4 callout">
+            <div class="cell large-4 callout show-for-small-only">
 
-                <?php get_sidebar( 'user_documentation' ); ?>
+                <?php get_template_part( "parts/sidebar", "user-documentation" ); ?>
 
             </div>
 
@@ -29,14 +29,14 @@ $landing_post_id = 391; // quick start
 
                 <section class="entry-content" itemprop="text">
 
-                    <div class="callout padding-3">
+                    <div class="callout padding-top-3 padding-bottom-3">
                         <h3>Search</h3>
                         <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url() ) ?>">
                             <div class="input-group large">
-                                <input type="search" class="input-group-field search-field" placeholder="Search Guide ..." value="" name="s" title="Search for:">
-                                <input type="hidden" name="post_type[]" value="user_documentation" />
+                                <input type="search" class="input-group-field search-field" placeholder="Search User Guide ..." value="" name="s" title="Search for:">
+                                <input type="hidden" name="post_type" value="user_documentation" />
                                 <div class="input-group-button">
-                                    <input type="submit" class="search-submit button" value="Search User Guide">
+                                    <input type="submit" class="search-submit button" value="Search">
                                 </div>
                             </div>
                         </form>
@@ -45,6 +45,12 @@ $landing_post_id = 391; // quick start
                     <?php echo wp_kses_post( get_the_content( null, false, $landing_post_id ) ) ?>
 
                 </section> <!-- end article section -->
+
+            </div>
+
+            <div class="cell large-4 callout hide-for-small-only">
+
+                <?php get_template_part( "parts/sidebar", "user-documentation" ); ?>
 
             </div>
 

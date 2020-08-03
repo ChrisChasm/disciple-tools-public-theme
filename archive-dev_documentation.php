@@ -11,9 +11,9 @@ $landing_post_id = 313; // quick start
 
         <div class="grid-x grid-margin-x grid-padding-x">
 
-            <div class="cell large-4 callout">
+            <div class="cell large-4 callout show-for-small-only">
 
-                <?php get_sidebar( 'dev_documentation' ); ?>
+                <?php get_template_part( "parts/sidebar", "dev-documentation" ); ?>
 
             </div>
 
@@ -29,12 +29,12 @@ $landing_post_id = 313; // quick start
 
                 <section class="entry-content" itemprop="text">
 
-                    <div class="callout padding-3">
+                    <div class="callout padding-top-3 padding-bottom-3">
                         <h3>Search</h3>
                         <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url() ) ?>">
                             <div class="input-group large">
                                 <input type="search" class="input-group-field search-field" placeholder="Search Documentation ..." value="" name="s" title="Search for:">
-                                <input type="hidden" name="post_type[]" value="dev_documentation" />
+                                <input type="hidden" name="post_type" value="dev_documentation" />
                                 <div class="input-group-button">
                                     <input type="submit" class="search-submit button" value="Search">
                                 </div>
@@ -47,6 +47,12 @@ $landing_post_id = 313; // quick start
                     ?>
 
                 </section> <!-- end article section -->
+
+            </div>
+
+            <div class="cell large-4 callout hide-for-small-only">
+
+                <?php get_template_part( "parts/sidebar", "dev-documentation" ); ?>
 
             </div>
 
