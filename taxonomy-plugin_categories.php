@@ -42,8 +42,8 @@ $page_term = get_term( get_queried_object()->term_id );
                                         [
                                             'taxonomy' => 'plugin_categories',
                                             'field'    => 'slug',
-                                            'terms'    => 'featured',
-                                            'operator' => 'NOT IN'
+                                            'terms'    => 'community',
+                                            'operator' => 'IN'
                                         ],
                                     ]
                                 ]
