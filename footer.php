@@ -15,7 +15,7 @@
                         <div class="page-inner-wrapper">
                             <div class="grid-x grid-padding-x">
                                 <div class="cell medium-4">
-                                    <img class="hfe-retina-img elementor-animation-" src="https://dtools.wpengine.com/wp-content/uploads/2020/04/dt-emblem.png" srcset="https://dtools.wpengine.com/wp-content/uploads/2020/04/dt-emblem.png 1x,https://dtools.wpengine.com/wp-content/uploads/2020/04/dt-emblem-150px.png 2x">
+                                    <img class="hfe-retina-img elementor-animation-" src="/wp-content/uploads/2020/04/dt-emblem.png" srcset="/wp-content/uploads/2020/04/dt-emblem.png 1x,/wp-content/uploads/2020/04/dt-emblem-150px.png 2x">
                                 </div>
                                 <div class="cell medium-2">
                                     <p>
