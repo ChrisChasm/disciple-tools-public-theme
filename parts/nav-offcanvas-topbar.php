@@ -5,7 +5,7 @@
     $dtps_is_logged_in = is_user_logged_in();
 ?>
 
-<div id="top-bar-wrapper" data-sticky>
+<div id="top-bar-wrapper" data-sticky data-options="marginTop:0;">
     <div id="top-bar-inner-wrapper">
         <div class="grid-x top-bar">
 
