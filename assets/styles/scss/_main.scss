@@ -115,9 +115,9 @@ NAVIGATION STYLES
     border-bottom: 1px solid $dark-gray;
     background-color: $white;
     margin-top: 0 !important;
-    z-index:50;
 
 }
+
 #top-bar-inner-wrapper {
     max-width: $global-width;
     margin: 0 auto;
@@ -262,6 +262,13 @@ select {
 
 .off-canvas li.is-submenu-item {
     padding-left: 1em;
+}
+
+@media ( max-width: $breakpoint-medium ) {
+    //Disable fixed top bar on mobile
+    .sticky {
+        position: initial !important;
+    }
 }
 
 //@media only screen and (max-width: 639px) {
