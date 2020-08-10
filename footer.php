@@ -30,7 +30,7 @@
                                     <p>
                                         <strong>Solutions</strong><br>
                                         <a href="/for-online-strategies/">For Online Strategies</a><br>
-                                        <a href="/for-single-teams/">For Small Teams</a><br>
+                                        <a href="/for-small-teams/">For Small Teams</a><br>
                                         <a href="/for-multiple-teams/">For Multiple Teams</a><br>
                                         <a href="https://kingdom.training">Kingdom.Training</a>
                                     </p>
