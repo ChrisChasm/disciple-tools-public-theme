@@ -264,12 +264,12 @@ select {
     padding-left: 1em;
 }
 
-@media ( max-width: $breakpoint-medium ) {
-    //Disable fixed top bar on mobile
-    .sticky {
-        position: initial !important;
-    }
-}
+//@media ( max-width: $breakpoint-medium ) {
+//    //Disable fixed top bar on mobile
+//    .sticky {
+//        position: initial !important;
+//    }
+//}
 
 //@media only screen and (max-width: 639px) {
 //    h2 {
