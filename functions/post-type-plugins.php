@@ -162,7 +162,19 @@ class DTPS_Plugins_Post_Type
                     'with_front' => true
                 ), /* you can specify its url slug */
                 'has_archive' => 'plugins', /* you can rename the slug here */
-                'capability_type' => 'post',
+                'capability_type'       => 'plugin_posts',
+                'capabilities'          => [
+                    'create_posts'        => 'create_plugin_posts',
+                    'edit_post'           => 'edit_plugin_posts',
+                    'read_post'           => 'read_plugin_posts',
+                    'delete_post'         => 'delete_plugin_posts',
+                    'delete_others_posts' => 'delete_plugin_posts',
+                    'delete_posts'        => 'delete_plugin_posts',
+                    'edit_posts'          => 'edit_plugin_posts',
+                    'edit_others_posts'   => 'edit_plugin_posts',
+                    'publish_posts'       => 'publish_plugin_posts',
+                    'read_private_posts'  => 'read_plugin_posts',
+                ],
                 'hierarchical' => false,
                 /* the next one is important, it tells what's enabled in the post editor */
                 'show_in_rest' => true,

@@ -160,7 +160,19 @@ class DTPS_News_Post_Type
                     'with_front' => true
                 ), /* you can specify its url slug */
                 'has_archive' => 'news', /* you can rename the slug here */
-                'capability_type' => 'post',
+                'capability_type'       => 'news_posts',
+                'capabilities'          => [
+                    'create_posts'        => 'create_news_posts',
+                    'edit_post'           => 'edit_news_posts',
+                    'read_post'           => 'read_news_posts',
+                    'delete_post'         => 'delete_news_posts',
+                    'delete_others_posts' => 'delete_news_posts',
+                    'delete_posts'        => 'delete_news_posts',
+                    'edit_posts'          => 'edit_news_posts',
+                    'edit_others_posts'   => 'edit_news_posts',
+                    'publish_posts'       => 'publish_news_posts',
+                    'read_private_posts'  => 'read_news_posts',
+                ],
                 'hierarchical' => false,
                 /* the next one is important, it tells what's enabled in the post editor */
                 'show_in_rest' => true,

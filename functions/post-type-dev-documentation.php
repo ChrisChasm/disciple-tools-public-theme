@@ -161,7 +161,19 @@ class DTPS_Dev_Documentation_Post_Type
                     'with_front' => true
                 ), /* you can specify its url slug */
                 'has_archive' => 'dev-docs', /* you can rename the slug here */
-                'capability_type' => 'post',
+                'capability_type'       => 'dev_docs',
+                'capabilities'          => [
+                    'create_posts'        => 'create_dev_docs',
+                    'edit_post'           => 'edit_dev_docs',
+                    'read_post'           => 'read_dev_docs',
+                    'delete_post'         => 'delete_dev_docs',
+                    'delete_others_posts' => 'delete_dev_docs',
+                    'delete_posts'        => 'delete_dev_docs',
+                    'edit_posts'          => 'edit_dev_docs',
+                    'edit_others_posts'   => 'edit_dev_docs',
+                    'publish_posts'       => 'publish_dev_docs',
+                    'read_private_posts'  => 'read_dev_docs',
+                ],
                 'hierarchical' => true,
                 /* the next one is important, it tells what's enabled in the post editor */
                 'show_in_rest' => true,
