@@ -16,7 +16,7 @@
                     <?php endif; ?>
                 </h4>
             </p>
-            <p><?php the_excerpt(); ?></p>
+            <p><?php echo esc_html( get_post_meta( get_the_ID(), 'description', true ) ) ?></p>
             <?php
             $author = get_post_meta( get_the_ID(), 'author', true );
             if ( $author ) : ?>
