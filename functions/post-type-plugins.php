@@ -169,7 +169,7 @@ class DTPS_Plugins_Post_Type
                     'read_post'           => 'read_plugin_posts',
                     'delete_post'         => 'delete_plugin_posts',
                     'delete_others_posts' => 'delete_plugin_posts',
-                    'delete_posts'        => 'delete_uplugin_posts',
+                    'delete_posts'        => 'delete_plugin_posts',
                     'edit_posts'          => 'edit_plugin_posts',
                     'edit_others_posts'   => 'edit_plugin_posts',
                     'publish_posts'       => 'publish_plugin_posts',
