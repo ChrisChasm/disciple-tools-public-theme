@@ -131,6 +131,7 @@ class DTPS_User_Documentation_Post_Type
     public function register_post_type() {
         register_post_type($this->post_type, /* (http://codex.wordpress.org/Function_Reference/register_post_type) */
             // let's now add all the options for this post type
+
             array(
                 'labels' => array(
                     'name' => 'User Docs', /* This is the Title of the Group */
@@ -160,7 +161,19 @@ class DTPS_User_Documentation_Post_Type
                     'with_front' => true
                 ), /* you can specify its url slug */
                 'has_archive' => 'user-docs', /* you can rename the slug here */
-                'capability_type' => 'post',
+                'capability_type'       => 'user_doc',
+                'capabilities'          => [
+                    'create_posts'        => 'create_user_docs',
+                    'edit_post'           => 'edit_user_docs',
+                    'read_post'           => 'read_user_docs',
+                    'delete_post'         => 'delete_user_docs',
+                    'delete_others_posts' => 'delete_user_docs',
+                    'delete_posts'        => 'delete_user_docs',
+                    'edit_posts'          => 'edit_user_docs',
+                    'edit_others_posts'   => 'edit_user_docs',
+                    'publish_posts'       => 'publish_user_docs',
+                    'read_private_posts'  => 'read_user_docs',
+                ],
                 'hierarchical' => true,
                 /* the next one is important, it tells what's enabled in the post editor */
                 'show_in_rest' => true,
