@@ -795,7 +795,7 @@ if ( ! class_exists( 'Site_Link_System' ) ) {
 
             $fields['non_wp'] = [
                 'name'        => __( 'Disciple.Tools Site' ),
-                'description' => __( 'Is this connection to a Disciple.Tools/Wordpress system.' ),
+                'description' => __( 'Is this connection to a Disciple Tools/Wordpress system.' ),
                 'type'        => 'key_select',
                 'default'     => [
                     0 => __( 'Yes, connected to another Disciple.Tools site (default)' ),
@@ -906,7 +906,7 @@ if ( ! class_exists( 'Site_Link_System' ) ) {
             $this->meta_box_content( 'non_wp' );
             ?>
             <p id="description">
-                The site link system is built to easily connect Disciple.Tools systems together, but can be extended to provide token validation
+                The site link system is built to easily connect Disciple Tools systems together, but can be extended to provide token validation
                 for other system integrations. Please refer to our <a href="https://github.com/DiscipleTools/disciple-tools-theme/wiki">developer wiki</a> for more information.
             </p>
             <?php
@@ -1014,7 +1014,7 @@ if ( ! class_exists( 'Site_Link_System' ) ) {
             if ( $uri && ( strpos( $uri, 'edit.php' ) && strpos( $uri, 'post_type=site_link_system' ) ) || ( strpos( $uri, 'post-new.php' ) && strpos( $uri, 'post_type=site_link_system' ) ) ) : ?>
                 <script>
                   jQuery(function($) {
-                    $(`<div><a href="https://disciple-tools.readthedocs.io/en/latest/Disciple_Tools_Theme/getting_started/admin.html#site-links" style="margin-bottom:15px;" target="_blank">
+                    $(`<div><a href="https://disciple.tools/user-docs/getting-started-info/admin/site-links/" style="margin-bottom:15px;" target="_blank">
                         <img style="height:15px" class="help-icon" src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/help.svg' ) ?>"/>
                         Site link documentation</a></div>`).insertAfter(
                         '#wpbody-content .wrap .wp-header-end:eq(0)')
