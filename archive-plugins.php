@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-    <div class="page-wrapper">
+    <div class="page-wrapper padding-top-1" >
 
         <div class="page-inner-wrapper-hd">
 
