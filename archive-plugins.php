@@ -4,12 +4,6 @@
 
         <div class="page-inner-wrapper-hd">
 
-            <!-- Statistics Section-->
-            <div class="grid-x grid-padding-x deep-blue-section padding-vertical-2">
-                <div class="cell center" style="cursor:pointer;" onclick="window.location = '<?php site_url() ?>/plugins'">
-                    <h1 class="center title">Featured Plugins</h1>
-                </div>
-            </div>
 
             <!-- Main -->
             <main role="main" id="post-main" >
@@ -26,13 +20,6 @@
                                     'post_type' => 'plugins',
                                     'order' => 'ASC',
                                     'orderby' => 'menu_order',
-                                    'tax_query' => [
-                                        [
-                                            'taxonomy' => 'plugin_categories',
-                                            'field'    => 'slug',
-                                            'terms'    => 'featured',
-                                        ],
-                                    ]
                                 ]
                             );
                             if ( $loop->have_posts() ) :
@@ -71,57 +58,6 @@
                         <hr>
 
                         <?php get_template_part( 'parts/content', 'plugin-makelist' ); ?>
-
-                        <hr>
-
-                        <h4>Community Plugins</h4>
-                        <div class="padding-left-1">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th>
-                                        Name
-                                    </th>
-                                    <th>
-                                        Author
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <?php
-                                $loop = new WP_Query(
-                                    [
-                                        'post_type' => 'plugins',
-                                        'nopaging' => true,
-                                        'orderby' => 'rand',
-                                        'tax_query' => [
-                                            [
-                                                'taxonomy' => 'plugin_categories',
-                                                'field'    => 'slug',
-                                                'terms'    => 'community',
-                                                'operator' => 'IN'
-                                            ],
-                                        ]
-                                    ]
-                                );
-                                if ( $loop->have_posts() ) :
-                                    while ( $loop->have_posts() ) : $loop->the_post(); ?>
-                                        <tr>
-                                            <td>
-                                                <a href="<?php echo esc_url( get_permalink() ) ?>"><?php the_title() ?></a>
-                                            </td>
-                                            <td>
-                                                <?php echo esc_html( get_post_meta( get_the_ID(), 'author', true ) ) ?>
-                                            </td>
-                                        </tr>
-                                    <?php endwhile;
-                                endif;
-                                wp_reset_postdata();
-                                ?>
-                                </tbody>
-                            </table>
-                        </div>
 
                     </div>
 
