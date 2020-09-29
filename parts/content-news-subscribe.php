@@ -19,7 +19,7 @@
         </div>
         <div class="mc-field-group input-group" style="display:none">
             <strong>Disciple.Tools </strong>
-            <ul><li><input type="checkbox" value="4" name="group[27457][4]" id="mce-group[27457]-27457-0" checked><label for="mce-group[27457]-27457-0">D.T News</label></li>
+            <ul><li><input type="checkbox" value="1" name="group[27457][1]" id="mce-group[27457]-27457-0" checked><label for="mce-group[27457]-27457-0">D.T News</label></li>
             </ul>
         </div>
         <div id="mce-responses" class="clear">
