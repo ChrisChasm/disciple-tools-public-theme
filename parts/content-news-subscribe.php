@@ -17,6 +17,11 @@
                 <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded--subscribe" class="button secondary-button large">
             </div>
         </div>
+        <div class="mc-field-group input-group" style="display:none">
+            <strong>Disciple.Tools </strong>
+            <ul><li><input type="checkbox" value="1" name="group[27457][1]" id="mce-group[27457]-27457-0" checked><label for="mce-group[27457]-27457-0">D.T News</label></li>
+            </ul>
+        </div>
         <div id="mce-responses" class="clear">
             <div class="response" id="mce-error-response" style="display:none"></div>
             <div class="response" id="mce-success-response" style="display:none"></div>
