@@ -21,7 +21,7 @@
         </section> <!-- end search section -->
 
         <footer class="article-footer">
-            <p><?php esc_html_e( 'This is the error message in the parts/content-missing.php template.', 'dtps' ); ?></p>
+            
         </footer>
 
     <?php else : ?>
