@@ -21,7 +21,7 @@
         </section> <!-- end search section -->
 
         <footer class="article-footer">
-            
+
         </footer>
 
     <?php else : ?>

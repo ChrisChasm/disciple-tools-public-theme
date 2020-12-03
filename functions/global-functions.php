@@ -330,7 +330,7 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
         if ( isset( $fields[$field_key]["type"] ) && empty( $fields[$field_key]["custom_display"] ) && empty( $fields[$field_key]["hidden"] ) ) {
             $field_type = $fields[$field_key]["type"];
             $required_tag = ( isset( $fields[$field_key]["required"] ) && $fields[$field_key]["required"] === true ) ? 'required' : '';
-            $allowed_types = [ 'key_select', 'multi_select', 'date', 'text', 'number', 'connection', 'location', 'communication_channel' ];
+            $allowed_types = [ 'key_select', 'multi_select', 'date', 'text', 'number', 'connection', 'location', 'location_meta', 'communication_channel' ];
             if ( !in_array( $field_type, $allowed_types ) ){
                 return;
             }
@@ -339,7 +339,6 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
                     return;
                 }
             }
-
             ?>
             <div class="section-subheader">
                 <?php if ( isset( $fields[$field_key]["icon"] ) ) : ?>
@@ -347,8 +346,15 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
                 <?php endif;
                 echo esc_html( $fields[$field_key]["name"] );
                 ?> <span id="<?php echo esc_html( $field_key ); ?>-spinner" class="loading-spinner"></span>
+                <!-- communication channels-->
                 <?php if ( $field_type === "communication_channel" ) : ?>
                     <button data-list-class="<?php echo esc_html( $field_key ) ?>" class="add-button" type="button">
+                        <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/small-add.svg' ) ?>"/>
+                    </button>
+                <?php endif ?>
+                <!-- location add -->
+                <?php if ( ( $field_type === "location" || "location_meta" === $field_type ) && DT_Mapbox_API::get_key() && ! empty( $post ) ) : ?>
+                    <button data-list-class="<?php echo esc_html( $field_key ) ?>" class="add-button" id="new-mapbox-search" type="button">
                         <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/small-add.svg' ) ?>"/>
                     </button>
                 <?php endif ?>
@@ -452,45 +458,65 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
                         </div>
                     </div>
                 </div>
-            <?php elseif ( $field_type === "location" ) :?>
-                <div class="dt_location_grid">
-                    <var id="location_grid-result-container" class="result-container"></var>
-                    <div id="location_grid_t" name="form-location_grid" class="scrollable-typeahead typeahead-margin-when-active">
-                        <div class="typeahead__container">
-                            <div class="typeahead__field">
+            <?php elseif ( $field_type === "location" || $field_type === "location_meta" ) :?>
+                <?php if ( DT_Mapbox_API::get_key() && empty( $post ) ) : // test if Mapbox key is present ?>
+                    <div id="mapbox-autocomplete" class="mapbox-autocomplete input-group" data-autosubmit="false">
+                        <input id="mapbox-search" type="text" class="input-group-field" name="mapbox_search" placeholder="Search Location" />
+                        <div class="input-group-button">
+                            <button id="mapbox-spinner-button" class="button hollow" style="display:none;"><span class="loading-spinner active"></span></button>
+                            <button id="mapbox-clear-autocomplete" class="button alert input-height delete-button-style mapbox-delete-button" style="display:none;" type="button">&times;</button>
+                        </div>
+                        <div id="mapbox-autocomplete-list" class="mapbox-autocomplete-items"></div>
+                    </div>
+                    <script>
+                        jQuery(document).ready(function(){
+                            write_input_widget()
+                        })
+                    </script>
+                <?php elseif ( DT_Mapbox_API::get_key() ) : // test if Mapbox key is present ?>
+                    <div id="mapbox-wrapper"></div>
+                <?php else : ?>
+                    <div class="dt_location_grid">
+                        <var id="location_grid-result-container" class="result-container"></var>
+                        <div id="location_grid_t" name="form-location_grid" class="scrollable-typeahead typeahead-margin-when-active">
+                            <div class="typeahead__container">
+                                <div class="typeahead__field">
                             <span class="typeahead__query">
                                 <input class="js-typeahead-location_grid input-height"
                                        data-field="<?php echo esc_html( $field_key ) ?>"
                                        data-field_type="location"
                                        name="location_grid[query]"
                                        placeholder="<?php echo esc_html( sprintf( _x( "Search %s", "Search 'something'", 'disciple_tools' ), $fields[$field_key]['name'] ) )?>"
-                                       autocomplete="off">
+                                       autocomplete="off" />
                             </span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
             <?php elseif ( $field_type === "communication_channel" ) : ?>
-                <ul id="edit-<?php echo esc_html( $field_key ) ?>" >
+                <div id="edit-<?php echo esc_html( $field_key ) ?>" >
                     <?php foreach ( $post[$field_key] ?? [] as $field_value ) : ?>
-                        <li style="display:flex">
+                        <div class="input-group">
                             <input id="<?php echo esc_html( $field_value["key"] ) ?>"
                                    type="text"
                                    data-field="<?php echo esc_html( $field_key ) ?>"
                                    value="<?php echo esc_html( $field_value["value"] ) ?>"
-                                   class="dt-communication-channel">
-                            <button class="button clear channel-delete-button new-<?php echo esc_html( $field_key ); ?>" data-field="<?php echo esc_html( $field_key ); ?>" data-key="<?php echo esc_html( $field_value["key"] ); ?>">
-                                <img src="<?php echo esc_html( get_template_directory_uri() . '/dt-assets/images/invalid.svg' ) ?>">
-                            </button>
-                        </li>
+                                   class="dt-communication-channel input-group-field" />
+                            <div class="input-group-button">
+                                <button class="button alert input-height delete-button-style channel-delete-button delete-button new-<?php echo esc_html( $field_key ); ?>" data-field="<?php echo esc_html( $field_key ); ?>" data-key="<?php echo esc_html( $field_value["key"] ); ?>">&times;</button>
+                            </div>
+                        </div>
                     <?php endforeach;
                     if ( empty( $post[$field_key] ) ?? [] ): ?>
-                        <input data-field="<?php echo esc_html( $field_key ) ?>"
-                               type="text" <?php echo esc_html( $required_tag ) ?>
-                               class="dt-communication-channel">
+                        <div class="input-group">
+                            <input type="text"
+                                    <?php echo esc_html( $required_tag ) ?>
+                                   data-field="<?php echo esc_html( $field_key ) ?>"
+                                   class="dt-communication-channel input-group-field" />
+                        </div>
                     <?php endif ?>
-                </ul>
-
+                </div>
             <?php endif;
         }
     }
@@ -502,6 +528,15 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
         $var += (int) $val;
     }
 
+    function dt_get_keys_map( $array, $key = "ID" ){
+        return array_map(  function ( $a ) use ( $key ) {
+            if ( isset( $a[$key] ) ){
+                return $a[$key];
+            } else {
+                return null;
+            }
+        }, $array );
+    }
 
     /**
      * All code above here.
