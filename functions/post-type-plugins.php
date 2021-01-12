@@ -725,6 +725,8 @@ class DTPS_Plugins_Post_Type
             'default' => 'https://disciple.tools',
             'section' => 'plugin_version_control_fields',
         );
+
+
         $fields['homepage'] = array(
             'name' => 'Repo URL',
             'description' => 'If empty, button will not display.',
@@ -741,6 +743,13 @@ class DTPS_Plugins_Post_Type
         );
         $fields['projects_url'] = array(
             'name' => 'Projects URL',
+            'description' => 'If empty, button will not display.',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'plugin_version_control_fields',
+        );
+        $fields['discussions_url'] = array(
+            'name' => 'Discussions URL',
             'description' => 'If empty, button will not display.',
             'type' => 'text',
             'default' => '',

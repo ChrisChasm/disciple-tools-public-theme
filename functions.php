@@ -48,6 +48,9 @@ require_once( get_template_directory().'/functions/enqueue-scripts.php' );
 require_once( get_template_directory().'/functions/rest-api.php' );
 require_once( get_template_directory().'/functions/multi-role/multi-role.php' );
 
+// Parsedown
+require_once( get_template_directory().'/functions/parsedown/Parsedown.php' );
+
 /**
  * GLOBAL FUNCTIONS
  */

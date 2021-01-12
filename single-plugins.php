@@ -54,36 +54,62 @@ get_header(); ?>
                                     <div><?php the_post_thumbnail( 'full' ); ?></div>
                                 <?php endif; ?>
 
-
                                 <h2 class="entry-title single-title vertical-padding" itemprop="headline"><?php the_title(); ?></h2>
 
                                 <div class="center"><a href="https://github.com/<?php echo esc_attr( $post_meta['github_owner'] ) ?>/<?php echo esc_attr( $post_meta['github_repo'] ) ?>/releases/latest/download/<?php echo esc_attr( $post_meta['github_repo'] ) ?>.zip" class="button"><i class="fi-download"></i> Download</a> </div>
 
                             </header> <!-- end article header -->
+
                             <hr>
+
                             <section class="entry-content" itemprop="text">
 
-                                <h2><?php echo esc_html( $post_meta['name'] ) ?></h2>
+                                <?php
+                                // STRING
+                                $string = FALSE;
+                                if ( $post_meta['readme_url'] ) { /* If readme url is present, then the Readme markdown is used */
+                                    $string = file_get_contents( $post_meta['readme_url'] );
+                                }
+                                // end check on readme existence ?>
 
-                                <p><strong>Description</strong></p>
+                               <?php
+                                // if string exists
+                                if( $string !== FALSE ) {  /* Use the content section of the post */
+                                    $Parsedown = new Parsedown();
+                                    echo $Parsedown->text( $string );
+                                }
+                                // end readme render ?>
 
-                                <?php if (have_posts()) : ?>
 
-                                    <?php while (have_posts()) : the_post(); ?>
+                                <?php
+                                // render the post content
+                                if( $string === FALSE ) {
 
-                                        <?php the_content(); ?>
+                                    ?>
 
-                                    <?php endwhile; ?>
+                                    <h2><?php echo esc_html( $post_meta['name'] ) ?></h2>
 
-                                <?php else : ?>
+                                    <p><strong>Description</strong></p>
 
-                                    <p><?php echo nl2br( esc_html( $post_meta['description'] ) ) ?></p>
+                                    <?php if (have_posts()) : ?>
 
-                                <?php endif; ?>
+                                        <?php while (have_posts()) : the_post(); ?>
 
-                                <p><strong>Installation</strong></p>
+                                            <?php the_content(); ?>
 
-                                <p><?php echo esc_html( nl2br( $post_meta['installation'] ) ) ?></p>
+                                        <?php endwhile; ?>
+
+                                    <?php else : ?>
+
+                                        <p><?php echo nl2br( esc_html( $post_meta['description'] ) ) ?></p>
+
+                                    <?php endif; ?>
+
+                                    <p><strong>Installation</strong></p>
+
+                                    <p><?php echo esc_html( nl2br( $post_meta['installation'] ) ) ?></p>
+
+                                <?php } // end render post content ?>
 
                             </section> <!-- end article section -->
 
@@ -115,29 +141,42 @@ get_header(); ?>
                         <hr>
 
                         <h4>Plugin Links</h4>
-                        <p>
-                            <?php if ( isset( $post_meta['homepage'] ) && ! empty( $post_meta['homepage'] ) ) : ?>
-                                <a href="<?php echo esc_url( $post_meta['homepage'] ) ?>" class="button primary-button-hollow expanded"> View Source Code</a>
-                            <?php endif; ?>
-
-                            <?php if ( isset( $post_meta['wiki_url'] ) && ! empty( $post_meta['wiki_url'] ) ) : ?>
-                                <a href="<?php echo esc_url( $post_meta['wiki_url'] ) ?>" class="button primary-button-hollow expanded"> View Documentation</a>
-                            <?php endif; ?>
+                        <div class="grid-x">
+                            <div class="cell">
+                                <?php if ( isset( $post_meta['wiki_url'] ) && ! empty( $post_meta['wiki_url'] ) ) : ?>
+                                    <a href="<?php echo esc_url( $post_meta['wiki_url'] ) ?>" class="button primary-button-hollow expanded"> Documentation</a>
+                                <?php endif; ?>
+                            </div>
+                            <div class="cell">
+                                <?php if ( isset( $post_meta['discussions_url'] ) && ! empty( $post_meta['discussions_url'] ) ) : ?>
+                                    <a href="<?php echo esc_url( $post_meta['discussions_url'] ) ?>" class="button primary-button-hollow expanded"> Discussions</a>
+                                <?php endif; ?>
+                            </div>
+                            <div class="cell">
+                                <?php if ( isset( $post_meta['homepage'] ) && ! empty( $post_meta['homepage'] ) ) : ?>
+                                    <a href="<?php echo esc_url( $post_meta['homepage'] ) ?>" class="button primary-button-hollow expanded"> Source Code</a>
+                                <?php endif; ?>
+                            </div>
 
                             <?php if ( isset( $post_meta['issues_url'] ) && ! empty( $post_meta['issues_url'] ) ) : ?>
-                                <a href="<?php echo esc_url( $post_meta['issues_url'] ) ?>" class="button primary-button-hollow"> View Issues</a>
+                                <div class="cell medium-4" style="padding-right:5px;">
+                                   <a href="<?php echo esc_url( $post_meta['issues_url'] ) ?>" class="button primary-button-hollow expanded"> Issues</a>
+                                </div>
                             <?php endif; ?>
-
                             <?php if ( isset( $post_meta['projects_url'] ) && ! empty( $post_meta['projects_url'] ) ) : ?>
-                                <a href="<?php echo esc_url( $post_meta['projects_url'] ) ?>" class="button primary-button-hollow"> View Projects</a>
+                                <div class="cell medium-4">
+                                   <a href="<?php echo esc_url( $post_meta['projects_url'] ) ?>" class="button primary-button-hollow expanded"> Projects</a>
+                                </div>
                             <?php endif; ?>
-
                             <?php if ( isset( $post_meta['license_url'] ) && ! empty( $post_meta['license_url'] ) ) : ?>
-                                <a href="<?php echo esc_url( $post_meta['license_url'] ) ?>" class="button primary-button-hollow"> View License</a>
+                                <div class="cell medium-4" style="padding-left:5px;">
+                                   <a href="<?php echo esc_url( $post_meta['license_url'] ) ?>" class="button primary-button-hollow expanded"> License</a>
+                                </div>
                             <?php endif; ?>
-                        </p>
+                        </div>
 
                         <hr>
+
                         <?php if ( ! empty( $post_meta['github_owner'] ) ) : ?>
                         <h4>Version Info</h4>
                         <div class="padding-left-1">
