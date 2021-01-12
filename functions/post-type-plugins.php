@@ -771,7 +771,7 @@ class DTPS_Plugins_Post_Type
         );
         $fields['readme_url'] = array(
             'name' => 'Readme URL',
-            'description' => 'If empty, button will not display.',
+            'description' => 'If empty, button will not display. WARNING: Must be a raw markdown file. Use raw access url for github hosted readme. EX: https://raw.githubusercontent.com/DiscipleTools/disciple-tools-metrics-export/master/README.md',
             'type' => 'text',
             'default' => '',
             'section' => 'plugin_version_control_fields',
