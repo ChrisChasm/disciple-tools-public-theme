@@ -70,18 +70,17 @@ get_header(); ?>
                                 if ( $post_meta['readme_url'] ) { /* If readme url is present, then the Readme markdown is used */
                                     $string = file_get_contents( $post_meta['readme_url'] );
                                 }
-                                // end check on readme existence ?>
+                                // end check on readme existence
 
-                               <?php
+
                                 // if string exists
                                 if( $string !== FALSE ) {  /* Use the content section of the post */
                                     $Parsedown = new Parsedown();
                                     echo $Parsedown->text( $string );
                                 }
-                                // end readme render ?>
+                                // end readme render
 
 
-                                <?php
                                 // render the post content
                                 if( $string === FALSE ) {
 

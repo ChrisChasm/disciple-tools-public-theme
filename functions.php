@@ -1,6 +1,8 @@
 <?php
 require_once( get_template_directory().'/functions/global-functions.php' );
 
+require_once( get_template_directory().'/functions/common-functions.php' );
+
 // Theme support options
 require_once( get_template_directory().'/functions/default-theme-configuration/theme-support.php' );
 
