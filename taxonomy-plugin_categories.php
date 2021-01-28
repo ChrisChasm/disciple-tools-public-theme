@@ -86,7 +86,7 @@ $page_term = get_term( get_queried_object()->term_id );
 
                     <h4>Plugin Categories</h4>
                     <div class="padding-left-1">
-                        <a href="/plugins/">All Plugins</a>
+                        <a href="/plugins/">All Plugins</a> (<?php echo wp_count_posts( 'plugins' )->publish ?>)
                         <?php wp_list_categories(
                             [
                                 'show_count' => 1,
