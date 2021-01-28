@@ -35,27 +35,15 @@ $page_term = get_term( get_queried_object()->term_id );
                             ],
                         ];
 
-                        //filter our feature plugins for our main plugins page.
-                        if ( !isset( $page_term->slug ) || ( $page_term->slug !== "featured" && !in_array( $page_term->slug, [ 'development' ] ) ) ) {
-                            $tax_query["relation"] = "AND";
-                            $tax_query[] = [
-                                'taxonomy' => 'plugin_categories',
-                                'field'    => 'slug',
-                                'terms'    => ['development', 'featured'],
-                                'operator' => 'NOT IN'
-                            ];
-                        }
-
                         $loop = new WP_Query(
                             [
                             'post_type' => 'plugins',
                                 'order' => 'ASC',
-                                'orderby' => 'menu_order',
+                                'orderby' => 'post_title',
                                 'posts_per_page' => 50,
                                 'tax_query' => $tax_query
                             ]
                         );
-
 
                         if ( $loop->have_posts() ) :
                             while ( $loop->have_posts() ) : $loop->the_post(); ?>
@@ -96,7 +84,21 @@ $page_term = get_term( get_queried_object()->term_id );
 
                     <hr>
 
+                    <h4>Plugin Categories</h4>
+                    <div class="padding-left-1">
+                        <a href="/plugins/">All Plugins</a>
+                        <?php wp_list_categories(
+                            [
+                                'show_count' => 1,
+                                'taxonomy' => 'plugin_categories',
+                                'title_li' => ''
+                            ] ) ?>
+                    </div>
+
+                    <hr>
+
                     <?php
+                    /*
                     if ( !isset( $page_term->slug ) || $page_term->slug !== "featured" ) : ?>
                         <h4>Featured Plugins</h4>
                         <?php
@@ -121,18 +123,14 @@ $page_term = get_term( get_queried_object()->term_id );
                             [
                             'post_type' => 'plugins',
                                 'nopaging' => true,
-                                'orderby' => 'rand',
+                                'orderby' => 'post_title',
+                                'order' => 'ASC',
                                 'tax_query' => [
                                     [
                                         'taxonomy' => 'plugin_categories',
                                         'field'    => 'slug',
                                         'terms'    => 'disciple-tools',
                                         'operator' => "IN"
-                                    ],[
-                                        'taxonomy' => 'plugin_categories',
-                                        'field'    => 'slug',
-                                        'terms'    => ['development', 'featured'],
-                                        'operator' => 'NOT IN'
                                     ],
                                     'relation' => 'AND',
                                 ]
@@ -172,6 +170,8 @@ $page_term = get_term( get_queried_object()->term_id );
                             </tbody>
                         </table>
                     </div>
+
+                    <?php */ ?>
 
                 </div>
 
