@@ -88,7 +88,7 @@
                                                 <?php echo esc_html( get_post_meta( get_the_ID(), 'version', true ) ) ?>
                                             </td>
                                             <td>
-                                                <a href="<?php echo the_permalink() ?>" class="button">View</a>
+                                                <a href="<?php the_permalink() ?>" class="button">View</a>
                                             </td>
                                         </tr>
                                     <?php endwhile;
@@ -141,7 +141,7 @@
 
                         <h4>Plugin Categories</h4>
                         <div class="padding-left-1">
-                            <a href="/plugins/">All Plugins</a> (0)
+                            <a href="/plugins/">All Plugins</a> (<?php echo wp_count_posts( 'plugins' )->publish ?>)
                             <?php wp_list_categories(
                                 [
                                     'show_count' => 1,
