@@ -69,8 +69,10 @@
                                             <td class="name" style="white-space: nowrap; font-weight: bolder; vertical-align: top;">
                                                 <a href="<?php echo esc_url( get_permalink() ) ?>"><?php the_title() ?></a>
                                             </td>
-                                            <td class="description" style="width:33%;">
-                                                <?php echo esc_html( get_post_meta( get_the_ID(), 'description', true ) ) ?>
+                                            <td class="description " style="width:33%;">
+                                                <span class="hide-for-small-only">
+                                                    <?php echo esc_html( get_post_meta( get_the_ID(), 'description', true ) ) ?>
+                                                </span>
                                             </td>
                                             <td class="category" style="font-size: .9em; vertical-align: top;">
                                                 <?php
