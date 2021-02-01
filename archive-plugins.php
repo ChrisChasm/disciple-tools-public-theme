@@ -36,6 +36,7 @@
                                 </div>
                             </div>
                             <input type="text" class="search input" placeholder="Filter List" />
+                            <div class="table-scroll">
                             <table>
                                 <thead>
                                     <tr>
@@ -97,6 +98,7 @@
                                 ?>
                                 </tbody>
                             </table>
+                            </div>
                         </div>
 
 
