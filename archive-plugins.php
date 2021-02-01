@@ -45,7 +45,7 @@
                                                 Name
                                             </button>
                                         </th>
-                                        <th>
+                                        <th class="hide-for-small-only">
                                             Description
                                         </th>
                                         <th>
@@ -69,7 +69,7 @@
                                             <td class="name" style="white-space: nowrap; font-weight: bolder; vertical-align: top;">
                                                 <a href="<?php echo esc_url( get_permalink() ) ?>"><?php the_title() ?></a>
                                             </td>
-                                            <td class="description " style="width:33%;">
+                                            <td class="description hide-for-small-only" style="width:33%;">
                                                 <span class="hide-for-small-only">
                                                     <?php echo esc_html( get_post_meta( get_the_ID(), 'description', true ) ) ?>
                                                 </span>
