@@ -20,6 +20,7 @@ $page_term = get_term( get_queried_object()->term_id );
                     <div class="grid-x">
                         <div class="cell center padding-1">
                             <h3 class="center"><?php echo esc_html( $page_term->name ) ?> Plugins</h3>
+                            <?php echo esc_html( $page_term->description ) ?>
                         </div>
                     </div>
 

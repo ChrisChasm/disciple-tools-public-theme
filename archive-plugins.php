@@ -45,18 +45,14 @@
                                                 Name
                                             </button>
                                         </th>
+                                        <th></th>
                                         <th class="hide-for-small-only">
                                             Description
                                         </th>
                                         <th>
                                             Categories
                                         </th>
-                                        <th>
-                                            Versions
-                                        </th>
-                                        <th>
-
-                                        </th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody class="list">
@@ -64,10 +60,27 @@
                                 <?php
 
                                 if ( $loop->have_posts() ) :
-                                    while ( $loop->have_posts() ) : $loop->the_post(); ?>
+                                    while ( $loop->have_posts() ) : $loop->the_post();
+                                        $categories = wp_get_object_terms( get_the_ID(), 'plugin_categories' );
+                                ?>
                                         <tr>
                                             <td class="name" style="white-space: nowrap; font-weight: bolder; vertical-align: top;">
                                                 <a href="<?php echo esc_url( get_permalink() ) ?>"><?php the_title() ?></a>
+                                            </td>
+                                            <td style="white-space: nowrap; font-weight: bolder; vertical-align: top;">
+                                                <?php
+                                                if ( ! empty( $categories  ) ) {
+                                                    foreach( $categories as $index => $category ) {
+                                                        if ( 'beta' === $category->slug ) {
+                                                            echo '<a class="button tiny warning">BETA</a>';
+                                                        }
+                                                        if ( 'proof-of-concept' === $category->slug ) {
+                                                            echo '<a class="button tiny warning">POC</a>';
+                                                        }
+
+                                                    }
+                                                }
+                                                ?>
                                             </td>
                                             <td class="description hide-for-small-only" style="width:33%;">
                                                 <span class="hide-for-small-only">
@@ -76,21 +89,17 @@
                                             </td>
                                             <td class="category" style="font-size: .9em; vertical-align: top;">
                                                 <?php
-                                                $categories = wp_get_object_terms( get_the_ID(), 'plugin_categories' );
                                                 if ( ! empty( $categories  ) ) {
                                                     foreach( $categories as $index => $category ) {
                                                         if ( 0 !== $index ){
                                                             echo ', ';
                                                         }
-                                                        echo esc_html(  $category->name );
+                                                        echo '<a href="'.get_category_link( $category ).'">' . esc_html(  $category->name ) . '</a>';
                                                     }
                                                 }
                                                 ?>
                                             </td>
-                                            <td class="version" style="vertical-align: top;">
-                                                <?php echo esc_html( get_post_meta( get_the_ID(), 'version', true ) ) ?>
-                                            </td>
-                                            <td>
+                                            <td style="font-size: .9em; vertical-align: top;">
                                                 <a href="<?php the_permalink() ?>" class="button">View</a>
                                             </td>
                                         </tr>
