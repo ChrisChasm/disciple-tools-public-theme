@@ -56,6 +56,13 @@ get_header(); ?>
 
                                 <h2 class="entry-title single-title vertical-padding" itemprop="headline"><?php the_title(); ?></h2>
 
+                                <?php if ( is_object_in_term( get_the_ID(), 'plugin_categories','beta' ) ) : ?>
+                                    <a class="button small warning">BETA</a>
+                                <?php endif; ?>
+                                <?php if ( is_object_in_term( get_the_ID(), 'plugin_categories','proof-of-concept' ) ) : ?>
+                                    <a class="button small warning">Proof of Concept</a>
+                                <?php endif; ?>
+
                                 <div class="center"><a href="https://github.com/<?php echo esc_attr( $post_meta['github_owner'] ) ?>/<?php echo esc_attr( $post_meta['github_repo'] ) ?>/releases/latest/download/<?php echo esc_attr( $post_meta['github_repo'] ) ?>.zip" class="button"><i class="fi-download"></i> Download</a> </div>
 
                             </header> <!-- end article header -->

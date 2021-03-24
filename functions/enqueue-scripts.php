@@ -65,8 +65,26 @@ function site_scripts() {
     wp_enqueue_style( 'foundations-icons', get_template_directory_uri() .'/assets/styles/foundation-icons/foundation-icons.css', array(), '3' );
 
 
+
+
+    if ( 'plugins' === dt_public_site_get_url_path() ) {
+        wp_register_script( 'listjs', '//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js', array( 'jquery' ), '2.3.1', true  );
+        wp_enqueue_script( 'listjs' );
+    }
+
 }
 add_action( 'wp_enqueue_scripts', 'site_scripts', 999 );
+
+function dt_public_site_get_url_path() {
+    if ( isset( $_SERVER["HTTP_HOST"] ) ) {
+        $url  = ( !isset( $_SERVER["HTTPS"] ) || @( $_SERVER["HTTPS"] != 'on' ) ) ? 'http://'. sanitize_text_field( wp_unslash( $_SERVER["HTTP_HOST"] ) ) : 'https://'. sanitize_text_field( wp_unslash( $_SERVER["HTTP_HOST"] ) );
+        if ( isset( $_SERVER["REQUEST_URI"] ) ) {
+            $url .= sanitize_text_field( wp_unslash( $_SERVER["REQUEST_URI"] ) );
+        }
+        return trim( str_replace( get_site_url(), "", $url ), '/' );
+    }
+    return '';
+}
 
 
 function dtps_login_css() {

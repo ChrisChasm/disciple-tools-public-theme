@@ -628,7 +628,6 @@ class DTPS_Plugins_Post_Type
             'section' => 'plugin_remote_sync',
         );
 
-
         // dynamic vc
         $fields['version'] = array(
             'name' => 'Current Version Number',

@@ -10,9 +10,10 @@
                 <h4>
                     <a href="<?php echo esc_url( $permalink ) ?>"><?php the_title() ?></a>
                     <?php if ( is_object_in_term( get_the_ID(), 'plugin_categories','beta' ) ) : ?>
-                    <span style="background-color: #8bc34a; padding:2px 10px 2px 10px; color:white; margin-left:10px; border-radius: 5px">
-                        BETA
-                    </span>
+                        <br><a class="button small warning">BETA</a>
+                    <?php endif; ?>
+                    <?php if ( is_object_in_term( get_the_ID(), 'plugin_categories','proof-of-concept' ) ) : ?>
+                        <br><a class="button small warning">Proof of Concept</a>
                     <?php endif; ?>
                 </h4>
             </p>

@@ -88,7 +88,9 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
     }
 
     /**
-     * The the base site url with, including the subfolder if wp is installed in a subfolder.
+     * The path of the url excluding the subfolder if wp is installed in a subfolder.
+     * https://example.com/sub/contacts/3/?param=true
+     * will return contacts/3/?param=true
      * @return string
      */
     if ( ! function_exists( 'dt_get_url_path' ) ) {
@@ -190,7 +192,7 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
     if ( ! function_exists( 'dt_get_translations' ) ) {
         function dt_get_translations() {
             require_once( ABSPATH . 'wp-admin/includes/translation-install.php' );
-            $translations = wp_get_available_translations();
+            $translations = wp_get_available_translations(); // @todo throwing errors if wp.org connection isn't established
             $translations["ar_MA"] = [
                 "language" => "ar_MA",
                 "native_name" => "العربية (المغرب)",
@@ -214,6 +216,12 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
                 "native_name" => "Español (Latinoamérica) ",
                 "english_name" => "Spanish (Latin America)",
                 "iso" => [ "es" ]
+            ];
+            $translations["am_ET"] = [
+                "language" => "am_ET",
+                "native_name" => "Amharic (Ethiopia)",
+                "english_name" => "Amharic (Ethiopia)",
+                "iso" => [ "am" ]
             ];
             return $translations;
         }
@@ -334,9 +342,9 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
      * @param string $field_id_prefix // add a prefix to avoid fields with duplicate ids.
      */
     function render_field_for_display( $field_key, $fields, $post, $show_extra_controls = false, $show_hidden = false, $field_id_prefix = '' ){
+        $required_tag = ( isset( $fields[$field_key]["required"] ) && $fields[$field_key]["required"] === true ) ? 'required' : '';
+        $field_type = isset( $fields[$field_key]["type"] ) ? $fields[$field_key]["type"] : null;
         if ( isset( $fields[$field_key]["type"] ) && empty( $fields[$field_key]["custom_display"] ) && empty( $fields[$field_key]["hidden"] ) ) {
-            $field_type = $fields[$field_key]["type"];
-            $required_tag = ( isset( $fields[$field_key]["required"] ) && $fields[$field_key]["required"] === true ) ? 'required' : '';
             $allowed_types = apply_filters( 'dt_render_field_for_display_allowed_types', [ 'key_select', 'multi_select', 'date', 'datetime', 'text', 'number', 'connection', 'location', 'location_meta', 'communication_channel' ] );
             if ( !in_array( $field_type, $allowed_types ) ){
                 return;
@@ -488,19 +496,19 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
                 <?php elseif ( DT_Mapbox_API::get_key() ) : // test if Mapbox key is present ?>
                     <div id="mapbox-wrapper"></div>
                 <?php else : ?>
-                    <div class="dt_location_grid">
-                        <var id="location_grid-result-container" class="result-container"></var>
-                        <div id="location_grid_t" name="form-location_grid" class="scrollable-typeahead typeahead-margin-when-active">
+                    <div class="dt_location_grid" data-id="<?php echo esc_html( $field_key ); ?>">
+                        <var id="<?php echo esc_html( $field_key ); ?>-result-container" class="result-container"></var>
+                        <div id="<?php echo esc_html( $field_key ); ?>_t" name="form-<?php echo esc_html( $field_key ); ?>" class="scrollable-typeahead typeahead-margin-when-active">
                             <div class="typeahead__container">
                                 <div class="typeahead__field">
-                            <span class="typeahead__query">
-                                <input class="js-typeahead-location_grid input-height"
-                                       data-field="<?php echo esc_html( $display_field_id ); ?>"
-                                       data-field_type="location"
-                                       name="location_grid[query]"
-                                       placeholder="<?php echo esc_html( sprintf( _x( "Search %s", "Search 'something'", 'disciple_tools' ), $fields[$field_key]['name'] ) )?>"
-                                       autocomplete="off" />
-                            </span>
+                                    <span class="typeahead__query">
+                                        <input class="js-typeahead-<?php echo esc_html( $field_key ); ?> input-height"
+                                               data-field="<?php echo esc_html( $display_field_id ); ?>"
+                                               data-field_type="location"
+                                               name="<?php echo esc_html( $field_key ); ?>[query]"
+                                               placeholder="<?php echo esc_html( sprintf( _x( "Search %s", "Search 'something'", 'disciple_tools' ), $fields[$field_key]['name'] ) )?>"
+                                               autocomplete="off" />
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -514,7 +522,7 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
                                    type="text"
                                    data-field="<?php echo esc_html( $display_field_id ); ?>"
                                    value="<?php echo esc_html( $field_value["value"] ) ?>"
-                                   class="dt-communication-channel input-group-field" />
+                                   class="dt-communication-channel input-group-field" dir="auto"/>
                             <div class="input-group-button">
                                 <button class="button alert input-height delete-button-style channel-delete-button delete-button new-<?php echo esc_html( $field_key ); ?>" data-field="<?php echo esc_html( $field_key ); ?>" data-key="<?php echo esc_html( $field_value["key"] ); ?>">&times;</button>
                             </div>
@@ -525,14 +533,13 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
                             <input type="text"
                                     <?php echo esc_html( $required_tag ) ?>
                                    data-field="<?php echo esc_html( $field_key ) ?>"
-                                   class="dt-communication-channel input-group-field" />
+                                   class="dt-communication-channel input-group-field" dir="auto" />
                         </div>
                     <?php endif ?>
                 </div>
-            <?php else : ?>
-                <?php do_action( 'dt_render_field_for_display_template', $post, $field_type, $field_key, $required_tag ); ?>
             <?php endif;
         }
+        do_action( 'dt_render_field_for_display_template', $post, $field_type, $field_key, $required_tag );
     }
 
     function dt_increment( &$var, $val ){
@@ -562,6 +569,21 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
                 return true;
             }
             return false;
+        }
+    }
+
+    /**
+     * Returns a completely unique 64 bit hashed key
+     * @since 1.1
+     */
+    if ( ! function_exists( 'dt_create_unique_key' ) ) {
+        function dt_create_unique_key() : string {
+            try {
+                $hash = hash( 'sha256', bin2hex( random_bytes( 256 ) ) );
+            } catch ( Exception $exception ) {
+                $hash = hash( 'sha256', bin2hex( rand( 0, 1234567891234567890 ) . microtime() ) );
+            }
+            return $hash;
         }
     }
 
