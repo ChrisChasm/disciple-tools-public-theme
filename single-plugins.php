@@ -42,7 +42,7 @@ get_header(); ?>
         <!-- Main -->
         <main role="main" id="post-main">
 
-            <div class="grid-x grid-margin-x">
+            <div class="grid-x grid-margin-x grid-padding-x">
 
                     <div class="blog cell large-8">
 
