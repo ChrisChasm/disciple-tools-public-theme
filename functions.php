@@ -19,7 +19,7 @@ require_once( get_template_directory().'/functions/default-theme-configuration/s
 require_once( get_template_directory().'/functions/default-theme-configuration/comments.php' );
 
 // Adds support for multiple languages
-//require_once( get_template_directory().'/functions/translation/translation.php' );
+require_once( get_template_directory().'/functions/translation/translation.php' );
 
 // Remove Emoji Support
 require_once( get_template_directory().'/functions/default-theme-configuration/disable-emoji.php' );
@@ -28,8 +28,8 @@ require_once( get_template_directory().'/functions/default-theme-configuration/d
 require_once( get_template_directory().'/functions/default-theme-configuration/related-posts.php' );
 
 // Customize the WordPress admin
-//require_once( get_template_directory().'/functions/admin/admin.php' );
-//require_once( get_template_directory().'/functions/admin/admin-page.php' );
+require_once( get_template_directory().'/functions/admin/admin.php' );
+require_once( get_template_directory().'/functions/admin/admin-page.php' );
 
 // Custom Login
 require_once( get_template_directory().'/functions/urls.php' );
@@ -47,7 +47,7 @@ Site_Link_System::instance();
 
 // Register scripts and stylesheets
 require_once( get_template_directory().'/functions/enqueue-scripts.php' );
-//require_once( get_template_directory().'/functions/rest-api.php' );
+require_once( get_template_directory().'/functions/rest-api.php' );
 require_once( get_template_directory().'/functions/multi-role/multi-role.php' );
 
 // Parsedown

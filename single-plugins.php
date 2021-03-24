@@ -12,7 +12,7 @@ foreach ( $raw_defaults as $row ) {
 }
 
 // get post values
-//$post = get_post();
+$post = get_post();
 $post_meta = wp_parse_args( dtps_filter_meta( get_post_meta( $post->ID ) ), $plugin_defaults );
 
 $release = [];
