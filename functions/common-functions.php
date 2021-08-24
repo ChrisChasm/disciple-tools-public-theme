@@ -48,7 +48,9 @@ function DT_load_github_release_markdown( $atts ){
 
     // end check on readme existence
     if ( !empty( $release["body"] )) {
+        ob_start();
         $Parsedown = new Parsedown();
         echo $Parsedown->text( $release["body"] );
+        return ob_get_clean();
     }
 }
