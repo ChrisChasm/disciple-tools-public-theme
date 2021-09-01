@@ -65,6 +65,19 @@ if ( ! empty( $results ) ) {
     // Filter relevant fields for output
     foreach ( $list as $key => $values ) {
         foreach ( $values as $k => $v ) {
+            if ( $k == 'homepage' ) {
+                //create plugin slug from homepage value
+                preg_match( '/https*:\/\/[www\.]*github\.com\/.+?\/(.*)/', $v, $slug_matches );
+                if ( isset( $slug_matches[1] ) ) {
+                    $data[$key]['slug'] = $slug_matches[1];
+                }
+
+                //create author github username from homepage value
+                preg_match( '/https*:\/\/[www\.]*github\.com\/(.+?)\//', $v, $author_git_matches );
+                if ( isset( $author_git_matches[1] ) ) {
+                    $data[$key]['author_github_username'] = $author_git_matches[1];
+                }                
+            }
             if ( in_array( $k, $relevant_fields ) ) {
                 $data[$key][$k] = $v;
             }
