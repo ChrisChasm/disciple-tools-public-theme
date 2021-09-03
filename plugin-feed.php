@@ -31,26 +31,19 @@ $list = [];
 $results = $wpdb->get_results( "SELECT post_id, meta_key, meta_value FROM $wpdb->postmeta WHERE post_id IN (SELECT ID FROM $wpdb->posts WHERE post_type = 'plugins' AND post_status = 'publish')", ARRAY_A );
 $data = [];
 $relevant_fields = [
+    "categories",
     "name",
     "version",
     "download_url",
     "description",
-    "installation",
     "changelog",
     "last_updated",
     "upgrade_notice",
     "requires",
     "tested",
-    "low",
-    "high",
     "author",
     "author_homepage",
     "homepage",
-    "issues_url",
-    "projects_url",
-    "wiki_url",
-    "license_url",
-    "readme_url",
 ];
 
 // Populate $list array with all available data
@@ -60,32 +53,18 @@ if ( ! empty( $results ) ) {
             $list[$item['post_id']] = [];
         }
         $list[$item['post_id']][$item['meta_key']] = $item['meta_value'];
+        $list[$item['post_id']]['categories'] = $wpdb->get_results( $wpdb->prepare( "SELECT GROUP_CONCAT( t.slug ) as categories FROM wp_posts p LEFT JOIN wp_term_relationships r ON r.object_id = p.id LEFT JOIN wp_terms t ON t.term_id = r.term_taxonomy_id WHERE p.id = %d", $item['post_id'] ), ARRAY_A )[0]['categories'];
     }
 
     // Filter relevant fields for output
     foreach ( $list as $key => $values ) {
         foreach ( $values as $k => $v ) {
-            if ( $k == 'homepage' ) {
-                //create plugin slug from homepage value
-                preg_match( '/https*:\/\/[www\.]*github\.com\/.+?\/(.*)/', $v, $slug_matches );
-                if ( isset( $slug_matches[1] ) ) {
-                    $data[$key]['slug'] = $slug_matches[1];
-                }
-
-                //create author github username from homepage value
-                preg_match( '/https*:\/\/[www\.]*github\.com\/(.+?)\//', $v, $author_git_matches );
-                if ( isset( $author_git_matches[1] ) ) {
-                    $data[$key]['author_github_username'] = $author_git_matches[1];
-                }                
-            }
             if ( in_array( $k, $relevant_fields ) ) {
                 $data[$key][$k] = $v;
             }
         }
     }
 }
-
-
 
 // publish json
 echo json_encode( array_values( $data ) );
