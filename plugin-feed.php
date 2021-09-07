@@ -44,6 +44,7 @@ $relevant_fields = [
     "author",
     "author_homepage",
     "homepage",
+    "permalink",
 ];
 
 // Populate $list array with all available data
@@ -53,7 +54,8 @@ if ( ! empty( $results ) ) {
             $list[$item['post_id']] = [];
         }
         $list[$item['post_id']][$item['meta_key']] = $item['meta_value'];
-        $list[$item['post_id']]['categories'] = $wpdb->get_results( $wpdb->prepare( "SELECT GROUP_CONCAT( t.slug ) as categories FROM wp_posts p LEFT JOIN wp_term_relationships r ON r.object_id = p.id LEFT JOIN wp_terms t ON t.term_id = r.term_taxonomy_id WHERE p.id = %d", $item['post_id'] ), ARRAY_A )[0]['categories'];
+        $list[$item['post_id']]['categories'] = $wpdb->get_results( $wpdb->prepare( "SELECT GROUP_CONCAT( t.slug ) as categories FROM $wpdb->posts p LEFT JOIN $wpdb->term_relationships r ON r.object_id = p.id LEFT JOIN $wpdb->terms t ON t.term_id = r.term_taxonomy_id WHERE p.id = %d", $item['post_id'] ), ARRAY_A )[0]['categories'];
+        $list[$item['post_id']]['permalink'] = $wpdb->get_results( $wpdb->prepare( "SELECT CONCAT ( 'https://disciple.tools/plugins/', post_name, '/' ) AS post_name FROM $wpdb->posts WHERE id = %d", $item['post_id'] ), ARRAY_A )[0]['post_name'];
     }
 
     // Filter relevant fields for output
