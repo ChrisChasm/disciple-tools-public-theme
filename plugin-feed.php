@@ -45,6 +45,7 @@ $relevant_fields = [
     "author_homepage",
     "homepage",
     "permalink",
+    "icon",
 ];
 
 // Populate $list array with all available data
