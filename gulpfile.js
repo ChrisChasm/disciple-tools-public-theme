@@ -5,7 +5,8 @@ var gulp  = require('gulp'),
     browserSync = require('browser-sync').create(),
     filter = require('gulp-filter'),
     touch = require('gulp-touch-cmd'),
-    plugin = require('gulp-load-plugins')();
+    plugin = require('gulp-load-plugins')(),
+    sass = require('gulp-sass')(require('sass'));
 
 
 // GULP VARIABLES
@@ -96,7 +97,7 @@ gulp.task('scripts', function() {
         }))
 		.pipe(plugin.sourcemaps.init())
 		.pipe(plugin.babel({
-			presets: ['es2015'],
+			presets: ['env'],
 			compact: true,
 			ignore: ['what-input.js']
 		}))
@@ -119,13 +120,8 @@ gulp.task('styles', function() {
             this.emit('end');
         }))
 		.pipe(plugin.sourcemaps.init())
-		.pipe(plugin.sass())
+    .pipe(sass().on('error', sass.logError))
 		.pipe(plugin.autoprefixer({
-		    browsers: [
-		    	'last 2 versions',
-		    	'ie >= 9',
-				'ios >= 7'
-		    ],
 		    cascade: false
 		}))
 		.pipe(plugin.cssnano({safe: true, minifyFontValues: {removeQuotes: false}}))
