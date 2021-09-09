@@ -2,15 +2,15 @@
 
 add_action( 'init', 'dt_register_shortcodes' );
 function dt_register_shortcodes(){
-    add_shortcode( 'dt-load-github-md', 'DT_load_github_markdown' );
-    add_shortcode( 'dt-load-github-release-md', 'DT_load_github_release_markdown' );
+    add_shortcode( 'dt-load-github-md', 'dt_load_github_markdown' );
+    add_shortcode( 'dt-load-github-release-md', 'dt_load_github_release_markdown' );
 }
 
-function DT_load_github_markdown( $atts ){
+function dt_load_github_markdown( $atts ){
     $url = null;
-    extract(shortcode_atts(array(
+    extract( shortcode_atts( array( //phpcs:ignore
         'url' => null,
-    ), $atts));
+    ), $atts ) );
 
 
     if ( $url ) { /* If readme url is present, then the Readme markdown is used */
@@ -18,16 +18,16 @@ function DT_load_github_markdown( $atts ){
     }
     // end check on readme existence
     if ( !empty( $string )) {
-        $Parsedown = new Parsedown();
-        echo $Parsedown->text( $string );
+        $parsedown = new Parsedown();
+        return $parsedown->text( $string );
     }
 
 }
 
-function DT_load_github_release_markdown( $atts ){
+function dt_load_github_release_markdown( $atts ){
     $repo = null;
     $tag = null;
-    extract(shortcode_atts(array(
+    extract( shortcode_atts( array( //phpcs:ignore
         'repo' => null,
         'tag' => null
     ), $atts) );
@@ -49,8 +49,8 @@ function DT_load_github_release_markdown( $atts ){
     // end check on readme existence
     if ( !empty( $release["body"] )) {
         ob_start();
-        $Parsedown = new Parsedown();
-        echo $Parsedown->text( $release["body"] );
+        $parsedown = new Parsedown();
+        echo wp_kses_post( $parsedown->text( $release["body"] ) );
         return ob_get_clean();
     }
 }

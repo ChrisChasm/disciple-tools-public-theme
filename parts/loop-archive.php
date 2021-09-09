@@ -4,12 +4,12 @@
  *
  * Used for single, index, archive, search.
  */
-$post = get_post();
+$record = get_post();
 ?>
 
 <article id="post-<?php the_ID(); ?>" role="article">
     <div class="grid-x grid-padding-x grid-padding-y article-section highlight-background border-bottom padding-top-1" data-post-id="<?php the_ID(); ?>">
-        <?php if ( has_post_thumbnail( $post->ID ) ) : ?>
+        <?php if ( has_post_thumbnail( $record->ID ) ) : ?>
         <div class="cell medium-2 hide-for-small-only">
             <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail() ?></a>
         </div>

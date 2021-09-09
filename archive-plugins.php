@@ -18,16 +18,16 @@
                         </div>
 
                         <?php
-                            $loop = new WP_Query(
-                                [
-                                    'post_type' => 'plugins',
-                                    'nopaging' => true,
-                                    'posts_per_page' => 200,
-                                    'orderby' => 'post_title',
-                                    'order' => 'ASC'
-                                ]
-                            );
-                         ?>
+                        $loop = new WP_Query(
+                            [
+                                'post_type' => 'plugins',
+                                'nopaging' => true,
+                                'posts_per_page' => 200,
+                                'orderby' => 'post_title',
+                                'order' => 'ASC'
+                            ]
+                        );
+                        ?>
 
                         <div id="plugin-list">
                             <div class="grid-x">
@@ -62,22 +62,21 @@
                                 if ( $loop->have_posts() ) :
                                     while ( $loop->have_posts() ) : $loop->the_post();
                                         $categories = wp_get_object_terms( get_the_ID(), 'plugin_categories' );
-                                ?>
+                                        ?>
                                         <tr>
                                             <td class="name" style="white-space: nowrap; font-weight: bolder; vertical-align: top;">
                                                 <a href="<?php echo esc_url( get_permalink() ) ?>"><?php the_title() ?></a>
                                             </td>
                                             <td style="white-space: nowrap; font-weight: bolder; vertical-align: top;">
                                                 <?php
-                                                if ( ! empty( $categories  ) ) {
-                                                    foreach( $categories as $index => $category ) {
+                                                if ( !empty( $categories ) ){
+                                                    foreach ( $categories as $index => $category ){
                                                         if ( 'beta' === $category->slug ) {
                                                             echo '<a class="button tiny warning">BETA</a>';
                                                         }
                                                         if ( 'proof-of-concept' === $category->slug ) {
                                                             echo '<a class="button tiny warning">POC</a>';
                                                         }
-
                                                     }
                                                 }
                                                 ?>
@@ -89,12 +88,12 @@
                                             </td>
                                             <td class="category" style="font-size: .9em; vertical-align: top;">
                                                 <?php
-                                                if ( ! empty( $categories  ) ) {
-                                                    foreach( $categories as $index => $category ) {
+                                                if ( !empty( $categories ) ){
+                                                    foreach ( $categories as $index => $category ){
                                                         if ( 0 !== $index ){
                                                             echo ', ';
                                                         }
-                                                        echo '<a href="'.get_category_link( $category ).'">' . esc_html(  $category->name ) . '</a>';
+                                                        echo '<a href="' . esc_html( get_category_link( $category ) ) . '">' . esc_html( $category->name ) . '</a>';
                                                     }
                                                 }
                                                 ?>
@@ -124,9 +123,6 @@
                         </script>
 
 
-
-                        <?php  ?>
-
                     </div>
 
                     <div class="sidebar cell medium-3 large-4 " style="padding-right:20px;">
@@ -154,13 +150,15 @@
 
                         <h4>Plugin Categories</h4>
                         <div class="padding-left-1">
-                            <a href="/plugins/">All Plugins</a> (<?php echo wp_count_posts( 'plugins' )->publish ?>)
+                            <a href="/plugins/">All Plugins</a>
+                            (<?php echo esc_html( wp_count_posts( 'plugins' )->publish ) ?>)
                             <?php wp_list_categories(
                                 [
                                     'show_count' => 1,
                                     'taxonomy' => 'plugin_categories',
                                     'title_li' => ''
-                                ] ) ?>
+                                ]
+                            ) ?>
                         </div>
 
                         <hr>

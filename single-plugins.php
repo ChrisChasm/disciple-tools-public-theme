@@ -12,11 +12,11 @@ foreach ( $raw_defaults as $row ) {
 }
 
 // get post values
-$post = get_post();
-$post_meta = wp_parse_args( dtps_filter_meta( get_post_meta( $post->ID ) ), $plugin_defaults );
+$record = get_post();
+$post_meta = wp_parse_args( dtps_filter_meta( get_post_meta( $record->ID ) ), $plugin_defaults );
 
 $release = [];
-$version_control_url = get_post_meta( $post->ID, 'version_control_url', true );
+$version_control_url = get_post_meta( $record->ID, 'version_control_url', true );
 if ( isset( $version_control_url ) && ! empty( $version_control_url ) ) {
     $result = wp_remote_get( $version_control_url );
     if ( ! is_wp_error( $result ) ) {
@@ -82,8 +82,8 @@ get_header(); ?>
 
                                 // if string exists
                                 if ( $string !== false ) {  /* Use the content section of the post */
-                                    $Parsedown = new Parsedown();
-                                    echo $Parsedown->text( $string );
+                                    $parsedown = new Parsedown();
+                                    echo wp_kses_post( $parsedown->text( $string ) );
                                 }
                                 // end readme render
 
