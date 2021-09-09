@@ -109,7 +109,7 @@ function site_scripts() {
     }
 
     if ( 'plugins' === dt_public_site_get_url_path() ) {
-        wp_register_script( 'listjs', '//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js', array( 'jquery' ), '2.3.1', true  );
+        wp_register_script( 'listjs', '//cdnjs.cloudflare.com/ajax/libs/list.js/2.3.1/list.min.js', array( 'jquery' ), '2.3.1', true );
         wp_enqueue_script( 'listjs' );
     }
 

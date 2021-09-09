@@ -56,10 +56,10 @@ get_header(); ?>
 
                                 <h2 class="entry-title single-title vertical-padding" itemprop="headline"><?php the_title(); ?></h2>
 
-                                <?php if ( is_object_in_term( get_the_ID(), 'plugin_categories','beta' ) ) : ?>
+                                <?php if ( is_object_in_term( get_the_ID(), 'plugin_categories', 'beta' ) ) : ?>
                                     <a class="button small warning">BETA</a>
                                 <?php endif; ?>
-                                <?php if ( is_object_in_term( get_the_ID(), 'plugin_categories','proof-of-concept' ) ) : ?>
+                                <?php if ( is_object_in_term( get_the_ID(), 'plugin_categories', 'proof-of-concept' ) ) : ?>
                                     <a class="button small warning">Proof of Concept</a>
                                 <?php endif; ?>
 
@@ -73,7 +73,7 @@ get_header(); ?>
 
                                 <?php
                                 // STRING
-                                $string = FALSE;
+                                $string = false;
                                 if ( $post_meta['readme_url'] ) { /* If readme url is present, then the Readme markdown is used */
                                     $string = file_get_contents( $post_meta['readme_url'] );
                                 }
@@ -81,7 +81,7 @@ get_header(); ?>
 
 
                                 // if string exists
-                                if( $string !== FALSE ) {  /* Use the content section of the post */
+                                if ( $string !== false ) {  /* Use the content section of the post */
                                     $Parsedown = new Parsedown();
                                     echo $Parsedown->text( $string );
                                 }
@@ -89,7 +89,7 @@ get_header(); ?>
 
 
                                 // render the post content
-                                if( $string === FALSE ) {
+                                if ( $string === false ) {
 
                                     ?>
 

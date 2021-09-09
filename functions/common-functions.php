@@ -1,6 +1,6 @@
 <?php
 
-add_action( 'init', 'dt_register_shortcodes');
+add_action( 'init', 'dt_register_shortcodes' );
 function dt_register_shortcodes(){
     add_shortcode( 'dt-load-github-md', 'DT_load_github_markdown' );
     add_shortcode( 'dt-load-github-release-md', 'DT_load_github_release_markdown' );
@@ -9,8 +9,8 @@ function dt_register_shortcodes(){
 function DT_load_github_markdown( $atts ){
     $url = null;
     extract(shortcode_atts(array(
-      'url' => null,
-   ), $atts));
+        'url' => null,
+    ), $atts));
 
 
     if ( $url ) { /* If readme url is present, then the Readme markdown is used */
@@ -28,9 +28,9 @@ function DT_load_github_release_markdown( $atts ){
     $repo = null;
     $tag = null;
     extract(shortcode_atts(array(
-      'repo' => null,
-      'tag' => null
-   ), $atts) );
+        'repo' => null,
+        'tag' => null
+    ), $atts) );
 
     if ( empty( $repo ) || empty( $tag ) ){
         return false;
