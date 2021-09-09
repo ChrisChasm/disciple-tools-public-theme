@@ -710,6 +710,13 @@ class DTPS_Plugins_Post_Type
             'default' => 'https://raw.githubusercontent.com/DiscipleTools/disciple-tools-version-control/master/images/dt-placeholder-1544x500.jpg',
             'section' => 'plugin_version_control_fields',
         );
+        $fields['icon'] = array(
+            'name' => 'Icon',
+            'description' => '',
+            'type' => 'text',
+            'default' => '',
+            'section' => 'plugin_version_control_fields',
+        );
         $fields['author'] = array(
             'name' => 'Author',
             'description' => '',
