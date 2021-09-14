@@ -28,6 +28,13 @@ global $wpdb;
 global $wpdb;
 $wpdb->dt_usage = $wpdb->prefix . 'dt_usage';
 //latest record for each instance
+
+$plugins_data = get_transient( "dt_plugins_cache" );
+if ( !empty( $plugins_data ) ){
+    echo json_encode( array_values( $plugins_data ) );
+    exit();
+}
+
 $latest_records = $wpdb->get_results( $wpdb->prepare("
     SELECT u1.*
     FROM $wpdb->dt_usage as u1
@@ -37,7 +44,7 @@ $latest_records = $wpdb->get_results( $wpdb->prepare("
     AND u1.timestamp > %s
     ", gmdate( "Y-m-d H:i:s", time() - DAY_IN_SECONDS * 30 ) ), ARRAY_A );
 
-$stats = [];
+$active_plugins = [];
 foreach ( $latest_records as $record ){
     $payload = maybe_unserialize( $record["payload"] );
     if ( $payload === false ){
@@ -51,10 +58,10 @@ foreach ( $latest_records as $record ){
         $payload["active_plugins"] = array_unique( $payload["active_plugins"] );
         foreach ( $payload["active_plugins"] as $active_plugin ){
             $active_plugin = str_replace( ".php", "", $active_plugin );
-            if ( !isset( $stats["active_plugins"][$active_plugin] ) ){
-                $stats["active_plugins"][$active_plugin] = 0;
+            if ( !isset( $active_plugins[$active_plugin] ) ){
+                $active_plugins[$active_plugin] = 0;
             }
-            $stats["active_plugins"][$active_plugin]++;
+            $active_plugins[$active_plugin]++;
         }
     }
 }
@@ -97,7 +104,7 @@ if ( ! empty( $results ) ) {
 
     // Filter relevant fields for output
     foreach ( $list as $key => $values ) {
-        $values["active_installs"] = isset( $stats["active_plugins"][$values['github_repo']] ) ? $stats["active_plugins"][$values['github_repo']] : 0;
+        $values["active_installs"] = isset( $active_plugins[$values['github_repo']] ) ? $active_plugins[$values['github_repo']] : 0;
         foreach ( $values as $k => $v ) {
             if ( in_array( $k, $relevant_fields ) ) {
                 $data[$key][$k] = $v;
@@ -105,6 +112,8 @@ if ( ! empty( $results ) ) {
         }
     }
 }
+
+set_transient( "dt_plugins_cache", $data, HOUR_IN_SECONDS );
 
 // publish json
 echo json_encode( array_values( $data ) );
