@@ -22,9 +22,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/wp-load.php'; //@phpcs:ignore
 // set header type
 header( 'Content-type: application/json' );
 
-// test id exists
-global $wpdb;
-
 global $wpdb;
 $wpdb->dt_usage = $wpdb->prefix . 'dt_usage';
 //latest record for each instance
