@@ -41,7 +41,10 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            <button class="sort" data-sort="name">
+                                            Icon
+                                        </th>
+                                        <th>
+                                            <button class="sort" data-sort="name" style="font-weight:700;">
                                                 Name
                                             </button>
                                         </th>
@@ -58,12 +61,16 @@
                                 <tbody class="list">
 
                                 <?php
-
                                 if ( $loop->have_posts() ) :
                                     while ( $loop->have_posts() ) : $loop->the_post();
                                         $categories = wp_get_object_terms( get_the_ID(), 'plugin_categories' );
+                                        $plugin_image = get_post_meta( get_the_ID(), 'icon', true );
+                                        if ( empty( $plugin_image ) ) {
+                                            $plugin_image = 'https://s.w.org/plugins/geopattern-icon/' . get_post_meta( get_the_ID(), 'github_repo' )[0] . '.svg';
+                                        }
                                         ?>
                                         <tr>
+                                            <td><img src="<?php echo esc_attr( $plugin_image ); ?>" width="100px"></td>
                                             <td class="name" style="white-space: nowrap; font-weight: bolder; vertical-align: top;">
                                                 <a href="<?php echo esc_url( get_permalink() ) ?>"><?php the_title() ?></a>
                                             </td>
