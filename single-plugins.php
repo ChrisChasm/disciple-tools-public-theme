@@ -50,20 +50,21 @@ get_header(); ?>
 
                             <header class="article-header center">
 
-                                <?php if ( has_post_thumbnail() ) : ?>
-                                    <div><?php the_post_thumbnail( 'full' ); ?></div>
+                                <?php if ( !empty( $post_meta['high'] ) ) : ?>
+                                    <div><img src="<?php echo esc_attr( $post_meta['high'] ) ?>"></div>
+                                <?php else : ?>
+                                    <h2 class="entry-title single-title vertical-padding" itemprop="headline"><?php the_title(); ?></h2>
                                 <?php endif; ?>
 
-                                <h2 class="entry-title single-title vertical-padding" itemprop="headline"><?php the_title(); ?></h2>
-
-                                <?php if ( is_object_in_term( get_the_ID(), 'plugin_categories', 'beta' ) ) : ?>
-                                    <a class="button small warning">BETA</a>
-                                <?php endif; ?>
-                                <?php if ( is_object_in_term( get_the_ID(), 'plugin_categories', 'proof-of-concept' ) ) : ?>
-                                    <a class="button small warning">Proof of Concept</a>
-                                <?php endif; ?>
-
-                                <div class="center"><a href="https://github.com/<?php echo esc_attr( $post_meta['github_owner'] ) ?>/<?php echo esc_attr( $post_meta['github_repo'] ) ?>/releases/latest/download/<?php echo esc_attr( $post_meta['github_repo'] ) ?>.zip" class="button"><i class="fi-download"></i> Download</a> </div>
+                                <div class="center" style="margin-top: 12px;">
+                                    <?php if ( is_object_in_term( get_the_ID(), 'plugin_categories', 'beta' ) ) : ?>
+                                        <a class="button small warning">BETA</a>
+                                    <?php endif; ?>
+                                    <?php if ( is_object_in_term( get_the_ID(), 'plugin_categories', 'proof-of-concept' ) ) : ?>
+                                        <a class="button small warning">Proof of Concept</a>
+                                    <?php endif; ?>
+                                    <a href="https://github.com/<?php echo esc_attr( $post_meta['github_owner'] ) ?>/<?php echo esc_attr( $post_meta['github_repo'] ) ?>/releases/latest/download/<?php echo esc_attr( $post_meta['github_repo'] ) ?>.zip" class="button"><i class="fi-download"></i> Download</a>
+                                </div>
 
                             </header> <!-- end article header -->
 
@@ -75,7 +76,7 @@ get_header(); ?>
                                 // STRING
                                 $string = false;
                                 if ( $post_meta['readme_url'] ) { /* If readme url is present, then the Readme markdown is used */
-                                    $string = file_get_contents( $post_meta['readme_url'] );
+                                    $string = preg_replace( '/\s+!\[.*\]\(.*?\)/', '', file_get_contents( $post_meta['readme_url'] ) );
                                 }
                                 // end check on readme existence
 
