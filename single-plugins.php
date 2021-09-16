@@ -76,7 +76,7 @@ get_header(); ?>
                                 // STRING
                                 $string = false;
                                 if ( $post_meta['readme_url'] ) { /* If readme url is present, then the Readme markdown is used */
-                                    $string = preg_replace( '/\s+!\[.*\]\(.*?\)/', '', file_get_contents( $post_meta['readme_url'] ) );
+                                    $string = preg_replace( '/\s+!\[.*\]\(.*?\)/', '', file_get_contents( $post_meta['readme_url'] ), 1 );
                                 }
                                 // end check on readme existence
 
