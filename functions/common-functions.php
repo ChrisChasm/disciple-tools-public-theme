@@ -6,6 +6,16 @@ function dt_register_shortcodes(){
     add_shortcode( 'dt-load-github-release-md', 'dt_load_github_release_markdown' );
 }
 
+function dt_cached_api_call( $url ){
+    $data = get_transient( "dt_cached_" . esc_url( $url ) );
+    if ( empty( $data ) ){
+        $response = wp_remote_get( $url );
+        $data = wp_remote_retrieve_body( $response );
+        set_transient( "dt_cached_" .  esc_url( $url ), $data, HOUR_IN_SECONDS );
+    }
+    return $data;
+}
+
 function dt_load_github_markdown( $atts ){
     $url = null;
     extract( shortcode_atts( array( //phpcs:ignore
@@ -14,7 +24,7 @@ function dt_load_github_markdown( $atts ){
 
 
     if ( $url ) { /* If readme url is present, then the Readme markdown is used */
-        $string = file_get_contents( $url );
+        $string = dt_cached_api_call( $url );
     }
     // end check on readme existence
     if ( !empty( $string )) {
@@ -37,9 +47,7 @@ function dt_load_github_release_markdown( $atts ){
     }
 
     $url = "https://api.github.com/repos/" . esc_attr( $repo ) . "/releases/tags/" . esc_attr( $tag );
-    $response = wp_remote_get( $url );
-
-    $data_result = wp_remote_retrieve_body( $response );
+    $data_result = dt_cached_api_call( $url );
 
     if ( ! $data_result ) {
         return false;
