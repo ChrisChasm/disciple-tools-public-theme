@@ -76,7 +76,7 @@ get_header(); ?>
                                 // STRING
                                 $string = false;
                                 if ( $post_meta['readme_url'] ) { /* If readme url is present, then the Readme markdown is used */
-                                    $string = preg_replace( '/!\[.*\]\(.*?\)/', '', dt_cached_api_call( $post_meta['readme_url'] ), 1 );
+                                    $string = preg_replace( '/!\[Plugin Banner\]\(.*?\)/', '', dt_cached_api_call( $post_meta['readme_url'] ), 1 );
                                 }
                                 // end check on readme existence
 
