@@ -18,9 +18,9 @@ $post_meta = wp_parse_args( dtps_filter_meta( get_post_meta( $record->ID ) ), $p
 $release = [];
 $version_control_url = get_post_meta( $record->ID, 'version_control_url', true );
 if ( isset( $version_control_url ) && ! empty( $version_control_url ) ) {
-    $result = wp_remote_get( $version_control_url );
+    $result = dt_cached_api_call( $version_control_url );
     if ( ! is_wp_error( $result ) ) {
-        $release = json_decode( $result['body'], true );
+        $release = json_decode( $result, true );
     }
 }
 
