@@ -47,7 +47,7 @@
                                 <div class="cell medium-2">
                                     <p>
                                         <strong>Developers</strong><br>
-                                        <a href="/dev-docs/">Developer Docs</a><br>
+                                        <a href="https://developers.disciple.tools/">Developer Docs</a><br>
                                         <a href="/open-source/">Open Source</a><br>
                                         <a href="https://github.com/DiscipleTools">Github Project</a><br>
                                         <a href="/join-the-community/">Join the Community</a>
