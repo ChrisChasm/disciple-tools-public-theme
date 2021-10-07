@@ -11,7 +11,7 @@ $landing_post_id = 391; // quick start
 
         <div class="grid-x grid-margin-x grid-padding-x">
 
-            <div class="cell large-4 callout show-for-small-only">
+            <div class="cell large-4 callout">
 
                 <?php get_template_part( "parts/sidebar", "user-documentation" ); ?>
 
@@ -45,12 +45,6 @@ $landing_post_id = 391; // quick start
                     <?php echo wp_kses_post( get_the_content( null, false, $landing_post_id ) ) ?>
 
                 </section> <!-- end article section -->
-
-            </div>
-
-            <div class="cell large-4 callout hide-for-small-only">
-
-                <?php get_template_part( "parts/sidebar", "user-documentation" ); ?>
 
             </div>
 
