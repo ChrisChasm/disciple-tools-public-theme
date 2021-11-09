@@ -50,7 +50,6 @@
 
     <!-- We currently don't want these rules that WordPress imports: -->
 
-    <exclude name="WordPress.Files.FileName"/>
     <exclude name="Generic.Classes.OpeningBraceSameLine.BraceOnNewLine" />
     <exclude name="Generic.Classes.OpeningBraceSameLine.SpaceBeforeBrace" />
     <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedELSE" />
@@ -146,6 +145,7 @@
     <exclude name="WordPress.Arrays.CommaAfterArrayItem.NoSpaceAfterComma" />
     <exclude name="WordPress.Arrays.CommaAfterArrayItem.SpaceAfterComma" />
     <exclude name="WordPress.Arrays.CommaAfterArrayItem.SpaceBeforeComma" />
+    <exclude name="WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound" />
     <exclude name="WordPress.PHP.YodaConditions.NotYoda" />
     <!-- <exclude name="WordPress.WhiteSpace.CastStructureSpacing.NoSpaceBeforeOpenParenthesis" /> -->
     <!-- <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.BlankLineAfterEnd" /> -->
@@ -154,9 +154,9 @@
     <!-- <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.ExtraSpaceBeforeCloseParenthesis" /> -->
     <!-- <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.ExtraSpaceBeforeOpenParenthesis" /> -->
     <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterCloseParenthesis" />
-    <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterOpenParenthesis" />
+    <!--    <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterOpenParenthesis" />-->
     <!-- <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceAfterStructureOpen" /> -->
-    <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeCloseParenthesis" />
+    <!--    <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeCloseParenthesis" />-->
     <!-- <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBeforeOpenParenthesis" /> -->
     <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.NoSpaceBetweenStructureColon" />
     <exclude name="WordPress.WhiteSpace.ControlStructureSpacing.OpenBraceNotSameLine" />
@@ -167,8 +167,6 @@
     <!-- <exclude name="WordPress.WhiteSpace.OperatorSpacing.SpacingBefore" /> -->
     <exclude name="WordPress.WP.EnqueuedResourceParameters.MissingVersion" />
     <exclude name="WordPress.WP.EnqueuedResourceParameters.NoExplicitVersion" />
-    <exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedStylesheet" />
-    <exclude name="WordPress.WP.EnqueuedResources.NonEnqueuedScript" />
 
   </rule>
 
@@ -213,9 +211,9 @@
   <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
   <rule ref="PEAR.NamingConventions.ValidClassName"/>
   <!--<rule ref="WordPress.NamingConventions.PrefixAllGlobals">-->
-    <!--<properties>-->
-      <!--<property name="prefixes" type="array" value="dt,Disciple_Tools" />-->
-    <!--</properties>-->
+  <!--<properties>-->
+  <!--<property name="prefixes" type="array" value="dt,Disciple_Tools" />-->
+  <!--</properties>-->
   <!--</rule>-->
 
   <!-- Maybe these rules will be enabled in the future: -->
@@ -234,6 +232,13 @@
   <!-- <rule ref="PSR2.Files.ClosingTag"/> -->
   <!-- <rule ref="Squiz.PHP.ForbiddenFunctions"/> -->
 
+  <rule ref="WordPress.Security.ValidatedSanitizedInput">
+    <properties>
+      <property name="customUnslashingSanitizingFunctions" type="array">
+        <element value="dt_recursive_sanitize_array" />
+      </property>
+    </properties>
+  </rule>
 
 </ruleset>
 
