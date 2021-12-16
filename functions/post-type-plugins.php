@@ -285,16 +285,7 @@ class DTPS_Plugins_Post_Type
             6 => sprintf( '%1$s published. %3$sView %2$s%4$s', $this->singular, strtolower( $this->singular ), '<a href="' . esc_url( get_permalink( $post->ID ) ) . '">', '</a>' ),
             7 => sprintf( '%s saved.', $this->singular ),
             8 => sprintf( '%1$s submitted. %2$sPreview %3$s%4$s', $this->singular, strtolower( $this->singular ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) . '">', '</a>' ),
-            9 => sprintf(
-                '%1$s scheduled for: %1$s. %2$sPreview %2$s%3$6$s',
-                $this->singular,
-                strtolower( $this->singular ),
-                // translators: Publish box date format, see http://php.net/date
-                '<strong>' . date_i18n('M j, Y @ G:i',
-                strtotime( $post->post_date )) . '</strong>',
-                '<a target="_blank" href="' . esc_url( get_permalink( $post->ID ) ) . '">',
-                '</a>'
-            ),
+            9 => sprintf( '%1$s submitted. %2$sPreview %3$s%4$s', $this->singular, strtolower( $this->singular ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) . '">', '</a>' ),,
             10 => sprintf( '%1$s draft updated. %2$sPreview %3$s%4$s', $this->singular, strtolower( $this->singular ), '<a target="_blank" href="' . esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) . '">', '</a>' ),
         );
 
