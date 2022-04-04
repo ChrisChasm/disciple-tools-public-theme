@@ -63,7 +63,7 @@ get_header(); ?>
                                     <?php if ( is_object_in_term( get_the_ID(), 'plugin_categories', 'proof-of-concept' ) ) : ?>
                                         <a class="button small warning">Proof of Concept</a>
                                     <?php endif; ?>
-                                    <a href="https://github.com/<?php echo esc_attr( $post_meta['github_owner'] ) ?>/<?php echo esc_attr( $post_meta['github_repo'] ) ?>/releases/latest/download/<?php echo esc_attr( $post_meta['github_repo'] ) ?>.zip" class="button"><i class="fi-download"></i> Download</a>
+                                    <a href="<?php echo esc_attr( $post_meta['download_url'] ) ?>" class="button"><i class="fi-download"></i> Download</a>
                                 </div>
 
                             </header> <!-- end article header -->
