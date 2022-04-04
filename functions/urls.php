@@ -15,7 +15,7 @@ function dtps_force_login() {
 }
 
 // Remove admin bar on the front end.
-if ( ! current_user_can( 'administrator' ) ) {
+if ( ! is_user_logged_in() ) {
     add_filter( 'show_admin_bar', '__return_false' );
 }
 
