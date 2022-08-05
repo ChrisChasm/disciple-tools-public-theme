@@ -27,7 +27,7 @@ function dt_load_github_markdown( $atts ){
         $string = dt_cached_api_call( $url );
     }
     // end check on readme existence
-    if ( !empty( $string )) {
+    if ( !empty( $string ) ) {
         $parsedown = new Parsedown();
         return $parsedown->text( $string );
     }
@@ -55,7 +55,7 @@ function dt_load_github_release_markdown( $atts ){
     $release = json_decode( $data_result, true );
 
     // end check on readme existence
-    if ( !empty( $release["body"] )) {
+    if ( !empty( $release["body"] ) ) {
         ob_start();
         $parsedown = new Parsedown();
         echo wp_kses_post( $parsedown->text( $release["body"] ) );

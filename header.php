@@ -13,7 +13,7 @@
 
     <head>
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5R42ERNV1"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5R42ERNV1"></script><?php // phpcs:ignore ?>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}

@@ -20,7 +20,7 @@ get_header(); ?>
 
             <div class="cell large-8">
 
-                <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
                         <?php get_template_part( 'parts/loop', 'documentation' ); ?>
 

@@ -78,7 +78,7 @@ class DTPS_REST_API {
         ) );
     }
 
-    public function unlink_profile( WP_REST_Request $request){
+    public function unlink_profile( WP_REST_Request $request ){
         $params = $request->get_json_params();
         if ( isset( $params['type'] ) ) {
             switch ( $params['type'] ) {
@@ -102,7 +102,7 @@ class DTPS_REST_API {
         return true;
     }
 
-    public function update_profile( WP_REST_Request $request){
+    public function update_profile( WP_REST_Request $request ){
         $params = $request->get_json_params();
         $user_info = get_userdata( get_current_user_id() );
 

@@ -3,7 +3,7 @@
  * Special purpose file to deliver JSON response for all active DT Plugins.
  */
 
-if ( defined( 'ABSPATH' )) {
+if ( defined( 'ABSPATH' ) ) {
     exit;
 } // Exit if accessed directly.
 

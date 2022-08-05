@@ -1,6 +1,6 @@
 <?php
 // Comment Layout
-function dtps_comments( $comment, $args, $depth) {
+function dtps_comments( $comment, $args, $depth ) {
     // @phpcs:disable
     $GLOBALS['comment'] = $comment; // @phpcs:ignore ?>
     <li <?php comment_class( 'panel' ); ?>>

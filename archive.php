@@ -27,7 +27,7 @@ get_header(); ?>
 
                 <div class="cell ">
 
-                    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
                         <!-- To see additional archive styles, visit the /parts directory -->
                             <?php get_template_part( 'parts/loop', 'archive' ); ?>

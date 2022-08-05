@@ -25,7 +25,7 @@ if ( ! is_user_logged_in() ) {
  */
 function dtps_custom_menu_page_removing() {
 
-    if (is_admin() && current_user_can( 'coach' ) && !current_user_can( 'administrator' ) ) {
+    if ( is_admin() && current_user_can( 'coach' ) && !current_user_can( 'administrator' ) ) {
 
         remove_menu_page( 'index.php' );                  //Dashboard
         remove_menu_page( 'jetpack' );                    //Jetpack*

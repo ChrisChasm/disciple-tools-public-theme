@@ -32,7 +32,7 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
                     } ?>
 
                     <?php /* Show default full view*/
-                    if ( ! $format ) : if (have_posts()) : while (have_posts()) : the_post(); ?>
+                    if ( ! $format ) : if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
                         <hr><?php get_template_part( 'parts/loop', 'news-archive' ); ?>
                     <?php endwhile; ?>
                             <?php dtps_page_navi(); ?>
@@ -43,9 +43,9 @@ endif; /* no format */ ?>
 
 
                     <?php /* Show compressed view */
-                    if ( $format ) : if (have_posts()) : ?>
+                    if ( $format ) : if ( have_posts() ) : ?>
                         <table class=""><thead><tr><th>Date</th><th></th></tr></thead><tbody>
-                            <?php while (have_posts()) : the_post(); ?>
+                            <?php while ( have_posts() ) : the_post(); ?>
                             <tr>
                                 <td><span class="small-text"><?php echo get_the_date() ?></span></td>
                                 <td><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>" style="text-decoration: none;"><?php the_title(); ?></a></td>

@@ -54,26 +54,26 @@ function dtps_remove_wp_widget_recent_comments_style() {
 // Remove injected CSS from recent comments widget
 function dtps_remove_recent_comments_style() {
     global $wp_widget_factory;
-    if (isset( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'] )) {
+    if ( isset( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'] ) ) {
         remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );
     }
 }
 
 // Remove injected CSS from gallery
-function dtps_gallery_style( $css) {
+function dtps_gallery_style( $css ) {
     return preg_replace( "!<style type='text/css'>(.*?)</style>!s", '', $css );
 }
 
 // This removes the annoying […] to a Read More link
-function dtps_excerpt_more( $more) {
+function dtps_excerpt_more( $more ) {
     global $post;
     // edit here if you like
     return '<a class="excerpt-read-more" href="'. get_permalink( $post->ID ) . '" title="'. __( 'Read', 'dtps' ) . get_the_title( $post->ID ).'">'. __( '... Read more &raquo;', 'dtps' ) .'</a>';
 }
 
 //  Stop WordPress from using the sticky class (which conflicts with Foundation), and style WordPress sticky posts using the .wp-sticky class instead
-function remove_sticky_class( $classes) {
-    if (in_array( 'sticky', $classes )) {
+function remove_sticky_class( $classes ) {
+    if ( in_array( 'sticky', $classes ) ) {
         $classes = array_diff( $classes, array( "sticky" ) );
         $classes[] = 'wp-sticky';
     }

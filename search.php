@@ -11,7 +11,7 @@ get_header(); ?>
 
     <header><h1 class="center"><?php esc_html_e( 'Results for:', 'dtps' ); ?> <?php echo esc_attr( get_search_query() ); ?></h1></header>
 
-    <?php if (have_posts()) : while ( have_posts() ) : the_post(); ?>
+    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
         <!-- To see additional archive styles, visit the /parts directory -->
             <?php get_template_part( 'parts/loop', 'archive' ); ?>

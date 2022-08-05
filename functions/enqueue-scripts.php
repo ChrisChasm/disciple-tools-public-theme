@@ -57,7 +57,7 @@ function site_scripts() {
     wp_style_add_data( 'site-css', 'rtl', 'replace' );
 
     // script for threaded comments
-    if ( is_singular() && comments_open() && ( get_option( 'thread_comments' ) == 1 )) {
+    if ( is_singular() && comments_open() && ( get_option( 'thread_comments' ) == 1 ) ) {
         wp_enqueue_script( 'comment-reply' );
     }
 

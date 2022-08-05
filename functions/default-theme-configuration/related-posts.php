@@ -4,7 +4,7 @@ function dtps_related_posts() {
     global $post;
     $tag_arr = '';
     $tags = wp_get_post_tags( $post->ID );
-    if ($tags) {
+    if ( $tags ) {
         foreach ( $tags as $tag ) {
             $tag_arr .= $tag->slug . ',';
         }
@@ -14,7 +14,7 @@ function dtps_related_posts() {
             'post__not_in' => array( $post->ID )
         );
         $related_posts = get_posts( $args );
-        if ($related_posts) {
+        if ( $related_posts ) {
             echo '<div class="widget">';
             echo esc_html__( '<h4 class="widgettitle">Related Posts</h4>', 'dtps' );
             echo '<ul class="dtps-related-posts">';
