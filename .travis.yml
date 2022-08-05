@@ -1,7 +1,7 @@
 language: php
 php:
     - '8.0'
-dist: bionic
+dist: focal
 cache:
   directories:
     - "node_modules"
