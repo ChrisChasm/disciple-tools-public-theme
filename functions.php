@@ -42,12 +42,9 @@ require_once( get_template_directory().'/functions/post-type-plugins.php' );
 
 // Integrations
 require_once( get_template_directory().'/functions/report-send-integration.php' );
-require_once( get_template_directory().'/functions/site-link-post-type.php' );
-Site_Link_System::instance();
 
 // Register scripts and stylesheets
 require_once( get_template_directory().'/functions/enqueue-scripts.php' );
-require_once( get_template_directory().'/functions/rest-api.php' );
 require_once( get_template_directory().'/functions/multi-role/multi-role.php' );
 
 // Parsedown
