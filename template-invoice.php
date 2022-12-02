@@ -106,7 +106,7 @@
             </table>
 
             <p style="padding: 10px; background-color: #90b4d066; border-radius: 2px; color:#3f729b">
-                <strong>Note:</strong> This invoice is presented as a tool to assist you with making a donation to help with the development and support of Disciple.Tools. It does not represent an amount owed or bill.
+                <strong>Note:</strong> This invoice is presented as a tool to assist you with making a donation to help with the development and support of Disciple.Tools. It does not represent an amount owed or a bill.
             </p>
 
 
