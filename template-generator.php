@@ -40,7 +40,7 @@
                 </label>
                 <label>
                     Attention Name
-                    <input type="text" name="attention" required>
+                    <input type="text" name="attention">
                 </label>
                 <label>
                     Donation Amount
@@ -65,7 +65,7 @@
                     Postal Code
                     <input type="text" name="zip" required>
                 </label>
-                <button type="submit" class="button">Generate Invoice</button>
+                <button type="submit" class="button" style="color: white !important; background-color: #3f729b !important;">Generate Invoice</button>
             </form>
 
 
