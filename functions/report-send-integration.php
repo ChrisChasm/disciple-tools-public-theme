@@ -50,6 +50,7 @@ class News_Send_Integration {
             array(
                 'methods'  => 'POST',
                 'callback' => array( $this, 'send_report' ),
+                'permission_callback' => '__return_true',
             )
         );
     }
