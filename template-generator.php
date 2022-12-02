@@ -24,7 +24,7 @@
             <p>
                 Input the values below to help generate an invoice that can be used to document your donation to Disciple.Tools.
             </p>
-            <p style='padding: 10px; background-color: #90b4d066; border-radius: 2px; color:#3f729b'>
+            <p class="dt-note">
                 <strong>Note:</strong> The values you enter in the form below are not saved or viewed by Disciple.Tools. This tool is for your own use to generate an invoice for a donation.
             </p>
 

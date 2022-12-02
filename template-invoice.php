@@ -54,25 +54,23 @@
             ?>
 
             <div style="display: flex; justify-content: space-between">
-                <div>
-                    <p class="address-color">
-                        <?php if ( !empty( $attention_name ) ) : ?>
-                            <?php echo esc_html( $attention_name ); ?>
-                            <br>
-                        <?php endif; ?>
-                        <?php echo esc_html( $organization_name ); ?>
+                <div class='address-color'>
+                    <?php if ( !empty( $attention_name ) ) : ?>
+                        <?php echo esc_html( $attention_name ); ?>
                         <br>
-                        <?php echo esc_html( $address ); ?>
-                        <br>
-                        <?php echo esc_html( $city ); ?>, <?php echo esc_html( $state ); ?> <?php echo esc_html( $zip ); ?>
-                    </p>
+                    <?php endif; ?>
+                    <?php echo esc_html( $organization_name ); ?>
+                    <br>
+                    <?php echo esc_html( $address ); ?>
+                    <br>
+                    <?php echo esc_html( $city ); ?>, <?php echo esc_html( $state ); ?> <?php echo esc_html( $zip ); ?>
                 </div>
                 <div>
                     <div style="text-align: right">
                         <div style="text-align: left">
                             <img style="height:50px" src="<?php echo esc_html( get_template_directory_uri() . '/assets/images/dt-logo-medium.png' ) ?>"/>
                             <p>
-                                Disciple.tools c/o Gospel Ambition
+                                Disciple.Tools c/o Gospel Ambition
                                 <br>
                                 PO Box 325
                                 <br>
@@ -85,7 +83,7 @@
 
             </div>
             <p>
-                <strong>Invoice Date</strong>: <?php echo esc_html( $date ); ?>
+                <strong>Invoice Date</strong>: <?php echo esc_html( dt_format_date( $date, 'F. d, Y' ) ); ?>
             </p>
 
             <table style="width: 100%">
