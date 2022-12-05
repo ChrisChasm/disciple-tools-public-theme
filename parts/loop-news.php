@@ -8,7 +8,7 @@ $thumb_url_array = wp_get_attachment_image_src( $thumb_id, 'thumbnail-size', tru
 $thumb_url = $thumb_url_array[0];
 ?>
 <hr />
-<article id="post-<?php the_ID(); ?>" <?php post_class( '' ); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
+<article id="post-<?php the_ID(); ?>" <?php post_class( 'type-news' ); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
     <header class="article-header">
 

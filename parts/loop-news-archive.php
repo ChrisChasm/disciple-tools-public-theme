@@ -7,14 +7,14 @@
 //$post = get_post();
 ?>
 
-<article id="post-<?php the_ID(); ?>" role="article">
+<article id="post-<?php the_ID(); ?>" role="article" class="type-news">
 
     <div class="grid-x grid-padding-x grid-padding-y article-section highlight-background" data-post-id="<?php the_ID(); ?>">
         <div class="cell">
-            <span class="small-text"><?php echo get_the_date() ?></span>
             <header class="article-header">
-                <h3><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h3>
+                <h1><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
             </header> <!-- end article header -->
+            <span class="small-text"><?php echo get_the_date() ?></span>
 
             <section class="entry-content news-content" itemprop="text">
                 <?php the_content(); ?>

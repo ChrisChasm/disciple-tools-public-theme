@@ -7,7 +7,7 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
 
 <?php get_header(); ?>
 
-<div class="page-wrapper">
+<div class="page-wrapper" id="news-archive">
     <div class="page-inner-wrapper">
 
         <!-- Statistics Section-->
@@ -32,14 +32,16 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
                     } ?>
 
                     <?php /* Show default full view*/
-                    if ( ! $format ) : if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-                        <hr><?php get_template_part( 'parts/loop', 'news-archive' ); ?>
-                    <?php endwhile; ?>
-                            <?php dtps_page_navi(); ?>
-                    <?php else : ?>
-                        <?php get_template_part( 'parts/content', 'missing' ); ?>
-                    <?php endif;
-endif; /* no format */ ?>
+                    if ( ! $format ) :
+                        if ( have_posts() ) :
+                            while ( have_posts() ) : the_post(); ?>
+                                <hr><?php get_template_part( 'parts/loop', 'news-archive' );
+                            endwhile;
+                            dtps_page_navi();
+                        else :
+                            get_template_part( 'parts/content', 'missing' );
+                        endif;
+                    endif; /* no format */ ?>
 
 
                     <?php /* Show compressed view */
