@@ -1046,7 +1046,7 @@ if ( ! defined( 'DT_FUNCTIONS_READY' ) ){
         }
     }
 
-    if ( !function_exists('dt_get_global_languages_list' ) ){
+    if ( !function_exists( 'dt_get_global_languages_list' ) ){
         function dt_get_global_languages_list(){
             /* You can find flags with country codes here https://unpkg.com/country-flag-emoji@1.0.3/dist/country-flag-emoji.umd.js */
             /* Then you should be able to search for the country code e.g. af_NA NA -> Namibia to get the necessary flags */
