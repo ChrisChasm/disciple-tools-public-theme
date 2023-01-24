@@ -6,7 +6,10 @@
 
 $use_cache = !isset( $_GET['nocache'] );
 
-$instances_stats = DT_Usage_Telemetry::get_stats( $use_cache );
+$instances_stats = [];
+if ( method_exists( 'DT_Usage_Telemetry', 'get_stats' ) ) {
+    $instances_stats = DT_Usage_Telemetry::get_stats( $use_cache );
+}
 
 
 //$github_forks = get_transient( 'dt_github_fork' );
