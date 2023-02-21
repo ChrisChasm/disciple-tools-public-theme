@@ -32,7 +32,7 @@ $stats = [
 <div id='primary' class='content-area'>
     <main id='main' class='site-main' role='main'>
         <div class='page-inner-wrapper'>
-            <h2>Prayer Stats</h2>
+            <h2>Disciple.Tools Stats</h2>
 
             <div class='go-cards'>
                 <? foreach ( $stats as $stat ) : ?>
