@@ -19,8 +19,8 @@ if ( empty( $stats_data ) || !$use_cache ) {
 
 
 $stats = [
-    'total_instances' => $stats_data['stats']['all_time_instances'],
-    'online_instances' => $stats_data['stats']['total_instances'],
+//    'total_instances' => $stats_data['stats']['all_time_instances'],
+//    'online_instances' => $stats_data['stats']['total_instances'],
     'active_instances' => $stats_data['stats']['active_instances'],
     'active_domains' => $stats_data['stats']['active_domains'],
     'theme_contributors' => $stats_data['stats']['theme_contributors'],
