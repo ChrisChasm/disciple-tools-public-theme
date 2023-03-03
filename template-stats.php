@@ -25,11 +25,7 @@ $stats = [
     'active_domains' => $stats_data['stats']['active_domains'],
     'theme_contributors' => $stats_data['stats']['theme_contributors'],
     'languages' => $stats_data['stats']['languages'],
-    'kingdom_savings' => [
-        'label' => 'Kingdom Savings',
-        'value' => '$120,000 to $780,000 annually',
-        'description' => 'Cost Difference between Disciple.Tools (hosting) and two prominent alternative softwares for 1000 users.'
-    ],
+    'kingdom_savings' => $stats_data['stats']['kingdom_savings'],
 ]
 ?>
 
