@@ -24,7 +24,7 @@
                  src="<?php echo esc_html( get_template_directory_uri() . '/assets/images/dt-caret.png' ) ?>"/> Get News
             by Email</h3>
 
-        <?php echo do_shortcode( '[go_display_opt_in]' ); ?>
+        <?php echo do_shortcode( '[go_display_opt_in source="dt_news"]' ); ?>
 
         <p>By clicking <strong>subscribe</strong> you agree to receive emails from GospelAmbition.org and it's projects
         </p>
