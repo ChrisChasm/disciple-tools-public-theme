@@ -20,7 +20,7 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
         <!-- Main -->
         <main role="main" id="post-main" >
 
-            <div class="grid-x grid-margin-x grid-padding-x">
+            <div class="grid-x grid-margin-x grid-padding-x" style="flex-wrap: wrap-reverse">
 
                 <div class="cell large-8">
 
@@ -58,7 +58,7 @@ if ( isset( $_GET['format'] ) && $_GET['format'] === 'compact' ) {
                     <?php else : ?>
                         <?php get_template_part( 'parts/content', 'missing' ); ?>
                     <?php endif;
-        /* have posts*/ endif; /* has format */  ?>
+                    /* have posts*/ endif; /* has format */  ?>
 
                 </div>
 

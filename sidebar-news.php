@@ -6,20 +6,29 @@
 
 <div id="report" class="sidebar cell" role="complementary">
 
-    <div>
-        <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url() ) ?>">
-            <div class="input-group large">
-                <input type="search" class="input-group-field search-field" placeholder="Search News ..." value="" name="s" title="Search for:">
-                <input type="hidden" name="post_type[]" value="news" />
-                <div class="input-group-button">
-                    <input type="submit" class="search-submit button" value="Search">
-                </div>
-            </div>
-        </form>
-    </div>
+<!--    <div>-->
+<!--        <form role="search" method="get" class="search-form" action="--><?php //echo esc_url( home_url() ) ?><!--">-->
+<!--            <div class="input-group large">-->
+<!--                <input type="search" class="input-group-field search-field" placeholder="Search News ..." value="" name="s" title="Search for:">-->
+<!--                <input type="hidden" name="post_type[]" value="news" />-->
+<!--                <div class="input-group-button">-->
+<!--                    <input type="submit" class="search-submit button" value="Search">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--    <hr>-->
 
-    <hr>
-    <?php get_template_part( 'parts/content', 'news-subscribe' ); ?>
+    <div class='padding-horizontal-1'>
+        <h3><img style='max-height:25px; vertical-align: inherit'
+                 src="<?php echo esc_html( get_template_directory_uri() . '/assets/images/dt-caret.png' ) ?>"/> Get News
+            by Email</h3>
+
+        <?php echo do_shortcode( '[go_display_opt_in]' ); ?>
+
+        <p>By clicking <strong>subscribe</strong> you agree to receive emails from GospelAmbition.org and it's projects
+        </p>
+    </div>
     <hr>
 
     <div class="padding-horizontal-1">
