@@ -26,7 +26,7 @@
 
         <?php echo do_shortcode( '[go_display_opt_in source="dt_news"]' ); ?>
 
-        <p>By clicking <strong>subscribe</strong> you agree to receive emails from GospelAmbition.org and it's projects
+        <p>Click <strong>subscribe</strong> to sign up for Disciple.Tools news and opportunities, and occasional communication from <a href='https://GospelAmbition.org' target="_blank">GospelAmbition.org</a>
         </p>
     </div>
     <hr>
