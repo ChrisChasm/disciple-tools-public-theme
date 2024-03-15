@@ -32,12 +32,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <meta class="foundation-mq">
 
-        <!-- If Site Icon isn't set in customizer -->
-        <?php if ( ! function_exists( 'has_site_icon' ) || ! has_site_icon() ) { ?>
-            <!-- Icons & Favicons -->
-            <link rel="icon" href="<?php echo esc_url( get_template_directory_uri() ) ?>/favicon.png">
-            <link href="<?php echo esc_url( get_template_directory_uri() ) ?>/assets/images/apple-icon-touch.png" rel="apple-touch-icon" />
-        <?php } ?>
+
+
+        <!-- Icons & Favicons -->
+        <link rel="icon" href="<?php echo esc_url( get_template_directory_uri() ) ?>/favicon.png">
+        <link href="<?php echo esc_url( get_template_directory_uri() ) ?>/assets/favicon/apple-icon-touch.png" rel="apple-touch-icon" />
+        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo esc_url( get_template_directory_uri() ) ?>/assets/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo esc_url( get_template_directory_uri() ) ?>/assets/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo esc_url( get_template_directory_uri() ) ?>/assets/favicon/favicon-16x16.png">
+        <link rel="manifest" href="<?php echo esc_url( get_template_directory_uri() ) ?>/assets/favicon/site.webmanifest">
+        <link rel="mask-icon" href="<?php echo esc_url( get_template_directory_uri() ) ?>/assets/favicon/safari-pinned-tab.svg" color="#8bc34a">
+        <meta name="msapplication-TileColor" content="#3f729b">
+        <meta name="theme-color" content="#8BC34A">
+
 
         <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
