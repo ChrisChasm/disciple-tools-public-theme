@@ -84,7 +84,18 @@ get_header(); ?>
                                 // if string exists
                                 if ( $string !== false ) {  /* Use the content section of the post */
                                     $parsedown = new Parsedown();
-                                    echo wp_kses_post( $parsedown->text( $string ) );
+                                    $markdown_string = $parsedown->text( $string );
+                                    //url regex
+                                    $sources = preg_match_all( '/src\s*=\s*"(.+?)"/', $markdown_string, $matches );
+                                    $repo_url = $post_meta['homepage'] . '/raw/master/';
+                                    if ( $sources ) {
+                                        foreach ( $matches[1] as $match ) {
+                                            if ( strpos( $match, 'http' ) === false ) {
+                                                $markdown_string = str_replace( $match, $repo_url . $match, $markdown_string );
+                                            }
+                                        }
+                                    }
+                                    echo wp_kses_post( $markdown_string );
                                 }
                                 // end readme render
 
