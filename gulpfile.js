@@ -38,7 +38,7 @@ const SOURCE = {
 		FOUNDATION + '/dist/js/plugins/foundation.dropdownMenu.js', //menu nav
 		// FOUNDATION + '/dist/js/plugins/foundation.equalizer.js',
 		// FOUNDATION + '/dist/js/plugins/foundation.interchange.js',
-		// FOUNDATION + '/dist/js/plugins/foundation.offcanvas.js',
+		FOUNDATION + '/dist/js/plugins/foundation.offcanvas.js',
 		// FOUNDATION + '/dist/js/plugins/foundation.orbit.js',
 		FOUNDATION + '/dist/js/plugins/foundation.responsiveMenu.js', // menu nav
 		// FOUNDATION + '/dist/js/plugins/foundation.responsiveToggle.js',
