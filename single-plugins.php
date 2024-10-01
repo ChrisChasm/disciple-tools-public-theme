@@ -87,7 +87,7 @@ get_header(); ?>
                                     $markdown_string = $parsedown->text( $string );
                                     //url regex
                                     $sources = preg_match_all( '/src\s*=\s*"(.+?)"/', $markdown_string, $matches );
-                                    $repo_url = $post_meta['homepage'] . '/raw/master/';
+                                    $repo_url = str_replace( '/README.md', '', $post_meta['readme_url'] );
                                     if ( $sources ) {
                                         foreach ( $matches[1] as $match ) {
                                             if ( strpos( $match, 'http' ) === false ) {
