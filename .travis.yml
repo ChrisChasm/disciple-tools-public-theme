@@ -1,9 +1,7 @@
 language: php
 php:
-    - '7.0'
-    - '7.2'
-    - '7.4'
-dist: trusty
+    - '8.0'
+dist: focal
 cache:
   directories:
     - "node_modules"
