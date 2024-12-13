@@ -86,16 +86,19 @@ get_header(); ?>
                                     $parsedown = new Parsedown();
                                     $markdown_string = $parsedown->text( $string );
                                     //url regex
-                                    $repo_url = str_replace( '/README.md', '', $post_meta['readme_url'] );
-                                    $markdown_string = str_replace( './', $repo_url . '/' , $markdown_string );
+                                    $raw_repo_url = str_replace( '/README.md', '', $post_meta['readme_url'] );
                                     $sources = preg_match_all( '/src\s*=\s*"(.+?)"/', $markdown_string, $matches );
                                     if ( $sources ) {
                                         foreach ( $matches[1] as $match ) {
                                             if ( strpos( $match, 'http' ) === false ) {
-                                                $markdown_string = str_replace( $match, $repo_url . $match, $markdown_string );
+                                                $match = str_replace( './', '/', $match );
+                                                $markdown_string = str_replace( $match, $raw_repo_url . $match, $markdown_string );
                                             }
                                         }
                                     }
+                                    
+                                    $github_url = $post_meta['homepage'];
+                                    $markdown_string = str_replace( './', $github_url . '/' , $markdown_string );
                                     echo wp_kses_post( $markdown_string );
                                 }
                                 // end readme render
