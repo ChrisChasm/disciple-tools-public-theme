@@ -97,8 +97,8 @@ get_header(); ?>
                                         }
                                     }
                                     
-                                    $github_url = $post_meta['homepage'];
-                                    $markdown_string = str_replace( './', $github_url . '/' , $markdown_string );
+                                    $github_url = trailingslashit( $post_meta['homepage'] ) . 'blob/master/';
+                                    $markdown_string = str_replace( './', $github_url , $markdown_string );
                                     echo wp_kses_post( $markdown_string );
                                 }
                                 // end readme render
